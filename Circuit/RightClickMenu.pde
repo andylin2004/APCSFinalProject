@@ -33,6 +33,6 @@ class Button{
   }
   
   void click(){
-    print("click");
+    print(toAdd);
   }
 }

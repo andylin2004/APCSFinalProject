@@ -4,7 +4,12 @@ RightClickMenu menu;
 void setup(){
   size(1000,1000);
   frameRate(30);
-  menu = new RightClickMenu();
+  ArrayList<String> menuItems = new ArrayList<String>();
+  menuItems.add("a");
+  menuItems.add("a");
+  menuItems.add("a");
+  menuItems.add("a");
+  menu = new RightClickMenu(menuItems);
   menu.x = -1000;
   menu.y = -1000;
 }
@@ -19,11 +24,13 @@ void mousePressed(){
     menu.x = mouseX;
     menu.y = mouseY;
   }else{
-    if (Math.pow(mouseX-menu.x, 2)+Math.pow(mouseY-menu.y, 2) < 400){
-      print("less");
-    }else{
-      menu.x = -1000;
-      menu.y = -1000;
+    for (Button button : menu.buttons){
+      if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100){
+        button.click();
+        break;
+      }
     }
+    menu.x = -1000;
+    menu.y = -1000;
   }
 }
