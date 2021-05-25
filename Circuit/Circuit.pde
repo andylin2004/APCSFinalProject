@@ -5,6 +5,8 @@ void setup(){
   size(1000,1000);
   frameRate(30);
   menu = new RightClickMenu();
+  menu.x = -1000;
+  menu.y = -1000;
 }
 
 void draw(){
