@@ -60,7 +60,21 @@ public class CircuitComponent{
     return Y2;
   }
   
+  public void addConnection(Object connection, boolean next){
+    if (next){
+      nextConnection.add(connection);
+    }
+    else{
+      previousConnection.add(connection);
+    }
+  }
   
+  public ArrayList<Object> getConnections(boolean next){
+    if(next){
+      return nextConnection;
+    }
+    return previousConnection;
+  }
   
   
 }
