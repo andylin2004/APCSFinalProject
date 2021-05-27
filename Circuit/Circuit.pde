@@ -1,4 +1,3 @@
-boolean menuOpen = false;
 RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
 Button reset = new ResetButton();

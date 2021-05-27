@@ -13,7 +13,8 @@ public class Battery extends CircuitComponent{
   
   void display(){
     fill(0);
-    ellipse(centerX, centerY, 40, 30);
+    rectMode(CENTER);
+    rect(centerX, centerY, 40, 30);
     fill(255);
     attachmentLeft.display();
     attachmentRight.display();
