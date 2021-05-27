@@ -13,10 +13,6 @@ public class Resistor extends CircuitComponent{
   void display(){
     fill(255);
     ellipse(centerX, centerY, 80, 60);
-    fill(0);
-    ellipse(X1, Y1, 15, 15);
-    ellipse(X2, Y2, 15, 15);
-    fill(255);
     textSize(20);
     attachmentLeft.display();
     attachmentRight.display();
