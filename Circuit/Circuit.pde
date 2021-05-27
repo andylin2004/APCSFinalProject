@@ -12,24 +12,17 @@ void setup() {
   menuItems.add("a");
   menuItems.add("a");
   menu = new RightClickMenu(menuItems);
-<<<<<<< HEAD
   menu.x = -1000;
   menu.y = -1000;
-  
-=======
->>>>>>> 6b1da3b25cee29089b62480d00d43b1ae08a1a9a
 }
 
 void draw() {
   background(200);
   menu.display();
-<<<<<<< HEAD
-=======
   reset.display();
   for (CircuitComponent part : parts) {
     part.display();
   }
->>>>>>> 6b1da3b25cee29089b62480d00d43b1ae08a1a9a
 }
 
 void mousePressed() {

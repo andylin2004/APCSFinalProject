@@ -3,7 +3,7 @@ public class Resistor extends CircuitComponent{
   private float centerX;
   private float centerY;
   
-  public Resistor(float r, float CX, float CY){
+  public Resistor(float r, int CX, int CY){
     super(CX - 40, CY, CX + 40, CY);
     centerX = CX;
     centerY = CY;
