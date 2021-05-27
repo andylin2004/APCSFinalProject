@@ -25,15 +25,15 @@ void mousePressed(){
     menu.x = mouseX;
     menu.y = mouseY;
   }else{
+    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100){
+      reset.click();
+      parts.clear();
+      return;
+    }
     for (Button button : menu.buttons){
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100){
         button.click();
-        return;
       }
-    }
-    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100){
-      reset.click();
-      return;
     }
     menu.x = -1000;
     menu.y = -1000;
