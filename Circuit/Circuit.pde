@@ -12,11 +12,14 @@ void setup(){
   menu = new RightClickMenu(menuItems);
   menu.x = -1000;
   menu.y = -1000;
+  
 }
 
 void draw(){
   background(200);
   menu.display();
+  Resistor res = new Resistor(5, 500, 500);
+  res.display();
 }
 
 void mousePressed(){
