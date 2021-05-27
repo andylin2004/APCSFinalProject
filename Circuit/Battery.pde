@@ -4,7 +4,7 @@ public class Battery extends CircuitComponent{
   private float centerY;
   
   
-  public Battery(float r, float CX, float CY){
+  public Battery(float r, int CX, int CY){
     super(CX - 20, CY, CX + 20, CY);
     centerX = CX;
     centerY = CY;
@@ -15,6 +15,8 @@ public class Battery extends CircuitComponent{
     fill(0);
     ellipse(centerX, centerY, 40, 30);
     fill(255);
+    attachmentLeft.display();
+    attachmentRight.display();
     textSize(20);
     text("battery voltage:" + voltage, centerX, centerY);
   }

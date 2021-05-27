@@ -9,8 +9,10 @@ public class CircuitComponent {
   float current;
   ArrayList<Object> nextConnection;
   ArrayList<Object> previousConnection;
+  Button attachmentLeft;
+  Button attachmentRight;
 
-  public CircuitComponent(float x1, float y1, float x2, float y2) {
+  public CircuitComponent(int x1, int y1, int x2, int y2) {
     X1 = x1; 
     Y1 = y1; 
     X2 = x2; 
@@ -20,6 +22,12 @@ public class CircuitComponent {
     current = 0;
     nextConnection = new ArrayList<Object>();
     previousConnection = new ArrayList<Object>();
+    attachmentLeft = new Button();
+    attachmentLeft.x = x1;
+    attachmentLeft.y = y1;
+    attachmentRight = new Button();
+    attachmentRight.x = x2;
+    attachmentRight.y = y2;
   }
 
   public void setX1(float num) {
