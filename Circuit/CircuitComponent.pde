@@ -76,5 +76,8 @@ public class CircuitComponent{
     return previousConnection;
   }
   
+  public void display(){
+  }
+  
   
 }
