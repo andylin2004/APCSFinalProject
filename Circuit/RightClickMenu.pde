@@ -6,6 +6,8 @@ public class RightClickMenu{
     for (String component : components){
       buttons.add(new Button(component));
     }
+    this.x = -1000;
+    this.y = -1000;
   }
   
   void display(){
@@ -36,3 +38,16 @@ class Button{
     print(toAdd);
   }
 }
+
+class ResetButton extends Button{
+  ResetButton(){
+    super("");
+    this.x = 900;
+    this.y = 400;
+  }
+  
+  void click(){
+  }
+}
+  
+  
