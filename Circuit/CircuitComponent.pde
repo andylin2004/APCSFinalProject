@@ -1,4 +1,4 @@
-interface CircuitComponent{
+class CircuitComponent{
   float XLocationNode1;
   float YLocationNode1;
   float XLocationNode2;
