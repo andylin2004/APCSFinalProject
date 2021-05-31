@@ -57,6 +57,7 @@ void mousePressed() {
   }else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
+      wires.clear();
       parts.clear();
       return;
     }
