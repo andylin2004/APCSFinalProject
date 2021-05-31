@@ -11,8 +11,6 @@ void setup() {
   ArrayList<String> menuItems = new ArrayList<String>();
   menuItems.add("resistor");
   menuItems.add("battery");
-  menuItems.add("a");
-  menuItems.add("a");
   menu = new RightClickMenu(menuItems);
   menu.x = -1000;
   menu.y = -1000;
