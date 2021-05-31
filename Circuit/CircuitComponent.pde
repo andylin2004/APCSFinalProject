@@ -7,8 +7,8 @@ public class CircuitComponent {
   float power;
   float voltage;
   float current;
-  ArrayList<Object> nextConnection;
-  ArrayList<Object> previousConnection;
+  ArrayList<CircuitComponent> nextConnection;
+  ArrayList<CircuitComponent> previousConnection;
   Button attachmentLeft;
   Button attachmentRight;
 
@@ -20,8 +20,8 @@ public class CircuitComponent {
     power = 0; 
     voltage = 0; 
     current = 0;
-    nextConnection = new ArrayList<Object>();
-    previousConnection = new ArrayList<Object>();
+    nextConnection = new ArrayList();
+    previousConnection = new ArrayList();
     attachmentLeft = new Button();
     attachmentLeft.x = x1;
     attachmentLeft.y = y1;
@@ -36,14 +36,8 @@ public class CircuitComponent {
     power = 0; 
     voltage = 0; 
     current = 0;
-    nextConnection = new ArrayList<Object>();
-    previousConnection = new ArrayList<Object>();
-    //attachmentLeft = new Button();
-    //attachmentLeft.x = x1;
-    //attachmentLeft.y = y1;
-    //attachmentRight = new Button();
-    //attachmentRight.x = x2;
-    //attachmentRight.y = y2;
+    nextConnection = new ArrayList();
+    previousConnection = new ArrayList();
   }
 
   public void setX1(float num) {
@@ -90,7 +84,7 @@ public class CircuitComponent {
     return Y2;
   }
 
-  public void addConnection(Object connection, boolean next) {
+  public void addConnection(CircuitComponent connection, boolean next) {
     if (next) {
       nextConnection.add(connection);
     } else {
@@ -98,7 +92,7 @@ public class CircuitComponent {
     }
   }
 
-  public ArrayList<Object> getConnections(boolean next) {
+  public ArrayList<CircuitComponent> getConnections(boolean next) {
     if (next) {
       return nextConnection;
     }

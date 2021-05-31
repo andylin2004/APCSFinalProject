@@ -11,6 +11,6 @@ public class Wire extends CircuitComponent{
     rectMode(CORNERS);
     fill(247, 157, 72);
     line(x1-2.5, y1-2.5, x2, y2);
-    fill(0);
+    fill(255);
   }
 }
