@@ -9,8 +9,10 @@ public class Wire extends CircuitComponent{
   
   void display(){
     rectMode(CORNERS);
-    fill(247, 157, 72);
+    stroke(247, 157, 72);
+    strokeWeight(5);
     line(x1-2.5, y1-2.5, x2, y2);
-    fill(255);
+    stroke(0);
+    strokeWeight(1);
   }
 }
