@@ -13,6 +13,10 @@ Hannah's Development Log
 
 May 26th: Added get and set methods for the CircuitComponents class. Started the Resistor class with a display method and a constructor.
 
+May 27th: Spent way too much time figuring out Git and trying to fix (to no avail) the way git interacts in my terminal. I also worked on fixing a lot of merge conflicts. 
+
+May 31: Added methods to calculate the total current, voltage, and resistence of a series circuit and display those values in the top left corner. I also worked to fix the colors of text and circuit components in order to be more readable.
+
 Andy's Dev Log:
 
 May 25: implemented the RightClickMenu as a dummy menu in order to prepare for being able to add elements into the workspace. This also necessitated adding a button class for the right click menu.
