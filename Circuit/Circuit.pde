@@ -67,7 +67,7 @@ void addComponent(String component) {
 void findTotalResistence(){
   totalResistence = 0;
   for (int i = 0; i < parts.size(); i++){
-    if (parts.get(i) instanceOf Resistor){
+    if (parts.get(i) instanceof Resistor){
       totalResistence+= parts.get(i).getResistence();
     }
   }
