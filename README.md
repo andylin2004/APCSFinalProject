@@ -20,3 +20,5 @@ May 25: implemented the RightClickMenu as a dummy menu in order to prepare for b
 May 26: implemented full functionality of the right click menu (now able to add circuit components). Implemented a reset button to clear workspace (necessitated extending button class). Implemented battery class (progress akin to Hannah's resistor class). Placed a dummy display function in circuitcomponents to accomdate a for loop to render the circuit parts.
 
 May 27: implemented buttons on the circuit components (where the wires will be placed). Changed shape position to ints because buttons were having an issue and pixels are in int anyways. Implemented adding the start end of the wire (end point and dragging it around not implemented yet).
+
+May 31: added the wires class in order to connect circuit components in a linked list manner. Overloaded CircuitComponent class in order to accomdate the wires class. Assisted with design choices for demo day (how to display data and when to display the data).
