@@ -44,6 +44,7 @@ void mousePressed() {
          wireGrabbed.y2 = mouseY;
          parts.add(wireGrabbed);
          grabbingWireEnd = false;
+         return;
        }
     }
   }else {
