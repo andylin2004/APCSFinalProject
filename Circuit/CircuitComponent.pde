@@ -29,6 +29,22 @@ public class CircuitComponent {
     attachmentRight.x = x2;
     attachmentRight.y = y2;
   }
+  
+  public CircuitComponent(int x1, int y1) {
+    X1 = x1; 
+    Y1 = y1; 
+    power = 0; 
+    voltage = 0; 
+    current = 0;
+    nextConnection = new ArrayList<Object>();
+    previousConnection = new ArrayList<Object>();
+    //attachmentLeft = new Button();
+    //attachmentLeft.x = x1;
+    //attachmentLeft.y = y1;
+    //attachmentRight = new Button();
+    //attachmentRight.x = x2;
+    //attachmentRight.y = y2;
+  }
 
   public void setX1(float num) {
     X1 = num;

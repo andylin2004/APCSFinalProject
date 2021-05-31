@@ -1,4 +1,5 @@
 boolean grabbingWireEnd = false;
+Wire wireGrabbed;
 RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
 Button reset = new ResetButton();
@@ -23,13 +24,29 @@ void draw() {
   for (CircuitComponent part : parts) {
     part.display();
   }
+  if (grabbingWireEnd){
+    wireGrabbed.x2 = mouseX;
+    wireGrabbed.y2 = mouseY;
+    wireGrabbed.display();
+  }
 }
 
 void mousePressed() {
   if (mouseButton == RIGHT) {
     menu.x = mouseX;
     menu.y = mouseY;
-  } else {
+    grabbingWireEnd = false;
+  }else if (grabbingWireEnd){
+    for (CircuitComponent part: parts){
+      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
+        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+         wireGrabbed.x2 = mouseX;
+         wireGrabbed.y2 = mouseY;
+         parts.add(wireGrabbed);
+         grabbingWireEnd = false;
+       }
+    }
+  }else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
       parts.clear();
@@ -38,9 +55,11 @@ void mousePressed() {
     for (CircuitComponent part: parts){
       if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
         || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
-         part.nextConnection = new Wire(mouseX, mouseY);
+         wireGrabbed = new Wire(mouseX, mouseY);
+         part.nextConnection.add(wireGrabbed);
          grabbingWireEnd = true;
-         return;       }
+         return;
+       }
     }
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
