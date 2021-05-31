@@ -36,6 +36,7 @@ void draw() {
   textSize(20);
   fill(0);
   text("Total Resistence: " + totalResistence, 30, 30);
+  text("Total Current: " + totalCurrent, 30, 70);
 }
 
 void mousePressed() {
