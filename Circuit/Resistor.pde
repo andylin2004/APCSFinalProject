@@ -18,4 +18,8 @@ public class Resistor extends CircuitComponent{
     attachmentRight.display();
     text("resistence:" + resistence, centerX, centerY);
   }
+  
+  public float getResistence(){
+    return resistence;
+  }
 }
