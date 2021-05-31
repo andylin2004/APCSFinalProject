@@ -2,6 +2,7 @@ boolean grabbingWireEnd = false;
 Wire wireGrabbed;
 RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
+ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
 
 void setup() {
@@ -24,6 +25,9 @@ void draw() {
   for (CircuitComponent part : parts) {
     part.display();
   }
+  for (Wire wire : wires) {
+    wire.display();
+  }
   if (grabbingWireEnd){
     wireGrabbed.x2 = mouseX;
     wireGrabbed.y2 = mouseY;
@@ -42,7 +46,7 @@ void mousePressed() {
         || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
          wireGrabbed.x2 = mouseX;
          wireGrabbed.y2 = mouseY;
-         parts.add(wireGrabbed);
+         wires.add(wireGrabbed);
          grabbingWireEnd = false;
          return;
        }
