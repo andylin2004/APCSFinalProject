@@ -47,7 +47,7 @@ void mousePressed() {
          wireGrabbed.x2 = mouseX;
          wireGrabbed.y2 = mouseY;
          wires.add(wireGrabbed);
-         wireGrabbed.previousConnection.get(0).previousConnection.add(wireGrabbed);
+         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
          wireGrabbed.nextConnection.add(part);
          part.previousConnection.add(wireGrabbed);
          grabbingWireEnd = false;
