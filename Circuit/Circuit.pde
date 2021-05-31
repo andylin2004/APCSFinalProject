@@ -6,6 +6,7 @@ ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
 float totalResistence;
 float totalCurrent;
+float voltage;
 
 void setup() {
   size(1000, 500);
@@ -35,8 +36,8 @@ void draw() {
   }
   textSize(20);
   fill(0);
-  text("Total Resistence: " + totalResistence, 30, 30);
-  text("Total Current: " + totalCurrent, 30, 70);
+  text("Total Resistence: " + findTotalResistence(), 30, 30);
+  text("Total Current: " + setCurrent(), 30, 70);
 }
 
 void mousePressed() {
@@ -95,11 +96,18 @@ void addComponent(String component) {
   }
 }
   
-void findTotalResistence(){
+float findTotalResistence(){
   totalResistence = 0;
   for (int i = 0; i < parts.size(); i++){
     if (parts.get(i) instanceof Resistor){
-      //totalResistence+= parts.get(i).getResistence();
+      Resistor curRes = (Resistor) parts.get(i);
+      totalResistence+= curRes.getResistence();
     }
   }
+  return totalResistence;
+}
+
+float setCurrent(){
+  totalCurrent = totalResistence / 10.0;
+  return totalCurrent;
 }
