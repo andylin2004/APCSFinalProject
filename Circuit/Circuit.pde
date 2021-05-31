@@ -6,7 +6,7 @@ ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
 float totalResistence;
 float totalCurrent;
-float voltage;
+float totalVoltage;
 
 void setup() {
   size(1000, 500);
@@ -107,7 +107,18 @@ float findTotalResistence(){
   return totalResistence;
 }
 
+float findTotalVoltage(){
+  totalVoltage = 0;
+  for (int i = 0; i < parts.size(); i++){
+    if (parts.get(i) instanceof Battery){
+      Battery curBat = (Battery) parts.get(i);
+      totalVoltage+= curBat.getVoltage();
+    }
+  }
+  return totalVoltage;
+}
+
 float setCurrent(){
-  totalCurrent = totalResistence / 10.0;
+  totalCurrent = totalResistence / findTotalVoltage();
   return totalCurrent;
 }
