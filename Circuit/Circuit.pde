@@ -47,6 +47,9 @@ void mousePressed() {
          wireGrabbed.x2 = mouseX;
          wireGrabbed.y2 = mouseY;
          wires.add(wireGrabbed);
+         wireGrabbed.previousConnection.get(0).previousConnection.add(wireGrabbed);
+         wireGrabbed.nextConnection.add(part);
+         part.previousConnection.add(wireGrabbed);
          grabbingWireEnd = false;
          return;
        }
@@ -61,7 +64,7 @@ void mousePressed() {
       if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
         || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
          wireGrabbed = new Wire(mouseX, mouseY);
-         part.nextConnection.add(wireGrabbed);
+         wireGrabbed.previousConnection.add(part);
          grabbingWireEnd = true;
          return;
        }
