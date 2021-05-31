@@ -2,6 +2,7 @@ boolean grabbingWireEnd = false;
 RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
 Button reset = new ResetButton();
+float totalResistence;
 
 void setup() {
   size(1000, 500);
@@ -60,5 +61,14 @@ void addComponent(String component) {
     case("battery"):
     parts.add(new Battery(10, mouseX, mouseY));
     break;
+  }
+}
+  
+void findTotalResistence(){
+  totalResistence = 0;
+  for (int i = 0; i < parts.size(); i++){
+    if (parts.get(i) instanceOf Resistor){
+      totalResistence+= parts.get(i).getResistence();
+    }
   }
 }
