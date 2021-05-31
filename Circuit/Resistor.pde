@@ -3,17 +3,19 @@ public class Resistor extends CircuitComponent{
   private float centerX;
   private float centerY;
   
-  
-  public Resistor(float r, float CX, float CY){
-    super(CX - 20, CY, CX + 20, CY);
+  public Resistor(float r, int CX, int CY){
+    super(CX - 40, CY, CX + 40, CY);
     centerX = CX;
     centerY = CY;
     resistence = r;
   }
   
   void display(){
-    ellipse(centerX, centerY, 40, 30);
+    fill(255);
+    ellipse(centerX, centerY, 80, 60);
     textSize(20);
+    attachmentLeft.display();
+    attachmentRight.display();
     text("resistence:" + resistence, centerX, centerY);
   }
 }

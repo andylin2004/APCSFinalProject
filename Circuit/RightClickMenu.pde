@@ -30,6 +30,9 @@ class Button{
     this.toAdd = toAdd;
   }
   
+  Button(){
+  }
+  
   void display(){
     ellipse(x, y, 10, 10);
   }
@@ -41,7 +44,7 @@ class Button{
 
 class ResetButton extends Button{
   ResetButton(){
-    super("");
+    super();
     this.x = 900;
     this.y = 400;
   }
