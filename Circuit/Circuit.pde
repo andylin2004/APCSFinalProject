@@ -5,6 +5,7 @@ ArrayList<CircuitComponent> parts = new ArrayList();
 ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
 float totalResistence;
+float totalCurrent;
 
 void setup() {
   size(1000, 500);
@@ -34,6 +35,9 @@ void draw() {
     wireGrabbed.y2 = mouseY;
     wireGrabbed.display();
   }
+  textSize(20);
+  fill(0);
+  text("Total Resistence: " + totalResistence, 30, 30);
 }
 
 void mousePressed() {
@@ -92,7 +96,7 @@ void findTotalResistence(){
   totalResistence = 0;
   for (int i = 0; i < parts.size(); i++){
     if (parts.get(i) instanceof Resistor){
-      totalResistence+= parts.get(i).getResistence();
+      //totalResistence+= parts.get(i).getResistence();
     }
   }
 }
