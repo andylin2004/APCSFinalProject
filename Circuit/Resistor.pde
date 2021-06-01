@@ -14,8 +14,14 @@ public class Resistor extends CircuitComponent{
     fill(255);
     ellipse(centerX, centerY, 80, 60);
     textSize(20);
+    fill(0);
     attachmentLeft.display();
     attachmentRight.display();
+    fill(0);
     text("resistence:" + resistence, centerX, centerY);
+  }
+  
+  public float getResistence(){
+    return resistence;
   }
 }

@@ -1,7 +1,12 @@
 boolean grabbingWireEnd = false;
+Wire wireGrabbed;
 RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
+ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
+float totalResistence;
+float totalCurrent;
+float totalVoltage;
 
 void setup() {
   size(1000, 500);
@@ -9,8 +14,6 @@ void setup() {
   ArrayList<String> menuItems = new ArrayList<String>();
   menuItems.add("resistor");
   menuItems.add("battery");
-  menuItems.add("a");
-  menuItems.add("a");
   menu = new RightClickMenu(menuItems);
   menu.x = -1000;
   menu.y = -1000;
@@ -23,24 +26,55 @@ void draw() {
   for (CircuitComponent part : parts) {
     part.display();
   }
+  for (Wire wire : wires) {
+    wire.display();
+  }
+  if (grabbingWireEnd){
+    wireGrabbed.x2 = mouseX;
+    wireGrabbed.y2 = mouseY;
+    wireGrabbed.display();
+  }
+  textSize(20);
+  fill(0);
+  text("Total Resistence: " + findTotalResistence(), 30, 30);
+  text("Total Current: " + setCurrent(), 30, 70);
+  text("Total Voltage: " + findTotalVoltage(), 30, 110);
 }
 
 void mousePressed() {
   if (mouseButton == RIGHT) {
     menu.x = mouseX;
     menu.y = mouseY;
-  } else {
+    grabbingWireEnd = false;
+  }else if (grabbingWireEnd){
+    for (CircuitComponent part: parts){
+      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
+        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+         wireGrabbed.x2 = mouseX;
+         wireGrabbed.y2 = mouseY;
+         wires.add(wireGrabbed);
+         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+         wireGrabbed.nextConnection.add(part);
+         part.previousConnection.add(wireGrabbed);
+         grabbingWireEnd = false;
+         return;
+       }
+    }
+  }else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
+      wires.clear();
       parts.clear();
       return;
     }
     for (CircuitComponent part: parts){
       if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
         || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
-         part.nextConnection = new Wire(mouseX, mouseY);
+         wireGrabbed = new Wire(mouseX, mouseY);
+         wireGrabbed.previousConnection.add(part);
          grabbingWireEnd = true;
-         return;       }
+         return;
+       }
     }
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
@@ -61,4 +95,31 @@ void addComponent(String component) {
     parts.add(new Battery(10, mouseX, mouseY));
     break;
   }
+}
+  
+float findTotalResistence(){
+  totalResistence = 0;
+  for (int i = 0; i < parts.size(); i++){
+    if (parts.get(i) instanceof Resistor){
+      Resistor curRes = (Resistor) parts.get(i);
+      totalResistence+= curRes.getResistence();
+    }
+  }
+  return totalResistence;
+}
+
+float findTotalVoltage(){
+  totalVoltage = 0;
+  for (int i = 0; i < parts.size(); i++){
+    if (parts.get(i) instanceof Battery){
+      Battery curBat = (Battery) parts.get(i);
+      totalVoltage+= curBat.getVoltage();
+    }
+  }
+  return totalVoltage;
+}
+
+float setCurrent(){
+  totalCurrent = totalResistence / findTotalVoltage();
+  return totalCurrent;
 }
