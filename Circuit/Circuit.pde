@@ -69,6 +69,9 @@ void mousePressed() {
       parts.clear();
       return;
     }
+    if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100){
+      instructions.click();
+    }
     for (CircuitComponent part: parts){
       if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
         || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
