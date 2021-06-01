@@ -4,6 +4,7 @@ RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
 ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
+InstructionsButton instructions = new InstructionsButton(30, 400);
 float totalResistence;
 float totalCurrent;
 float totalVoltage;
@@ -23,6 +24,7 @@ void draw() {
   background(200);
   menu.display();
   reset.display();
+  instructions.display();
   for (CircuitComponent part : parts) {
     part.display();
   }
