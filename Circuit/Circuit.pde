@@ -39,6 +39,7 @@ void draw() {
   text("Total Resistence: " + findTotalResistence(), 30, 30);
   text("Total Current: " + setCurrent(), 30, 70);
   text("Total Voltage: " + findTotalVoltage(), 30, 110);
+  text("Is circuit" + verifyIfCircuit(), 30, 150);
 }
 
 void mousePressed() {
@@ -122,4 +123,27 @@ float findTotalVoltage(){
 float setCurrent(){
   totalCurrent = totalResistence / findTotalVoltage();
   return totalCurrent;
+}
+
+boolean verifyIfCircuit(){
+  if (parts.size() == 0){
+    return false;
+  }else{
+    return verifyIfCircuit(parts.get(0));
+  }
+}
+
+boolean verifyIfCircuit(CircuitComponent part){
+  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0){
+    return false;
+  }else{
+    for (CircuitComponent link : part.nextConnection){
+      if (link == parts.get(0)){
+        return true;
+      }else{
+        return verifyIfCircuit(link);
+      }
+    }
+  }
+  return false;
 }
