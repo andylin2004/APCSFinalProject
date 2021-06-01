@@ -65,15 +65,20 @@ class InstructionsButton {
   
   void display(){
     ellipse(x,y,10,10);
-    String line1 = "Welcome to the circuit simulation. To add an object right click";
-    String line2 = "and two dots will appear. If you click on the right dot, a resistor will";
-    String line3 = "appear and the left dot creates a battery. To create a wire click one";
-    String line4 = "of the nodes on a battery/resistor and click again on the place you";
-    String line5 = "would like the wire to connect to. The power, current, and voltage of the";
-    String line6 = "entire circuit is tracted in the upper left hand corner and to erase the";
+    String line1 = "Welcome to the circuit simulation. To add an object right click \n";
+    String line2 = "and two dots will appear. If you click on the right dot, a resistor will \n";
+    String line3 = "appear and the left dot creates a battery. To create a wire click one \n";
+    String line4 = "of the nodes on a battery/resistor and click again on the place you \n";
+    String line5 = "would like the wire to connect to. The power, current, and voltage of the \n";
+    String line6 = "entire circuit is tracted in the upper left hand corner and to erase the \n";
     String line7 = "circuit click the small button in the lower right.";
     if(isOn){
-      text(line1+line2+line3+line4+line5+line6+line7, x, y)
+      fill(#CCB8FC);
+      noStroke();
+      rect(0,0,1000,350);
+      fill(0);
+      text("Directions", 500, 50);
+      text(line1+line2+line3+line4+line5+line6+line7, 250, 100);
     }
   }
   
