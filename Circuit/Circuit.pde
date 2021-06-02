@@ -64,6 +64,11 @@ void mousePressed() {
         wires.add(wireGrabbed);
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
         wireGrabbed.nextConnection.add(part);
+        if (part.inputDirection == CircuitComponent.LEFT){
+          for (CircuitComponent nextPart: part.nextConnection){
+            wireGrabbed.nextConnection.add(nextPart);
+          }
+        }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
         return;
