@@ -26,3 +26,5 @@ May 26: implemented full functionality of the right click menu (now able to add 
 May 27: implemented buttons on the circuit components (where the wires will be placed). Changed shape position to ints because buttons were having an issue and pixels are in int anyways. Implemented adding the start end of the wire (end point and dragging it around not implemented yet).
 
 May 31: added the wires class in order to connect circuit components in a linked list manner. Overloaded CircuitComponent class in order to accomdate the wires class. Assisted with design choices for demo day (how to display data and when to display the data).
+
+June 1: made a recursion loop to verify if a circuit is actually a circuit (which is not treating me well right now). This also forced me to have a input left/right variable for circuitcomponents and a later rewrite of the adding wire thing so that wires hook up to wires.
