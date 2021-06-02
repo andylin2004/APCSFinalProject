@@ -129,11 +129,11 @@ boolean verifyIfCircuit(){
   if (parts.size() == 0){
     return false;
   }else{
-    return verifyIfCircuit(parts.get(0));
+    return verifyIfCircuit(parts.get(0), null);
   }
 }
 
-boolean verifyIfCircuit(CircuitComponent part){
+boolean verifyIfCircuit(CircuitComponent part, CircuitComponent last){
   if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0){
     return false;
   }else{
@@ -141,7 +141,7 @@ boolean verifyIfCircuit(CircuitComponent part){
       if (link == parts.get(0)){
         return true;
       }else{
-        return verifyIfCircuit(link);
+        return verifyIfCircuit(link, part);
       }
     }
   }
