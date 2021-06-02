@@ -29,7 +29,7 @@ void draw() {
   for (Wire wire : wires) {
     wire.display();
   }
-  if (grabbingWireEnd){
+  if (grabbingWireEnd) {
     wireGrabbed.x2 = mouseX;
     wireGrabbed.y2 = mouseY;
     wireGrabbed.display();
@@ -47,66 +47,53 @@ void mousePressed() {
     menu.x = mouseX;
     menu.y = mouseY;
     grabbingWireEnd = false;
-  }else if (grabbingWireEnd){
-    for (CircuitComponent part: parts){
-      if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100){
-         wireGrabbed.x2 = mouseX;
-         wireGrabbed.y2 = mouseY;
-         wires.add(wireGrabbed);
-         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-         if (part.inputDirection == null){
-           part.inputDirection = CircuitComponent.LEFT;
-         }
-         if (part.inputDirection == CircuitComponent.LEFT){
-           wireGrabbed.nextConnection.add(part);
-           part.previousConnection.add(wireGrabbed);
-           grabbingWireEnd = false;
-         }else{
-           for (CircuitComponent chainTo : part.nextConnection){
-             wireGrabbed.nextConnection.add(chainTo);
-             chainTo.previousConnection.add(wireGrabbed);
-           }
-         }
-         wireGrabbed.nextConnection.add(part);
-         part.previousConnection.add(wireGrabbed);
-         grabbingWireEnd = false;
-         return;
-       }else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100){
-         wireGrabbed.x2 = mouseX;
-         wireGrabbed.y2 = mouseY;
-         wires.add(wireGrabbed);
-         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-         if (part.inputDirection == null){
-           part.inputDirection = CircuitComponent.RIGHT;
-         }
-         if (part.inputDirection == CircuitComponent.LEFT){
-           for (CircuitComponent chainTo : part.nextConnection){
-             wireGrabbed.nextConnection.add(chainTo);
-             chainTo.previousConnection.add(wireGrabbed);
-           }
-         }else{
-           wireGrabbed.nextConnection.add(part);
-           part.previousConnection.add(wireGrabbed);
-           grabbingWireEnd = false;
-         }
-         return;
-       } 
+  } else if (grabbingWireEnd) {
+    for (CircuitComponent part : parts) {
+      if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
+        wireGrabbed.x2 = mouseX;
+        wireGrabbed.y2 = mouseY;
+        wires.add(wireGrabbed);
+        wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+        wireGrabbed.nextConnection.add(part);
+        part.previousConnection.add(wireGrabbed);
+        grabbingWireEnd = false;
+        return;
+      } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
+        wireGrabbed.x2 = mouseX;
+        wireGrabbed.y2 = mouseY;
+        wires.add(wireGrabbed);
+        wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+        wireGrabbed.nextConnection.add(part);
+        part.previousConnection.add(wireGrabbed);
+        grabbingWireEnd = false;
+        return;
+      }
     }
-  }else {
+  } else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
       wires.clear();
       parts.clear();
       return;
     }
-    for (CircuitComponent part: parts){
-      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
-        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
-         wireGrabbed = new Wire(mouseX, mouseY);
-         wireGrabbed.previousConnection.add(part);
-         grabbingWireEnd = true;
-         return;
-       }
+    for (CircuitComponent part : parts) {
+      if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
+        if (part.inputDirection == null){
+          part.inputDirection = CircuitComponent.RIGHT;
+        }
+        wireGrabbed = new Wire(mouseX, mouseY);
+        wireGrabbed.previousConnection.add(part);
+        grabbingWireEnd = true;
+        return;
+      } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
+        if (part.inputDirection == null){
+          part.inputDirection = CircuitComponent.LEFT;
+        }
+        wireGrabbed = new Wire(mouseX, mouseY);
+        wireGrabbed.previousConnection.add(part);
+        grabbingWireEnd = true;
+        return;
+      }
     }
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
@@ -128,11 +115,11 @@ void addComponent(String component) {
     break;
   }
 }
-  
-float findTotalResistence(){
+
+float findTotalResistence() {
   totalResistence = 0;
-  for (int i = 0; i < parts.size(); i++){
-    if (parts.get(i) instanceof Resistor){
+  for (int i = 0; i < parts.size(); i++) {
+    if (parts.get(i) instanceof Resistor) {
       Resistor curRes = (Resistor) parts.get(i);
       totalResistence+= curRes.getResistence();
     }
@@ -140,10 +127,10 @@ float findTotalResistence(){
   return totalResistence;
 }
 
-float findTotalVoltage(){
+float findTotalVoltage() {
   totalVoltage = 0;
-  for (int i = 0; i < parts.size(); i++){
-    if (parts.get(i) instanceof Battery){
+  for (int i = 0; i < parts.size(); i++) {
+    if (parts.get(i) instanceof Battery) {
       Battery curBat = (Battery) parts.get(i);
       totalVoltage+= curBat.getVoltage();
     }
@@ -151,27 +138,27 @@ float findTotalVoltage(){
   return totalVoltage;
 }
 
-float setCurrent(){
+float setCurrent() {
   totalCurrent = totalResistence / findTotalVoltage();
   return totalCurrent;
 }
 
-boolean verifyIfCircuit(){
-  if (parts.size() == 0){
+boolean verifyIfCircuit() {
+  if (parts.size() == 0) {
     return false;
-  }else{
+  } else {
     return verifyIfCircuit(parts.get(0), null);
   }
 }
 
-boolean verifyIfCircuit(CircuitComponent part, CircuitComponent last){
-  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0){
+boolean verifyIfCircuit(CircuitComponent part, CircuitComponent last) {
+  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0) {
     return false;
-  }else{
-    for (CircuitComponent link : part.nextConnection){
-      if (link == parts.get(0)){
+  } else {
+    for (CircuitComponent link : part.nextConnection) {
+      if (link == parts.get(0)) {
         return true;
-      }else{
+      } else {
         return verifyIfCircuit(link, part);
       }
     }
