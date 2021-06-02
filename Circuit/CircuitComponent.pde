@@ -11,10 +11,9 @@ public class CircuitComponent {
   ArrayList<CircuitComponent> previousConnection;
   Button attachmentLeft;
   Button attachmentRight;
-  boolean inputDirection;
+  Boolean inputDirection;
   static final boolean LEFT = true;
   static final boolean RIGHT = false;
-  
 
   public CircuitComponent(int x1, int y1, int x2, int y2) {
     X1 = x1; 

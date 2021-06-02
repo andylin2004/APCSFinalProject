@@ -49,17 +49,48 @@ void mousePressed() {
     grabbingWireEnd = false;
   }else if (grabbingWireEnd){
     for (CircuitComponent part: parts){
-      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
-        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+      if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100){
          wireGrabbed.x2 = mouseX;
          wireGrabbed.y2 = mouseY;
          wires.add(wireGrabbed);
          wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+         if (part.inputDirection == null){
+           part.inputDirection = CircuitComponent.LEFT;
+         }
+         if (part.inputDirection == CircuitComponent.LEFT){
+           wireGrabbed.nextConnection.add(part);
+           part.previousConnection.add(wireGrabbed);
+           grabbingWireEnd = false;
+         }else{
+           for (CircuitComponent chainTo : part.nextConnection){
+             wireGrabbed.nextConnection.add(chainTo);
+             chainTo.previousConnection.add(wireGrabbed);
+           }
+         }
          wireGrabbed.nextConnection.add(part);
          part.previousConnection.add(wireGrabbed);
          grabbingWireEnd = false;
          return;
-       }
+       }else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100){
+         wireGrabbed.x2 = mouseX;
+         wireGrabbed.y2 = mouseY;
+         wires.add(wireGrabbed);
+         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+         if (part.inputDirection == null){
+           part.inputDirection = CircuitComponent.RIGHT;
+         }
+         if (part.inputDirection == CircuitComponent.LEFT){
+           for (CircuitComponent chainTo : part.nextConnection){
+             wireGrabbed.nextConnection.add(chainTo);
+             chainTo.previousConnection.add(wireGrabbed);
+           }
+         }else{
+           wireGrabbed.nextConnection.add(part);
+           part.previousConnection.add(wireGrabbed);
+           grabbingWireEnd = false;
+         }
+         return;
+       } 
     }
   }else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
