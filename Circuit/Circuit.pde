@@ -54,7 +54,7 @@ void mousePressed() {
         wireGrabbed.y2 = mouseY;
         wires.add(wireGrabbed);
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-        if (part.inputDirection == CircuitComponent.RIGHT){
+        if (part.inputDirection != null && part.inputDirection == CircuitComponent.RIGHT){
           for (CircuitComponent nextPart: part.nextConnection){
             wireGrabbed.nextConnection.add(nextPart);
           }
@@ -69,7 +69,7 @@ void mousePressed() {
         wireGrabbed.y2 = mouseY;
         wires.add(wireGrabbed);
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-        if (part.inputDirection == CircuitComponent.LEFT){
+        if (part.inputDirection != null && part.inputDirection == CircuitComponent.LEFT){
           for (CircuitComponent nextPart: part.nextConnection){
             wireGrabbed.nextConnection.add(nextPart);
           }
