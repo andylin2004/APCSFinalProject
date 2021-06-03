@@ -63,12 +63,6 @@ void mousePressed() {
         }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
-        println("wire");
-        println(wireGrabbed.previousConnection);
-        println(wireGrabbed.nextConnection);
-        println("part");
-        println(part.previousConnection);
-        println(part.nextConnection);
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
         wireGrabbed.x2 = mouseX;
@@ -84,12 +78,6 @@ void mousePressed() {
         }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
-        println("wire");
-        println(wireGrabbed.previousConnection);
-        println(wireGrabbed.nextConnection);
-        println("part");
-        println(part.previousConnection);
-        println(part.nextConnection);
         return;
       }
     }
@@ -103,11 +91,11 @@ void mousePressed() {
     for (CircuitComponent part : parts) {
       if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
         if (part.inputDirection == null){
-          part.inputDirection = CircuitComponent.LEFT;
+          part.inputDirection = CircuitComponent.RIGHT;
         }
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.previousConnection.add(part);
-        if (part.inputDirection == CircuitComponent.RIGHT){
+        if (part.inputDirection == CircuitComponent.LEFT){
           for (CircuitComponent partPrev: part.previousConnection){
             wireGrabbed.previousConnection.add(partPrev);
           }
@@ -116,11 +104,11 @@ void mousePressed() {
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
         if (part.inputDirection == null){
-          part.inputDirection = CircuitComponent.RIGHT;
+          part.inputDirection = CircuitComponent.LEFT;
         }
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.previousConnection.add(part);
-        if (part.inputDirection == CircuitComponent.LEFT){
+        if (part.inputDirection == CircuitComponent.RIGHT){
           for (CircuitComponent partPrev: part.previousConnection){
             wireGrabbed.previousConnection.add(partPrev);
           }
