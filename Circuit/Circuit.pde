@@ -63,6 +63,12 @@ void mousePressed() {
         }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
+        println("wire");
+        println(wireGrabbed.previousConnection);
+        println(wireGrabbed.nextConnection);
+        println("part");
+        println(part.previousConnection);
+        println(part.nextConnection);
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
         wireGrabbed.x2 = mouseX;
@@ -78,6 +84,12 @@ void mousePressed() {
         }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
+        println("wire");
+        println(wireGrabbed.previousConnection);
+        println(wireGrabbed.nextConnection);
+        println("part");
+        println(part.previousConnection);
+        println(part.nextConnection);
         return;
       }
     }
@@ -95,7 +107,7 @@ void mousePressed() {
         }
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.previousConnection.add(part);
-        if (part.inputDirection == CircuitComponent.LEFT){
+        if (part.inputDirection == CircuitComponent.RIGHT){
           for (CircuitComponent partPrev: part.previousConnection){
             wireGrabbed.previousConnection.add(partPrev);
           }
@@ -108,7 +120,7 @@ void mousePressed() {
         }
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.previousConnection.add(part);
-        if (part.inputDirection == CircuitComponent.RIGHT){
+        if (part.inputDirection == CircuitComponent.LEFT){
           for (CircuitComponent partPrev: part.previousConnection){
             wireGrabbed.previousConnection.add(partPrev);
           }
@@ -169,21 +181,23 @@ boolean verifyIfCircuit() {
   if (parts.size() == 0) {
     return false;
   } else {
-    return verifyIfCircuit(parts.get(0), null);
+    return true;
+    //return verifyIfCircuit(parts.get(0));
   }
 }
 
-boolean verifyIfCircuit(CircuitComponent part, CircuitComponent last) {
-  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0) {
-    return false;
-  } else {
-    for (CircuitComponent link : part.nextConnection) {
-      if (link == parts.get(0)) {
-        return true;
-      } else {
-        return verifyIfCircuit(link, part);
-      }
-    }
-  }
-  return false;
-}
+//boolean verifyIfCircuit(CircuitComponent part) {
+//  println(part);
+//  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0) {
+//    return false;
+//  } else {
+//    for (CircuitComponent link : part.nextConnection) {
+//      if (link == parts.get(0)) {
+//        return true;
+//      } else {
+//        return verifyIfCircuit(link);
+//      }
+//    }
+//  }
+//  return false;
+//}
