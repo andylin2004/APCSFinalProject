@@ -19,6 +19,9 @@ public class Resistor extends CircuitComponent{
     attachmentRight.display();
     fill(0);
     text("resistence:" + resistence, centerX, centerY);
+    //text("part:" + toString(), centerX, centerY+30);
+    //text("prev:" + previousConnection, centerX, centerY+60);
+    //text("next:" + nextConnection, centerX, centerY+90);
   }
   
   public float getResistence(){

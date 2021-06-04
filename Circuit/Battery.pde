@@ -21,6 +21,9 @@ public class Battery extends CircuitComponent{
     fill(255);
     textSize(20);
     text("battery voltage:" + voltage, centerX, centerY);
+    //text("part:" + toString(), centerX, centerY+30);
+    //text("prev:" + previousConnection, centerX, centerY+60);
+    //text("next:" + nextConnection, centerX, centerY+90);
   }
   
   float getVoltage(){

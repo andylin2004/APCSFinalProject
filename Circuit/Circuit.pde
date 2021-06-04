@@ -53,22 +53,22 @@ void mousePressed() {
         wireGrabbed.x2 = mouseX;
         wireGrabbed.y2 = mouseY;
         wires.add(wireGrabbed);
-        if (part.inputDirection == null){
+        if (part.inputDirection == null) {
           part.inputDirection = CircuitComponent.LEFT;
         }
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-        if (part.inputDirection != null && part.inputDirection == CircuitComponent.RIGHT){
-          if (part.nextConnection.size() > 0){
-            for (CircuitComponent nextPart: part.nextConnection){
+        if (part.inputDirection != null && part.inputDirection == CircuitComponent.RIGHT) {
+          if (part.nextConnection.size() > 0) {
+            for (CircuitComponent nextPart : part.nextConnection) {
               wireGrabbed.nextConnection.add(nextPart);
             }
-          }else{
+          } else {
             part.nextConnection.add(wireGrabbed);
             CircuitComponent move = wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
             wireGrabbed.previousConnection.get(0).previousConnection.add(move);
             wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
           }
-        }else{
+        } else {
           part.previousConnection.add(wireGrabbed);
           wireGrabbed.nextConnection.add(part);
         }
@@ -85,26 +85,35 @@ void mousePressed() {
         wireGrabbed.x2 = mouseX;
         wireGrabbed.y2 = mouseY;
         wires.add(wireGrabbed);
-        if (part.inputDirection == null){
+        if (part.inputDirection == null) {
           part.inputDirection = CircuitComponent.RIGHT;
         }
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-        if (part.inputDirection != null && part.inputDirection == CircuitComponent.LEFT){
-          if (part.nextConnection.size() > 0){
-            for (CircuitComponent nextPart: part.nextConnection){
+        if (part.inputDirection != null && part.inputDirection == CircuitComponent.LEFT) {
+          if (part.nextConnection.size() > 0) {
+            for (CircuitComponent nextPart : part.nextConnection) {
               wireGrabbed.nextConnection.add(nextPart);
             }
-          }else{
+          } else {
             part.nextConnection.add(wireGrabbed);
             CircuitComponent move = wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
             wireGrabbed.previousConnection.get(0).previousConnection.add(move);
             wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
           }
-        }else{
+        } else {
           part.previousConnection.add(wireGrabbed);
           wireGrabbed.nextConnection.add(part);
         }
         grabbingWireEnd = false;
+        println(wireGrabbed);
+        println(wireGrabbed.previousConnection);
+        println(wireGrabbed.nextConnection);
+        println(part);
+        println(part.previousConnection);
+        println(part.nextConnection);
+        println(parts.get(0));
+        println(parts.get(0).previousConnection);
+        println(parts.get(0).nextConnection);
         return;
       }
     }
@@ -118,26 +127,26 @@ void mousePressed() {
     }
     for (CircuitComponent part : parts) {
       if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
-        if (part.inputDirection == null){
+        if (part.inputDirection == null) {
           part.inputDirection = CircuitComponent.RIGHT;
         }
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.previousConnection.add(part);
-        if (part.inputDirection == CircuitComponent.LEFT){
-          for (CircuitComponent partPrev: part.previousConnection){
+        if (part.inputDirection == CircuitComponent.LEFT) {
+          for (CircuitComponent partPrev : part.previousConnection) {
             wireGrabbed.previousConnection.add(partPrev);
           }
         }
         grabbingWireEnd = true;
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
-        if (part.inputDirection == null){
+        if (part.inputDirection == null) {
           part.inputDirection = CircuitComponent.LEFT;
         }
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.previousConnection.add(part);
-        if (part.inputDirection == CircuitComponent.RIGHT){
-          for (CircuitComponent partPrev: part.previousConnection){
+        if (part.inputDirection == CircuitComponent.RIGHT) {
+          for (CircuitComponent partPrev : part.previousConnection) {
             wireGrabbed.previousConnection.add(partPrev);
           }
         }
@@ -197,12 +206,23 @@ boolean verifyIfCircuit() {
   if (parts.size() == 0) {
     return false;
   } else {
-    return verifyIfCircuit(parts.get(0));
+    int battAt = -1;
+    for (int i = 0; i < parts.size(); i++){
+      if (parts.get(i) instanceof Battery){
+        battAt = i;
+        break;
+      }
+    }
+    if (battAt != -1){
+      return verifyIfCircuit(parts.get(battAt));
+    }else{
+      return false;
+    }
   }
 }
 
 boolean verifyIfCircuit(CircuitComponent part) {
-  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0) {
+  if (part.nextConnection.size() == 0) {
     return false;
   } else {
     for (CircuitComponent link : part.nextConnection) {
