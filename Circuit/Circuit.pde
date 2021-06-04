@@ -74,12 +74,12 @@ void mousePressed() {
         }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
-        println(wireGrabbed);
-        println(wireGrabbed.previousConnection);
-        println(wireGrabbed.nextConnection);
-        println(part);
-        println(part.previousConnection);
-        println(part.nextConnection);
+        //println(wireGrabbed);
+        //println(wireGrabbed.previousConnection);
+        //println(wireGrabbed.nextConnection);
+        //println(part);
+        //println(part.previousConnection);
+        //println(part.nextConnection);
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
         wireGrabbed.x2 = mouseX;
@@ -105,15 +105,15 @@ void mousePressed() {
           wireGrabbed.nextConnection.add(part);
         }
         grabbingWireEnd = false;
-        println(wireGrabbed);
-        println(wireGrabbed.previousConnection);
-        println(wireGrabbed.nextConnection);
-        println(part);
-        println(part.previousConnection);
-        println(part.nextConnection);
-        println(parts.get(0));
-        println(parts.get(0).previousConnection);
-        println(parts.get(0).nextConnection);
+        //println(wireGrabbed);
+        //println(wireGrabbed.previousConnection);
+        //println(wireGrabbed.nextConnection);
+        //println(part);
+        //println(part.previousConnection);
+        //println(part.nextConnection);
+        //println(parts.get(0));
+        //println(parts.get(0).previousConnection);
+        //println(parts.get(0).nextConnection);
         return;
       }
     }
