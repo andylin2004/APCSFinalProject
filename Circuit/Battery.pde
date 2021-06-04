@@ -18,7 +18,6 @@ public class Battery extends CircuitComponent{
   }
   
   void display(){
-    /*
     fill(0);
     rectMode(CENTER);
     rect(centerX, centerY, 40, 30);
@@ -26,10 +25,9 @@ public class Battery extends CircuitComponent{
     attachmentLeft.display();
     attachmentRight.display();
     fill(255);
-    */
     textSize(20);
     text("battery voltage:" + voltage, centerX, centerY);
-    image(batImage,centerX, centerY);
+    //image(batImage,centerX, centerY);
   }
   
   float getVoltage(){
