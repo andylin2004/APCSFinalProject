@@ -53,30 +53,57 @@ void mousePressed() {
         wireGrabbed.x2 = mouseX;
         wireGrabbed.y2 = mouseY;
         wires.add(wireGrabbed);
+        if (part.inputDirection == null){
+          part.inputDirection = CircuitComponent.LEFT;
+        }
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
         if (part.inputDirection != null && part.inputDirection == CircuitComponent.RIGHT){
-          for (CircuitComponent nextPart: part.nextConnection){
-            wireGrabbed.nextConnection.add(nextPart);
+          if (part.nextConnection.size() > 0){
+            for (CircuitComponent nextPart: part.nextConnection){
+              wireGrabbed.nextConnection.add(nextPart);
+            }
+          }else{
+            part.nextConnection.add(wireGrabbed);
+            CircuitComponent move = wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
+            wireGrabbed.previousConnection.get(0).previousConnection.add(move);
+            wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
           }
         }else{
+          part.previousConnection.add(wireGrabbed);
           wireGrabbed.nextConnection.add(part);
         }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
+        println(wireGrabbed);
+        println(wireGrabbed.previousConnection);
+        println(wireGrabbed.nextConnection);
+        println(part);
+        println(part.previousConnection);
+        println(part.nextConnection);
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
         wireGrabbed.x2 = mouseX;
         wireGrabbed.y2 = mouseY;
         wires.add(wireGrabbed);
+        if (part.inputDirection == null){
+          part.inputDirection = CircuitComponent.RIGHT;
+        }
         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
         if (part.inputDirection != null && part.inputDirection == CircuitComponent.LEFT){
-          for (CircuitComponent nextPart: part.nextConnection){
-            wireGrabbed.nextConnection.add(nextPart);
+          if (part.nextConnection.size() > 0){
+            for (CircuitComponent nextPart: part.nextConnection){
+              wireGrabbed.nextConnection.add(nextPart);
+            }
+          }else{
+            part.nextConnection.add(wireGrabbed);
+            CircuitComponent move = wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
+            wireGrabbed.previousConnection.get(0).previousConnection.add(move);
+            wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
           }
         }else{
+          part.previousConnection.add(wireGrabbed);
           wireGrabbed.nextConnection.add(part);
         }
-        part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
         return;
       }
@@ -86,6 +113,7 @@ void mousePressed() {
       reset.click();
       wires.clear();
       parts.clear();
+      println();
       return;
     }
     for (CircuitComponent part : parts) {
@@ -169,23 +197,21 @@ boolean verifyIfCircuit() {
   if (parts.size() == 0) {
     return false;
   } else {
-    return true;
-    //return verifyIfCircuit(parts.get(0));
+    return verifyIfCircuit(parts.get(0));
   }
 }
 
-//boolean verifyIfCircuit(CircuitComponent part) {
-//  println(part);
-//  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0) {
-//    return false;
-//  } else {
-//    for (CircuitComponent link : part.nextConnection) {
-//      if (link == parts.get(0)) {
-//        return true;
-//      } else {
-//        return verifyIfCircuit(link);
-//      }
-//    }
-//  }
-//  return false;
-//}
+boolean verifyIfCircuit(CircuitComponent part) {
+  if (part.nextConnection.size() == 0 || part.previousConnection.size() == 0) {
+    return false;
+  } else {
+    for (CircuitComponent link : part.nextConnection) {
+      if (link == parts.get(0)) {
+        return true;
+      } else {
+        return verifyIfCircuit(link);
+      }
+    }
+  }
+  return false;
+}
