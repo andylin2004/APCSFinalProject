@@ -15,7 +15,9 @@ May 26th: Added get and set methods for the CircuitComponents class. Started the
 
 May 27th: Spent way too much time figuring out Git and trying to fix (to no avail) the way git interacts in my terminal. I also worked on fixing a lot of merge conflicts. 
 
-May 31: Added methods to calculate the total current, voltage, and resistence of a series circuit and display those values in the top left corner. I also worked to fix the colors of text and circuit components in order to be more readable.
+May 31st: Added methods to calculate the total current, voltage, and resistence of a series circuit and display those values in the top left corner. I also worked to fix the colors of text and circuit components in order to be more readable.
+
+June 1st: Created a button in the bottom left corner that when clicked shows intructions for opperating the simulation.
 
 Andy's Dev Log:
 
