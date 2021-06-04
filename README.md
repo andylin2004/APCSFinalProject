@@ -19,6 +19,8 @@ May 31st: Added methods to calculate the total current, voltage, and resistence 
 
 June 1st: Created a button in the bottom left corner that when clicked shows intructions for opperating the simulation.
 
+June 4th: I began the process of finding images to use in the simulation rather than just rectangles and squares. Currently images for lightbulbs and batteries are included but do not allow you to connect wires to them.
+
 Andy's Dev Log:
 
 May 25: implemented the RightClickMenu as a dummy menu in order to prepare for being able to add elements into the workspace. This also necessitated adding a button class for the right click menu.
