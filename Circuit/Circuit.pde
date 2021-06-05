@@ -82,7 +82,10 @@ void mousePressed() {
           }
         } else {
           println("3");
-          if (part.nextConnection.size() == 0){
+          if (part.nextConnection.size() == 0 && part.inputDirection == CircuitComponent.RIGHT){
+            part.previousConnection.add(wireGrabbed);
+            wireGrabbed.nextConnection.add(part);
+          }else if (part.previousConnection.size() == 0 && part.inputDirection == CircuitComponent.LEFT){
             part.previousConnection.add(wireGrabbed);
             wireGrabbed.nextConnection.add(part);
           }else{
@@ -134,7 +137,10 @@ void mousePressed() {
           }
         } else {
           println("3");
-          if (part.nextConnection.size() == 0){
+          if (part.nextConnection.size() == 0 && part.inputDirection == CircuitComponent.LEFT){
+            part.previousConnection.add(wireGrabbed);
+            wireGrabbed.nextConnection.add(part);
+          }else if (part.previousConnection.size() == 0 && part.inputDirection == CircuitComponent.RIGHT){
             part.previousConnection.add(wireGrabbed);
             wireGrabbed.nextConnection.add(part);
           }else{
