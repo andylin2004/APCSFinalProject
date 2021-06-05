@@ -94,8 +94,14 @@ void mousePressed() {
             branch.branchContains.add(wireGrabbed);
             part.previousConnection.add(branch);
             wireGrabbed.nextConnection.add(part);
+            if (!(part.previousConnection.get(0) instanceof CircuitBranch)){
+              branch = new CircuitBranch();
+              CircuitComponent shiftOver = part.previousConnection.remove(0);
+              branch.branchContains.add(shiftOver);
+              part.previousConnection.add(branch);
+            }
           }
-        } //<>//
+        }
         part.previousConnection.add(wireGrabbed);
         grabbingWireEnd = false;
         //println(wireGrabbed);
@@ -129,7 +135,7 @@ void mousePressed() {
               wireGrabbed.previousConnection.get(0).previousConnection.add(branch);
               wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
             }else{
-              part.nextConnection.add(wireGrabbed); //<>//
+              part.nextConnection.add(wireGrabbed);
               CircuitComponent move = wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
               wireGrabbed.previousConnection.get(0).previousConnection.add(move);
               wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
@@ -149,6 +155,12 @@ void mousePressed() {
             branch.branchContains.add(wireGrabbed);
             part.previousConnection.add(branch);
             wireGrabbed.nextConnection.add(part);
+            if (!(part.previousConnection.get(0) instanceof CircuitBranch)){
+              branch = new CircuitBranch();
+              CircuitComponent shiftOver = part.previousConnection.remove(0);
+              branch.branchContains.add(shiftOver);
+              part.previousConnection.add(branch);
+            }
           }
         }
         grabbingWireEnd = false;
