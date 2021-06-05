@@ -5,7 +5,7 @@ public class Battery extends CircuitComponent{
   
   
   public Battery(float r, int CX, int CY){
-    super(CX - 20, CY, CX + 20, CY);
+    super(CX - 20, CY, CX + 500, CY);
     centerX = CX;
     centerY = CY;
     voltage = r;
