@@ -19,7 +19,7 @@ public class CircuitComponent {
   public CircuitComponent(int x1, int y1, int x2, int y2) {
     X1 = x1; 
     Y1 = y1; 
-    X2 = x2; 
+    X2 = x2;
     Y2 = y2; 
     power = 0; 
     voltage = 0; 
@@ -42,6 +42,9 @@ public class CircuitComponent {
     current = 0;
     nextConnection = new ArrayList();
     previousConnection = new ArrayList();
+  }
+  
+  public CircuitComponent(){
   }
 
   public void setX1(float num) {
