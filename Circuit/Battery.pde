@@ -1,7 +1,7 @@
 public class Battery extends CircuitComponent{
   private float voltage;
-  private float centerX;
-  private float centerY;
+  //private float centerX;
+  //private float centerY;
   PImage batImage;
   
   

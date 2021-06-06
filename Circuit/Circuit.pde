@@ -91,6 +91,25 @@ void mousePressed() {
   }
 }
 
+void keyPressed(){
+  //println(keyCode);
+  if (keyCode==38){
+    println("hello");
+    for (int i = 0; i < parts.size(); i++){
+      if (parts.get(i) instanceof Resistor){
+        Resistor curRes = (Resistor) parts.get(i);
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+          curRes.addResistence(1);
+          println(curRes.getResistence());
+        }
+      }
+    }
+    
+  }
+  else if (key==40){
+  }
+}
+
 void addComponent(String component) {
   switch(component) {
     case("resistor"):

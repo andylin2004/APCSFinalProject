@@ -1,7 +1,7 @@
 public class Resistor extends CircuitComponent{
   private float resistence;
-  private float centerX;
-  private float centerY;
+  //private float centerX;
+  //private float centerY;
   private PImage onBulb;
   private PImage offBulb;
   
@@ -34,11 +34,27 @@ public class Resistor extends CircuitComponent{
     attachmentLeft.display();
     attachmentRight.display();
     fill(0);
-    text("resistence:" + resistence, centerX, centerY);
+    text("resistence:" + getResistence(), centerX, centerY);
     image(offBulb, centerX, centerY);
   }
   
   public float getResistence(){
     return resistence;
+  }
+  
+  public float getCX(){
+    return centerX;
+  }
+  
+  public float getCY(){
+    return centerY;
+  }
+  
+  public void addResistence(int amount){
+    if (resistence == 0 && amount == -1){
+       return;
+    }
+    resistence += amount;
+    println(resistence);
   }
 }
