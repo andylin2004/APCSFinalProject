@@ -11,6 +11,7 @@ public class Resistor extends CircuitComponent{
     centerX = CX;
     centerY = CY;
     resistence = r;
+    imageMode(CENTER);
     onBulb = loadImage("onBulb.png");
     onBulb.resize(80,90);
     offBulb = loadImage("offBulb.png");
@@ -18,15 +19,17 @@ public class Resistor extends CircuitComponent{
   }
   
   void display(){
+    /*
     fill(255);
     ellipse(centerX, centerY, 80, 60);
     textSize(20);
+    */
     fill(0);
     attachmentLeft.display();
     attachmentRight.display();
     fill(0);
     text("resistence:" + resistence, centerX, centerY);
-    //image(offBulb, centerX, centerY);
+    image(offBulb, centerX, centerY);
   }
   
   public float getResistence(){

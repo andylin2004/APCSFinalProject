@@ -10,24 +10,25 @@ public class Battery extends CircuitComponent{
     centerX = CX;
     centerY = CY;
     voltage = r;
-    rotate(PI);
-    translate(width/2,height/2);
+    imageMode(CENTER);
     batImage = loadImage("battery.png");
     batImage.resize(70,40);
 
   }
   
   void display(){
+    /*
     fill(0);
     rectMode(CENTER);
     rect(centerX, centerY, 40, 30);
     fill(255);
+    */
     attachmentLeft.display();
     attachmentRight.display();
-    fill(255);
+    fill(0);
     textSize(20);
     text("battery voltage:" + voltage, centerX, centerY);
-    //image(batImage,centerX, centerY);
+    image(batImage,centerX, centerY);
   }
   
   float getVoltage(){
