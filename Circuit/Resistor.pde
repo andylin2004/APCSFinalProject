@@ -41,20 +41,12 @@ public class Resistor extends CircuitComponent{
   public float getResistence(){
     return resistence;
   }
-  
-  public float getCX(){
-    return centerX;
-  }
-  
-  public float getCY(){
-    return centerY;
-  }
+ 
   
   public void addResistence(int amount){
     if (resistence == 0 && amount == -1){
        return;
     }
     resistence += amount;
-    println(resistence);
   }
 }

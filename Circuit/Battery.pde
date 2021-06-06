@@ -40,4 +40,11 @@ public class Battery extends CircuitComponent{
   float getVoltage(){
     return voltage;
   }
+  
+  void addVoltage(int num){
+    if (voltage==0 && num==-1){
+      return;
+    }
+    voltage += num;
+  }
 }
