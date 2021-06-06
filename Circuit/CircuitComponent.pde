@@ -39,6 +39,7 @@ public class CircuitComponent {
     nextConnection = new ArrayList();
     previousConnection = new ArrayList();
   }
+  
 
   public void setX1(float num) {
     X1 = num;

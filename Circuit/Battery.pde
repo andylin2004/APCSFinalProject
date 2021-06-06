@@ -13,6 +13,12 @@ public class Battery extends CircuitComponent{
     imageMode(CENTER);
     batImage = loadImage("battery.png");
     batImage.resize(70,40);
+    attachmentLeft = new Button();
+    attachmentLeft.x = CX + 35;
+    attachmentLeft.y = CY;
+    attachmentRight = new Button();
+    attachmentRight.x = CX - 35;
+    attachmentRight.y = CY;
 
   }
   

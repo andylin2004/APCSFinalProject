@@ -16,6 +16,12 @@ public class Resistor extends CircuitComponent{
     onBulb.resize(80,90);
     offBulb = loadImage("offBulb.png");
     offBulb.resize(80,90);
+    attachmentLeft = new Button();
+    attachmentLeft.x = CX + 12;
+    attachmentLeft.y = CY +20;
+    attachmentRight = new Button();
+    attachmentRight.x = CX - 12;
+    attachmentRight.y = CY+20;
   }
   
   void display(){
