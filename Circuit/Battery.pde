@@ -17,7 +17,7 @@ public class Battery extends CircuitComponent{
     attachmentRight = new Button();
     attachmentRight.x = CX - 35;
     attachmentRight.y = CY;
-
+    connections = new ArrayList();
   }
   
   void display(){

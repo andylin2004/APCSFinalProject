@@ -7,12 +7,6 @@ public class CircuitBranch extends CircuitComponent {
   public CircuitBranch() {
   }
 
-  public void display() {
-    for (CircuitComponent part : branchContains) {
-      part.display();
-    }
-  }
-
   public float getResistance() {
     return resistence;
   }

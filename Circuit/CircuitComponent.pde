@@ -10,8 +10,8 @@ public class CircuitComponent {
   float voltage;
   float current;
   ArrayList<CircuitComponent> connections;
-  ArrayList<CircuitComponent> connectLeft;
-  ArrayList<CircuitComponent> connectRight;
+  CircuitComponent connectLeft;
+  CircuitComponent connectRight;
   Button attachmentLeft;
   Button attachmentRight;
   static final boolean LEFT = true;
@@ -43,8 +43,6 @@ public class CircuitComponent {
     power = 0; 
     voltage = 0; 
     current = 0;
-    nextConnection = new ArrayList();
-    previousConnection = new ArrayList();
   }
   
   public CircuitComponent(){
@@ -102,20 +100,20 @@ public class CircuitComponent {
     return centerY;
   }
 
-  public void addConnection(CircuitComponent connection, boolean next) {
-    if (next) {
-      nextConnection.add(connection);
-    } else {
-      previousConnection.add(connection);
-    }
-  }
+  //public void addConnection(CircuitComponent connection, boolean next) {
+  //  if (next) {
+  //    nextConnection.add(connection);
+  //  } else {
+  //    previousConnection.add(connection);
+  //  }
+  //}
 
-  public ArrayList<CircuitComponent> getConnections(boolean next) {
-    if (next) {
-      return nextConnection;
-    }
-    return previousConnection;
-  }
+  //public ArrayList<CircuitComponent> getConnections(boolean next) {
+  //  if (next) {
+  //    return nextConnection;
+  //  }
+  //  return previousConnection;
+  //}
 
   public void display() {
   }

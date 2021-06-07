@@ -20,6 +20,7 @@ public class Resistor extends CircuitComponent{
     attachmentRight = new Button();
     attachmentRight.x = CX - 12;
     attachmentRight.y = CY+20;
+    connections = new ArrayList();
   }
   
   void display(){
