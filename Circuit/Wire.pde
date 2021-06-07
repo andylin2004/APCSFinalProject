@@ -1,5 +1,7 @@
 public class Wire extends CircuitComponent{
   int x1, y1, x2, y2;
+  CircuitComponent start, end;
+  Boolean prevConnectEnd, nextConnectEnd;
   
   public Wire(int startX, int startY){
     super(startX, startY);
@@ -15,7 +17,6 @@ public class Wire extends CircuitComponent{
     stroke(0);
     strokeWeight(1);
     text("part:" + toString(), (x1+x2)/2, (y1+y2)/2+30);
-    text("prev:" + previousConnection, (x1+x2)/2, (y1+y2)/2+60);
-    text("next:" + nextConnection, (x1+x2)/2, (y1+y2)/2+90);
+    text("connects:" + connections, (x1+x2)/2, (y1+y2)/2+60);
   }
 }

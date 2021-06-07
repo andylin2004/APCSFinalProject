@@ -2,7 +2,6 @@ boolean grabbingWireEnd = false;
 Wire wireGrabbed;
 RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
-ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
 InstructionsButton instructions = new InstructionsButton(30, 400);
 float totalResistence;
@@ -55,24 +54,7 @@ void mousePressed() {
       if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
         wireGrabbed.x2 = mouseX;
         wireGrabbed.y2 = mouseY;
-        wires.add(wireGrabbed);
-        if (part.inputDirection == null || part.inputDirection == CircuitComponent.LEFT) {
-          part.inputDirection = CircuitComponent.LEFT;
-          if (part.previousConnection.size() == 0) {
-            wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed); //<>//
-            part.previousConnection.add(wireGrabbed);
-            wireGrabbed.nextConnection.add(part);
-          }else if (part.previousConnection.size() == 0 && part.inputDirection == CircuitComponent.LEFT){
-            part.previousConnection.add(wireGrabbed);
-            wireGrabbed.nextConnection.add(part);
-          }else{
-            CircuitBranch branch = new CircuitBranch();
-            branch.startAt = wireGrabbed;
-            branch.branchContains.add(wireGrabbed);
-            part.previousConnection.add(branch);
-            wireGrabbed.nextConnection.add(part);
-          }
-        }
+        parts.add(wireGrabbed);
         grabbingWireEnd = false;
         //println(wireGrabbed);
         //println(wireGrabbed.previousConnection);
@@ -84,49 +66,7 @@ void mousePressed() {
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
         wireGrabbed.x2 = mouseX;
         wireGrabbed.y2 = mouseY;
-        wires.add(wireGrabbed);
-        if (part.inputDirection == null || part.inputDirection == CircuitComponent.RIGHT) {
-          part.inputDirection = CircuitComponent.RIGHT;
-        }
-        wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-        if (part.inputDirection != null && part.inputDirection == CircuitComponent.LEFT) {
-          if (part.nextConnection.size() > 0) {
-            println("1");
-            for (CircuitComponent nextPart : part.nextConnection) {
-              wireGrabbed.nextConnection.add(nextPart);
-            }
-          } else {
-            println("2");
-            if (part.nextConnection.size() > 0){
-              CircuitBranch branch = new CircuitBranch();
-              part.nextConnection.add(branch);
-              branch.startAt = wireGrabbed.previousConnection.get(0);
-              wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
-              wireGrabbed.previousConnection.get(0).previousConnection.add(branch);
-              wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
-            }else{
-              part.nextConnection.add(wireGrabbed); //<>//
-              CircuitComponent move = wireGrabbed.previousConnection.get(0).nextConnection.remove(1);
-              wireGrabbed.previousConnection.get(0).previousConnection.add(move);
-              wireGrabbed.nextConnection.add(wireGrabbed.previousConnection.get(0));
-            }
-          }
-        } else {
-          println("3");
-          if (part.nextConnection.size() == 0 && part.inputDirection == CircuitComponent.LEFT){
-            part.previousConnection.add(wireGrabbed);
-            wireGrabbed.nextConnection.add(part);
-          }else if (part.previousConnection.size() == 0 && part.inputDirection == CircuitComponent.RIGHT){
-            part.previousConnection.add(wireGrabbed);
-            wireGrabbed.nextConnection.add(part);
-          }else{
-            CircuitBranch branch = new CircuitBranch();
-            branch.startAt = wireGrabbed;
-            branch.branchContains.add(wireGrabbed);
-            part.previousConnection.add(branch);
-            wireGrabbed.nextConnection.add(part);
-          }
-        }
+        parts.add(wireGrabbed);
         grabbingWireEnd = false;
         //println(wireGrabbed);
         //println(wireGrabbed.previousConnection);
@@ -143,7 +83,6 @@ void mousePressed() {
   } else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
-      wires.clear();
       parts.clear();
       println();
       return;
@@ -153,31 +92,15 @@ void mousePressed() {
     }
     for (CircuitComponent part : parts) {
       if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
-        if (part.inputDirection == null) {
-          part.inputDirection = CircuitComponent.RIGHT;
-        }
         wireGrabbed = new Wire(mouseX, mouseY);
-        if (part.inputDirection == CircuitComponent.LEFT) {
-          for (CircuitComponent partPrev : part.previousConnection) {
-            wireGrabbed.previousConnection.add(partPrev);
-          }
-        } else {
-          wireGrabbed.previousConnection.add(part);
-        }
+        wireGrabbed.start = part;
+        wireGrabbed.
         grabbingWireEnd = true;
         return;
       } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
-        if (part.inputDirection == null) {
-          part.inputDirection = CircuitComponent.LEFT;
-        }
         wireGrabbed = new Wire(mouseX, mouseY);
-        if (part.inputDirection == CircuitComponent.RIGHT) {
-          for (CircuitComponent partPrev : part.previousConnection) {
-            wireGrabbed.previousConnection.add(partPrev);
-          }
-        } else {
-          wireGrabbed.previousConnection.add(part);
-        }
+        wireGrabbed.start = part;
+        
         grabbingWireEnd = true;
         return;
       }

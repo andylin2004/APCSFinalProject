@@ -1,7 +1,5 @@
 public class Resistor extends CircuitComponent{
   private float resistence;
-  //private float centerX;
-  //private float centerY;
   private PImage onBulb;
   private PImage offBulb;
   
@@ -36,8 +34,7 @@ public class Resistor extends CircuitComponent{
     fill(0);
     text("resistence:" + resistence, centerX, centerY);
     text("part:" + toString(), centerX, centerY+30);
-    text("prev:" + previousConnection, centerX, centerY+60);
-    text("next:" + nextConnection, centerX, centerY+90);
+    text("connects:" + connections, centerX, centerY+60);
     image(offBulb, centerX, centerY);
   }
   

@@ -9,11 +9,11 @@ public class CircuitComponent {
   float power;
   float voltage;
   float current;
-  ArrayList<CircuitComponent> nextConnection;
-  ArrayList<CircuitComponent> previousConnection;
+  ArrayList<CircuitComponent> connections;
+  ArrayList<CircuitComponent> connectLeft;
+  ArrayList<CircuitComponent> connectRight;
   Button attachmentLeft;
   Button attachmentRight;
-  Boolean inputDirection;
   static final boolean LEFT = true;
   static final boolean RIGHT = false;
   
@@ -28,8 +28,7 @@ public class CircuitComponent {
     power = 0; 
     voltage = 0; 
     current = 0;
-    nextConnection = new ArrayList();
-    previousConnection = new ArrayList();
+    connections = new ArrayList();
     attachmentLeft = new Button();
     attachmentLeft.x = x1;
     attachmentLeft.y = y1;

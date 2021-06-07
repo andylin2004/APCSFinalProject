@@ -1,7 +1,5 @@
 public class Battery extends CircuitComponent{
   private float voltage;
-  //private float centerX;
-  //private float centerY;
   PImage batImage;
   
   
@@ -35,8 +33,7 @@ public class Battery extends CircuitComponent{
     textSize(20);
     text("battery voltage:" + voltage, centerX, centerY);
     text("part:" + toString(), centerX, centerY+30);
-    text("prev:" + previousConnection, centerX, centerY+60);
-    text("next:" + nextConnection, centerX, centerY+90);
+    text("connects:" + connections, centerX, centerY+60);
     image(batImage,centerX, centerY);
   }
   

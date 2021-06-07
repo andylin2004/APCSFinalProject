@@ -1,5 +1,5 @@
 public class CircuitBranch extends CircuitComponent {
-  ArrayList<CircuitComponent> branchContains = new ArrayList();
+  ArrayList<CircuitComponent> branchStarts = new ArrayList();
   CircuitComponent startAt;
   CircuitComponent terminus;
   private float resistence, voltage;
