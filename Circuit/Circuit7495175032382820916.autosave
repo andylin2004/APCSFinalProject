@@ -71,6 +71,10 @@ void mousePressed() {
             wireGrabbed.nextConnection.add(part);
           }
         }
+=======
+        } //<>//
+        part.previousConnection.add(wireGrabbed);
+>>>>>>> parent of 83ade8e (code to make original wire a branch when there is another branch added)
         grabbingWireEnd = false;
         //println(wireGrabbed);
         //println(wireGrabbed.previousConnection);
@@ -123,6 +127,13 @@ void mousePressed() {
             branch.branchContains.add(wireGrabbed);
             part.previousConnection.add(branch);
             wireGrabbed.nextConnection.add(part);
+<<<<<<< HEAD
+          if (part.previousConnection.size() == 0) {
+            wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed); //<>//
+            part.previousConnection.add(wireGrabbed);
+            wireGrabbed.nextConnection.add(part);
+=======
+>>>>>>> parent of 83ade8e (code to make original wire a branch when there is another branch added)
           }
         }
         grabbingWireEnd = false;
