@@ -4,6 +4,8 @@ public class CircuitComponent {
   float Y1;
   float X2;
   float Y2;
+  float centerX;
+  float centerY;
   float power;
   float voltage;
   float current;
@@ -21,6 +23,8 @@ public class CircuitComponent {
     Y1 = y1; 
     X2 = x2;
     Y2 = y2; 
+    centerX = x1 + (x1 + x2)/2;
+    centerY = y1;
     power = 0; 
     voltage = 0; 
     current = 0;
@@ -89,6 +93,14 @@ public class CircuitComponent {
 
   public float getY2() {
     return Y2;
+  }
+  
+  public float getCX(){
+    return centerX;
+  }
+  
+  public float getCY(){
+    return centerY;
   }
 
   public void addConnection(CircuitComponent connection, boolean next) {

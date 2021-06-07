@@ -4,6 +4,7 @@ RightClickMenu menu;
 ArrayList<CircuitComponent> parts = new ArrayList();
 ArrayList<Wire> wires = new ArrayList();
 Button reset = new ResetButton();
+InstructionsButton instructions = new InstructionsButton(30, 400);
 float totalResistence;
 float totalCurrent;
 float totalVoltage;
@@ -24,6 +25,7 @@ void draw() {
   background(200);
   menu.display();
   reset.display();
+  instructions.display();
   for (CircuitComponent part : parts) {
     part.display();
   }
@@ -146,6 +148,9 @@ void mousePressed() {
       println();
       return;
     }
+    if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100){
+      instructions.click();
+    }
     for (CircuitComponent part : parts) {
       if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
         if (part.inputDirection == null) {
@@ -184,6 +189,42 @@ void mousePressed() {
     }
     menu.x = -1000;
     menu.y = -1000;
+  }
+}
+
+void keyPressed(){
+  if (keyCode==38){
+    for (int i = 0; i < parts.size(); i++){
+      if (parts.get(i) instanceof Resistor){
+        Resistor curRes = (Resistor) parts.get(i);
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+          curRes.addResistence(1);
+        }
+      }
+      else if (parts.get(i) instanceof Battery){
+        Battery curBat = (Battery) parts.get(i);
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+          curBat.addVoltage(1);
+        }
+      }
+    }
+    
+  }
+  else if (keyCode==40){
+    for (int i = 0; i < parts.size(); i++){
+      if (parts.get(i) instanceof Resistor){
+        Resistor curRes = (Resistor) parts.get(i);
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+          curRes.addResistence(-1);
+        }
+      }
+      else if (parts.get(i) instanceof Battery){
+        Battery curBat = (Battery) parts.get(i);
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+          curBat.addVoltage(-1);
+        }
+      }
+    }
   }
 }
 
