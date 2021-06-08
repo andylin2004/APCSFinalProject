@@ -55,11 +55,22 @@ void mousePressed() {
         part.connections.add(wireGrabbed);
         part.connectLeft = wireGrabbed;
         wireGrabbed.start.connections.add(wireGrabbed);
-        if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT){
-          wireGrabbed.start.connectLeft = wireGrabbed;
-        }else{
+        if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT) {
+          if (wireGrabbed.start.connectLeft == null) {
+            wireGrabbed.start.connectLeft = wireGrabbed;
+          } else {
+            if (!(wireGrabbed.start.connectLeft instanceof CircuitBranch)) {
+              CircuitBranch replacing = new CircuitBranch();
+              replacing.branchStarts.add(wireGrabbed.start.connectLeft);
+              wireGrabbed.start.connectLeft = replacing;
+            }
+            CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectLeft;
+            toEdit.branchStarts.add(wireGrabbed);
+          }
+        } else {
           wireGrabbed.end.connectLeft = wireGrabbed;
         }
+
         wireGrabbed.end = part;
         wireGrabbed.endConnectEnd = CircuitComponent.LEFT;
         grabbingWireEnd = false;
@@ -72,10 +83,16 @@ void mousePressed() {
         parts.add(wireGrabbed);
         part.connectRight = wireGrabbed;
         wireGrabbed.start.connections.add(wireGrabbed);
-        if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT){
+        if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT) {
           wireGrabbed.start.connectLeft = wireGrabbed;
-        }else{
-          wireGrabbed.end.connectLeft = wireGrabbed;
+        } else {
+          if (!(wireGrabbed.start.connectLeft instanceof CircuitBranch)) {
+            CircuitBranch replacing = new CircuitBranch();
+            replacing.branchStarts.add(wireGrabbed.start.connectLeft);
+            wireGrabbed.start.connectLeft = replacing;
+          }
+          CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectLeft;
+          toEdit.branchStarts.add(wireGrabbed);
         }
         part.connections.add(wireGrabbed);
         grabbingWireEnd = false;
@@ -89,11 +106,10 @@ void mousePressed() {
       println();
       return;
     }
-    if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100){
+    if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100) {
       instructions.click();
     }
     for (CircuitComponent part : parts) {
-      println(part);
       if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
         wireGrabbed = new Wire(mouseX, mouseY);
         wireGrabbed.start = part;
@@ -119,35 +135,31 @@ void mousePressed() {
   }
 }
 
-void keyPressed(){
-  if (keyCode==38){
-    for (int i = 0; i < parts.size(); i++){
-      if (parts.get(i) instanceof Resistor){
+void keyPressed() {
+  if (keyCode==38) {
+    for (int i = 0; i < parts.size(); i++) {
+      if (parts.get(i) instanceof Resistor) {
         Resistor curRes = (Resistor) parts.get(i);
-        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500) {
           curRes.addResistence(1);
         }
-      }
-      else if (parts.get(i) instanceof Battery){
+      } else if (parts.get(i) instanceof Battery) {
         Battery curBat = (Battery) parts.get(i);
-        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500) {
           curBat.addVoltage(1);
         }
       }
     }
-    
-  }
-  else if (keyCode==40){
-    for (int i = 0; i < parts.size(); i++){
-      if (parts.get(i) instanceof Resistor){
+  } else if (keyCode==40) {
+    for (int i = 0; i < parts.size(); i++) {
+      if (parts.get(i) instanceof Resistor) {
         Resistor curRes = (Resistor) parts.get(i);
-        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500) {
           curRes.addResistence(-1);
         }
-      }
-      else if (parts.get(i) instanceof Battery){
+      } else if (parts.get(i) instanceof Battery) {
         Battery curBat = (Battery) parts.get(i);
-        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500){
+        if (Math.pow(mouseX-parts.get(i).getCX(), 2)+Math.pow(mouseY-parts.get(i).getCY(), 2) < 500) {
           curBat.addVoltage(-1);
         }
       }
