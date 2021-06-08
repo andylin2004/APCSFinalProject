@@ -12,10 +12,10 @@ public class Battery extends CircuitComponent{
     batImage = loadImage("battery.png");
     batImage.resize(70,40);
     attachmentLeft = new Button();
-    attachmentLeft.x = CX + 35;
+    attachmentLeft.x = CX - 35;
     attachmentLeft.y = CY;
     attachmentRight = new Button();
-    attachmentRight.x = CX - 35;
+    attachmentRight.x = CX + 35;
     attachmentRight.y = CY;
     connections = new ArrayList();
   }
@@ -34,6 +34,8 @@ public class Battery extends CircuitComponent{
     text("battery voltage:" + voltage, centerX, centerY);
     text("part:" + toString(), centerX, centerY+30);
     text("connects:" + connections, centerX, centerY+60);
+    text("connectsLeft" + connectLeft, centerX, centerY+90);
+    text("connectsRight" + connectRight, centerX, centerY+120);
     image(batImage,centerX, centerY);
   }
   

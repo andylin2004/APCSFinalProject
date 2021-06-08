@@ -70,7 +70,6 @@ void mousePressed() {
         } else {
           wireGrabbed.end.connectLeft = wireGrabbed;
         }
-
         wireGrabbed.end = part;
         wireGrabbed.endConnectEnd = CircuitComponent.LEFT;
         grabbingWireEnd = false;
