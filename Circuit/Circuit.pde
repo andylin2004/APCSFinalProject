@@ -49,19 +49,7 @@ void mousePressed() {
     menu.y = mouseY;
     grabbingWireEnd = false;
   }else if (grabbingWireEnd){
-    for (CircuitComponent part: parts){
-      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
-        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
-         wireGrabbed.x2 = mouseX;
-         wireGrabbed.y2 = mouseY;
-         wires.add(wireGrabbed);
-         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
-         wireGrabbed.nextConnection.add(part);
-         part.previousConnection.add(wireGrabbed);
-         grabbingWireEnd = false;
-         return;
-       }
-    }
+    ifGrabWire();
   }else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
@@ -72,15 +60,7 @@ void mousePressed() {
     if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100){
       instructions.click();
     }
-    for (CircuitComponent part: parts){
-      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
-        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
-         wireGrabbed = new Wire(mouseX, mouseY);
-         wireGrabbed.previousConnection.add(part);
-         grabbingWireEnd = true;
-         return;
-       }
-    }
+    addWire();
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
         addComponent(button.toAdd);
@@ -163,4 +143,32 @@ float findTotalVoltage(){
 float setCurrent(){
   totalCurrent = totalResistence / findTotalVoltage();
   return totalCurrent;
+}
+
+void ifGrabWire(){
+  for (CircuitComponent part: parts){
+      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
+        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+         wireGrabbed.x2 = mouseX;
+         wireGrabbed.y2 = mouseY;
+         wires.add(wireGrabbed);
+         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+         wireGrabbed.nextConnection.add(part);
+         part.previousConnection.add(wireGrabbed);
+         grabbingWireEnd = false;
+         return;
+       }
+    }
+}
+
+void addWire(){
+  for (CircuitComponent part: parts){
+      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
+        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+         wireGrabbed = new Wire(mouseX, mouseY);
+         wireGrabbed.previousConnection.add(part);
+         grabbingWireEnd = true;
+         return;
+       }
+    }
 }
