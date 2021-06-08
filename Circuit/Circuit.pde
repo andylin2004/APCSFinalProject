@@ -82,15 +82,15 @@ void mousePressed() {
         parts.add(wireGrabbed);
         part.connectRight = wireGrabbed;
         wireGrabbed.start.connections.add(wireGrabbed);
-        if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT) {
-          wireGrabbed.start.connectLeft = wireGrabbed;
+        if (wireGrabbed.startConnectEnd == CircuitComponent.RIGHT) {
+          wireGrabbed.start.connectRight = wireGrabbed;
         } else {
-          if (!(wireGrabbed.start.connectLeft instanceof CircuitBranch)) {
+          if (!(wireGrabbed.start.connectRight instanceof CircuitBranch)) {
             CircuitBranch replacing = new CircuitBranch();
-            replacing.branchStarts.add(wireGrabbed.start.connectLeft);
-            wireGrabbed.start.connectLeft = replacing;
+            replacing.branchStarts.add(wireGrabbed.start.connectRight);
+            wireGrabbed.start.connectRight = replacing;
           }
-          CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectLeft;
+          CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectRight;
           toEdit.branchStarts.add(wireGrabbed);
         }
         part.connections.add(wireGrabbed);
@@ -127,10 +127,11 @@ void mousePressed() {
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
         addComponent(button.toAdd);
+        menu.x = -1000;
+        menu.y = -1000;
+        return;
       }
     }
-    menu.x = -1000;
-    menu.y = -1000;
   }
 }
 
