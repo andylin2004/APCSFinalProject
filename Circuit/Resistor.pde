@@ -25,17 +25,17 @@ public class Resistor extends CircuitComponent{
   }
   
   void display(){
-    /*
-    fill(255);
-    ellipse(centerX, centerY, 80, 60);
-    textSize(20);
-    */
     fill(0);
     attachmentLeft.display();
     attachmentRight.display();
     fill(0);
-    text("resistence:" + getResistence(), centerX, centerY);
-    image(offBulb, centerX, centerY);
+    text("resistance:" + getResistence(), centerX, centerY);
+    if (nextConnection.size()!=0 && previousConnection.size()!=0){
+      image(onBulb, centerX, centerY);
+    }
+    else{
+      image(offBulb, centerX, centerY);
+    }
   }
   
   public float getResistence(){

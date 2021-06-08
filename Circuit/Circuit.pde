@@ -38,7 +38,7 @@ void draw() {
   }
   textSize(20);
   fill(0);
-  text("Total Resistence: " + findTotalResistence(), 30, 30);
+  text("Total Resistance: " + findTotalResistence(), 30, 30);
   text("Total Current: " + setCurrent(), 30, 70);
   text("Total Voltage: " + findTotalVoltage(), 30, 110);
 }
