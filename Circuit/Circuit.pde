@@ -106,21 +106,24 @@ void mousePressed() {
     }
     if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100) {
       instructions.click();
+      return;
     }
     for (CircuitComponent part : parts) {
-      if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
-        wireGrabbed = new Wire(mouseX, mouseY);
-        wireGrabbed.start = part;
-        wireGrabbed.startConnectEnd = CircuitComponent.LEFT;
-        grabbingWireEnd = true;
-        return;
-      } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
-        wireGrabbed = new Wire(mouseX, mouseY);
-        wireGrabbed.start = part;
-        wireGrabbed.start = part;
-        wireGrabbed.startConnectEnd = CircuitComponent.RIGHT;
-        grabbingWireEnd = true;
-        return;
+      if (!(part instanceof Wire)){
+        if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
+          wireGrabbed = new Wire(mouseX, mouseY);
+          wireGrabbed.start = part;
+          wireGrabbed.startConnectEnd = CircuitComponent.LEFT;
+          grabbingWireEnd = true;
+          return;
+        } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
+          wireGrabbed = new Wire(mouseX, mouseY);
+          wireGrabbed.start = part;
+          wireGrabbed.start = part;
+          wireGrabbed.startConnectEnd = CircuitComponent.RIGHT;
+          grabbingWireEnd = true;
+          return;
+        }
       }
     }
     for (Button button : menu.buttons) {
@@ -220,7 +223,9 @@ boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean pr
     return true;
   }else if (part.checkConnections()){
     if (part instanceof Wire){
-      verifyIfCircuit(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev));
+      return verifyIfCircuit(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev));
+    }else{
+      return verifyIfCircuit(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection);
     }
   }else{
     return false;

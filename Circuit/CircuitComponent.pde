@@ -106,4 +106,14 @@ public class CircuitComponent {
 
   public void display() {
   }
+  
+  public CircuitComponent nextPart(Boolean prevDirection){
+    if (prevDirection == LEFT){
+      return connectRight;
+    }else if (prevDirection == RIGHT){
+      return connectLeft;
+    }else{
+      return null;
+    }
+  }
 }
