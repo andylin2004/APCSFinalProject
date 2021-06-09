@@ -7,7 +7,6 @@ InstructionsButton instructions = new InstructionsButton(30, 400);
 float totalResistence;
 float totalCurrent;
 float totalVoltage;
-int battAt = -1;
 
 void setup() {
   size(1440, 900);
@@ -216,11 +215,13 @@ boolean verifyIfCircuit(){
   return false;
 }
 
-boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean direction){
+boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection){
   if (part instanceof Battery){
     return true;
   }else if (part.checkConnections()){
-    return true;
+    if (part instanceof Wire){
+      verifyIfCircuit(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev));
+    }
   }else{
     return false;
   }

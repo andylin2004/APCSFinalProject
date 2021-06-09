@@ -24,4 +24,20 @@ public class Wire extends CircuitComponent{
   boolean checkConnections(){
     return startConnectEnd != null && endConnectEnd != null;
   }
+  
+  CircuitComponent nextPart(CircuitComponent prev){
+    if (start == prev){
+      return end;
+    }else{
+      return start;
+    }
+  }
+  
+  Boolean nextDir(CircuitComponent prev){
+    if (start == prev){
+      return endConnectEnd;
+    }else{
+      return startConnectEnd;
+    }
+  }
 }
