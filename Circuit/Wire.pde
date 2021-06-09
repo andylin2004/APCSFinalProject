@@ -20,4 +20,8 @@ public class Wire extends CircuitComponent{
     text("start:" + start, (x1+x2)/2, (y1+y2)/2+60);
     text("end:" + end, (x1+x2)/2, (y1+y2)/2+90);
   }
+  
+  boolean checkConnections(){
+    return startConnectEnd != null && endConnectEnd != null;
+  }
 }

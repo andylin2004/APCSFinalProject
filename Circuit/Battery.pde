@@ -2,7 +2,6 @@ public class Battery extends CircuitComponent{
   private float voltage;
   PImage batImage;
   
-  
   public Battery(float r, int CX, int CY){
     super(CX - 20, CY, CX + 500, CY);
     centerX = CX;
@@ -49,4 +48,6 @@ public class Battery extends CircuitComponent{
     }
     voltage += num;
   }
+  
+  
 }

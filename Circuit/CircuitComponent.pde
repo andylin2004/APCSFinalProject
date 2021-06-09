@@ -100,20 +100,9 @@ public class CircuitComponent {
     return centerY;
   }
 
-  //public void addConnection(CircuitComponent connection, boolean next) {
-  //  if (next) {
-  //    nextConnection.add(connection);
-  //  } else {
-  //    previousConnection.add(connection);
-  //  }
-  //}
-
-  //public ArrayList<CircuitComponent> getConnections(boolean next) {
-  //  if (next) {
-  //    return nextConnection;
-  //  }
-  //  return previousConnection;
-  //}
+  boolean checkConnections(){
+    return connectLeft != null && connectRight != null;
+  }
 
   public void display() {
   }

@@ -38,7 +38,7 @@ void draw() {
   text("Total Resistence: " + findTotalResistence(), 30, 30);
   text("Total Current: " + setCurrent(), 30, 70);
   text("Total Voltage: " + findTotalVoltage(), 30, 110);
-  //text("Is circuit" + verifyIfCircuit(), 30, 150);
+  text("Is circuit" + verifyIfCircuit(), 30, 150);
 }
 
 void mousePressed() {
@@ -205,36 +205,23 @@ float setCurrent() {
   return totalCurrent;
 }
 
-//boolean verifyIfCircuit() {
-//  battAt = -1;
-//  if (parts.size() == 0) {
-//    return false;
-//  } else {
-//    for (int i = 0; i < parts.size(); i++) {
-//      if (parts.get(i) instanceof Battery) {
-//        battAt = i;
-//        break;
-//      }
-//    }
-//    if (battAt != -1) {
-//      return verifyIfCircuit(parts.get(battAt));
-//    } else {
-//      return false;
-//    }
-//  }
-//}
+boolean verifyIfCircuit(){
+  for (CircuitComponent part : parts){
+    if (part instanceof Battery){
+      if (((Battery)part).checkConnections()){
+        return verifyIfCircuit(part.connectLeft, part, CircuitComponent.LEFT);
+      }
+    }
+  }
+  return false;
+}
 
-//boolean verifyIfCircuit(CircuitComponent part) {
-//  if (part.nextConnection.size() == 0) {
-//    return false;
-//  } else {
-//    for (CircuitComponent link : part.nextConnection) {
-//      if (link == parts.get(battAt)) {
-//        return true;
-//      } else {
-//        return verifyIfCircuit(link);
-//      }
-//    }
-//  }
-//  return false;
-//}
+boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean direction){
+  if (part instanceof Battery){
+    return true;
+  }else if (part.checkConnections()){
+    return true;
+  }else{
+    return false;
+  }
+}
