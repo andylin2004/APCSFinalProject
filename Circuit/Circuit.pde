@@ -164,7 +164,7 @@ void mousePressed() {
     //}else if (grabbingWireEnd){
     //  ifGrabWire();
     //}else {
-    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
+    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 500) {
       reset.click();
       parts.clear();
       println();
