@@ -35,7 +35,7 @@ public class Resistor extends CircuitComponent{
     text("connectsLeft" + connectLeft, centerX, centerY+90);
     text("connectsRight" + connectRight, centerX, centerY+120);
     text("associatedWith:" + associatedWith, centerX, centerY+150);
-    if (nextConnection.size()!=0 && previousConnection.size()!=0){
+    if (connectLeft != null && connectRight != null){
       image(onBulb, centerX, centerY);
     }
     else{
