@@ -1,7 +1,8 @@
 public class CircuitBranch extends CircuitComponent {
   ArrayList<CircuitComponent> branchStarts = new ArrayList();
   ArrayList<CircuitComponent> branchEnds = new ArrayList();
-  boolean branch2Active = false;
+  ArrayList<ArrayList<CircuitComponent>> branchesComponent = new ArrayList();
+  ArrayList<Boolean> branchActive = new ArrayList();
   CircuitComponent startAt;
   CircuitComponent terminus;
   private float resistence, voltage;
@@ -18,16 +19,16 @@ public class CircuitBranch extends CircuitComponent {
   }
 
   public boolean verifyIfCircuit(CircuitComponent lastConnect, Boolean prevDirection, Battery battery) {
-    if (!branch2Active){
-      return verifyIfCircuit(branchStarts.get(0), lastConnect, prevDirection, battery);
-    }else{
-      for (CircuitComponent branch : branchStarts){
-        if (verifyIfCircuit(branch, lastConnect, prevDirection, battery)){
-          return true;
+    for (int i = 0; i<branchActive.size(); i++) {
+      if (branchActive.get(i)) {
+        for (CircuitComponent branch : branchStarts) {
+          if (verifyIfCircuit(branch, lastConnect, prevDirection, battery)) {
+            return true;
+          }
         }
       }
-      return false;
     }
+    return false;
   }
 
   boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {

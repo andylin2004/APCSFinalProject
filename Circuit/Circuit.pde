@@ -7,6 +7,7 @@ InstructionsButton instructions = new InstructionsButton(30, 400);
 float totalResistence;
 float totalCurrent;
 float totalVoltage;
+boolean isCircuit = false;
 
 void setup() {
   size(1440, 900);
@@ -37,7 +38,7 @@ void draw() {
   text("Total Resistence: " + findTotalResistence(), 30, 30);
   text("Total Current: " + setCurrent(), 30, 70);
   text("Total Voltage: " + findTotalVoltage(), 30, 110);
-  text("Is circuit" + verifyIfCircuit(), 30, 150);
+  text("Is circuit" + isCircuit, 30, 150);
 }
 
 void mousePressed() {
@@ -53,8 +54,9 @@ void mousePressed() {
           wireGrabbed.y2 = mouseY;
           parts.add(wireGrabbed);
           part.connections.add(wireGrabbed);
-          part.connectLeft = wireGrabbed;
           wireGrabbed.start.connections.add(wireGrabbed);
+          wireGrabbed.end = part;
+          wireGrabbed.endConnectEnd = CircuitComponent.LEFT;
           if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT) {
             if (wireGrabbed.start.connectLeft == null) {
               wireGrabbed.start.connectLeft = wireGrabbed;
@@ -73,34 +75,68 @@ void mousePressed() {
           } else {
             wireGrabbed.end.connectLeft = wireGrabbed;
           }
-          wireGrabbed.end = part;
-          wireGrabbed.endConnectEnd = CircuitComponent.LEFT;
+          if (part.connectLeft instanceof Wire) {
+            CircuitBranch replacing = new CircuitBranch();
+            replacing.branchStarts.add(wireGrabbed.start.connectLeft);
+            replacing.branchEnds.add(wireGrabbed.start.connectLeft);
+            replacing.startAt = wireGrabbed.start;
+            replacing.terminus = wireGrabbed.end;
+            part.connectLeft = replacing;
+          }
+          if (part.connectLeft instanceof CircuitBranch) {
+            CircuitBranch toEdit = (CircuitBranch)part.connectLeft;
+            toEdit.branchStarts.add(wireGrabbed);
+          }
+          if (part.connectLeft == null){
+            part.connectLeft = wireGrabbed;
+          }
           grabbingWireEnd = false;
+          isCircuit = verifyIfCircuit();
           return;
         } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
           wireGrabbed.x2 = mouseX;
           wireGrabbed.y2 = mouseY;
           wireGrabbed.end = part;
           wireGrabbed.endConnectEnd = CircuitComponent.RIGHT;
-          parts.add(wireGrabbed);
+          parts.add(wireGrabbed);          
           part.connectRight = wireGrabbed;
           wireGrabbed.start.connections.add(wireGrabbed);
           if (wireGrabbed.startConnectEnd == CircuitComponent.RIGHT) {
-            wireGrabbed.start.connectRight = wireGrabbed;
-          } else {
-            if (!(wireGrabbed.start.connectRight instanceof CircuitBranch)) {
-              CircuitBranch replacing = new CircuitBranch();
-              replacing.branchStarts.add(wireGrabbed.start.connectRight);
-              replacing.branchEnds.add(wireGrabbed.start.connectLeft);
-              replacing.startAt = wireGrabbed.start;
-              replacing.terminus = wireGrabbed.end;
-              wireGrabbed.start.connectRight = replacing;
+            if (wireGrabbed.start.connectRight == null) {
+              wireGrabbed.start.connectRight = wireGrabbed;
+            } else {
+              if (!(wireGrabbed.start.connectRight instanceof CircuitBranch)) {
+                CircuitBranch replacing = new CircuitBranch();
+                replacing.branchStarts.add(wireGrabbed.start.connectRight);
+                replacing.branchEnds.add(wireGrabbed.start.connectRight);
+                replacing.startAt = wireGrabbed.start;
+                replacing.terminus = wireGrabbed.end;
+                wireGrabbed.start.connectRight = replacing;
+              }
+              CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectRight;
+              toEdit.branchStarts.add(wireGrabbed);
             }
-            CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectRight;
+          } else {
+            wireGrabbed.end.connectRight = wireGrabbed;
+          }
+          if (part.connectRight instanceof Wire) {
+            CircuitBranch replacing = new CircuitBranch();
+            replacing.branchStarts.add(wireGrabbed.start.connectRight);
+            replacing.branchEnds.add(wireGrabbed.start.connectRight);
+            replacing.startAt = wireGrabbed.start;
+            replacing.terminus = wireGrabbed.end;
+            part.connectRight = replacing;
+          }
+          if (part.connectRight instanceof CircuitBranch) {
+            CircuitBranch toEdit = (CircuitBranch)part.connectRight;
             toEdit.branchStarts.add(wireGrabbed);
+          }         
+          if (part.connectRight == null){
+            part.connectRight = wireGrabbed;
           }
           part.connections.add(wireGrabbed);
           grabbingWireEnd = false;
+          isCircuit = verifyIfCircuit();
           return;
         }
       }
@@ -227,6 +263,7 @@ boolean verifyIfCircuit() {
 }
 
 boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
+  println(part);
   if (part instanceof Battery) {
     return true;
   } else if (part.checkConnections()) {

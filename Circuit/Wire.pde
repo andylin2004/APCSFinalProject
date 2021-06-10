@@ -1,7 +1,7 @@
 public class Wire extends CircuitComponent{
   int x1, y1, x2, y2;
   CircuitComponent start, end;
-  Boolean startConnectEnd, endConnectEnd;
+  Boolean startConnectEnd, endConnectEnd, startsAtStart;
   
   public Wire(int startX, int startY){
     super(startX, startY);
