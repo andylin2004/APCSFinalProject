@@ -76,16 +76,17 @@ void mousePressed() {
             }
           } else {
             wireGrabbed.end.connectLeft = wireGrabbed;
+            wireGrabbed.start.connectRight = wireGrabbed;
             wireGrabbed.associatedWith = wireGrabbed.end.connectLeft.associatedWith;
           }
           if (part.connectLeft instanceof Wire && part.connectRight != wireGrabbed) {
-            CircuitBranch replacing = new CircuitBranch();
-            replacing.branchStarts.add(wireGrabbed.start.connectLeft);
-            replacing.branchEnds.add(wireGrabbed.start.connectLeft);
-            replacing.startAt = wireGrabbed.start;
-            replacing.terminus = wireGrabbed.end;
-            //part.connectRight = replacing;
-            //part.associatedWith = replacing;
+            if (wireGrabbed.associatedWith == null){
+              CircuitBranch replacing = new CircuitBranch();
+              replacing.branchStarts.add(wireGrabbed.start.connectLeft);
+              replacing.branchEnds.add(wireGrabbed.start.connectLeft);
+              replacing.startAt = wireGrabbed.start;
+              replacing.terminus = wireGrabbed.end;
+            }
           }
           if (part.connectLeft instanceof CircuitBranch) {
             CircuitBranch toEdit = (CircuitBranch)part.connectLeft;
@@ -125,16 +126,17 @@ void mousePressed() {
             }
           } else {
             wireGrabbed.end.connectRight = wireGrabbed;
+            wireGrabbed.start.connectLeft = wireGrabbed;
             wireGrabbed.associatedWith = wireGrabbed.end.connectRight.associatedWith;
           }
           if (part.connectRight instanceof Wire && part.connectRight != wireGrabbed) {
-            CircuitBranch replacing = new CircuitBranch();
-            replacing.branchStarts.add(wireGrabbed.start.connectRight);
-            replacing.branchEnds.add(wireGrabbed.start.connectRight);
-            replacing.startAt = wireGrabbed.start;
-            replacing.terminus = wireGrabbed.end;
-            //part.connectRight = replacing;
-            //part.associatedWith = replacing;
+            if (wireGrabbed.associatedWith == null){
+              CircuitBranch replacing = new CircuitBranch();
+              replacing.branchStarts.add(wireGrabbed.start.connectRight);
+              replacing.branchEnds.add(wireGrabbed.start.connectRight);
+              replacing.startAt = wireGrabbed.start;
+              replacing.terminus = wireGrabbed.end;
+            }
           }
           if (part.connectRight instanceof CircuitBranch) {
             CircuitBranch toEdit = (CircuitBranch)part.connectRight;
