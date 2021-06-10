@@ -24,22 +24,23 @@ public class Resistor extends CircuitComponent{
   }
   
   void display(){
-    /*
-    fill(255);
-    ellipse(centerX, centerY, 80, 60);
-    textSize(20);
-    */
     fill(0);
     attachmentLeft.display();
     attachmentRight.display();
     fill(0);
-    text("resistence:" + resistence, centerX, centerY);
+
+    text("resistance:" + getResistence(), centerX, centerY);
     text("part:" + toString(), centerX, centerY+30);
     text("connects:" + connections, centerX, centerY+60);
     text("connectsLeft" + connectLeft, centerX, centerY+90);
     text("connectsRight" + connectRight, centerX, centerY+120);
     text("associatedWith:" + associatedWith, centerX, centerY+150);
-    image(offBulb, centerX, centerY);
+    if (nextConnection.size()!=0 && previousConnection.size()!=0){
+      image(onBulb, centerX, centerY);
+    }
+    else{
+      image(offBulb, centerX, centerY);
+    }
   }
   
   public float getResistence(){

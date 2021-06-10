@@ -35,7 +35,7 @@ void draw() {
   }
   textSize(20);
   fill(0);
-  text("Total Resistence: " + findTotalResistence(), 30, 30);
+  text("Total Resistance: " + findTotalResistence(), 30, 30);
   text("Total Current: " + setCurrent(), 30, 70);
   text("Total Voltage: " + findTotalVoltage(), 30, 110);
   text("Is circuit" + isCircuit, 30, 150);
@@ -161,6 +161,9 @@ void mousePressed() {
       }
     }
   } else {
+  //}else if (grabbingWireEnd){
+  //  ifGrabWire();
+  //}else {
     if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
       reset.click();
       parts.clear();
@@ -191,6 +194,7 @@ void mousePressed() {
         }
       }
     }
+    //addWire();
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
         addComponent(button.toAdd);
@@ -272,6 +276,7 @@ float setCurrent() {
   return totalCurrent;
 }
 
+
 boolean verifyIfCircuit() {
   println();
   for (CircuitComponent part : parts) {
@@ -300,4 +305,31 @@ boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean pr
     println("false at" + part);
     return false;
   }
+
+void ifGrabWire(){
+  for (CircuitComponent part: parts){
+      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
+        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+         wireGrabbed.x2 = mouseX;
+         wireGrabbed.y2 = mouseY;
+         wires.add(wireGrabbed);
+         wireGrabbed.previousConnection.get(0).nextConnection.add(wireGrabbed);
+         wireGrabbed.nextConnection.add(part);
+         part.previousConnection.add(wireGrabbed);
+         grabbingWireEnd = false;
+         return;
+       }
+    }
+}
+
+void addWire(){
+  for (CircuitComponent part: parts){
+      if ((Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100)
+        || (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100)){
+         wireGrabbed = new Wire(mouseX, mouseY);
+         wireGrabbed.previousConnection.add(part);
+         grabbingWireEnd = true;
+         return;
+       }
+    }
 }
