@@ -99,16 +99,14 @@ void mousePressed() {
           isCircuit = verifyIfCircuit();
           return;
         } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
-          println(part.connectRight);
           wireGrabbed.x2 = mouseX;
           wireGrabbed.y2 = mouseY;
           wireGrabbed.end = part;
           wireGrabbed.endConnectEnd = CircuitComponent.RIGHT;
           parts.add(wireGrabbed);          
-          part.connectRight = wireGrabbed;
           wireGrabbed.start.connections.add(wireGrabbed);
           if (wireGrabbed.startConnectEnd == CircuitComponent.RIGHT) {
-            if (wireGrabbed.start.connectRight == null) {
+            if(wireGrabbed.start.connectRight == null){
               wireGrabbed.start.connectRight = wireGrabbed;
             } else {
               if (!(wireGrabbed.start.connectRight instanceof CircuitBranch)) {
@@ -129,22 +127,26 @@ void mousePressed() {
             wireGrabbed.start.connectLeft = wireGrabbed;
             wireGrabbed.associatedWith = wireGrabbed.end.connectRight.associatedWith;
           }
+          println(part.connectRight + " e");
           if (part.connectRight instanceof Wire && part.connectRight != wireGrabbed) {
             if (wireGrabbed.associatedWith == null){
-              CircuitBranch replacing = new CircuitBranch();
+              CircuitBranch replacing = new CircuitBranch(); //<>//
               replacing.branchStarts.add(wireGrabbed.start.connectRight);
               replacing.branchEnds.add(wireGrabbed.start.connectRight);
               replacing.startAt = wireGrabbed.start;
               replacing.terminus = wireGrabbed.end;
+            }else{
+              println("go back");
             }
           }
           if (part.connectRight instanceof CircuitBranch) {
-            CircuitBranch toEdit = (CircuitBranch)part.connectRight;
+            CircuitBranch toEdit = (CircuitBranch)part.connectRight; //<>//
             toEdit.branchStarts.add(wireGrabbed);
           }         
           if (part.connectRight == null){
-            part.connectRight = wireGrabbed;
+            part.connectRight = wireGrabbed; //<>//
           }
+          println(part.connectRight + " e");
           part.connections.add(wireGrabbed);
           grabbingWireEnd = false;
           isCircuit = verifyIfCircuit();
