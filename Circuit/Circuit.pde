@@ -3,7 +3,7 @@ Wire wireGrabbed;
 RightClickMenu menu;
 static ArrayList<CircuitComponent> parts = new ArrayList();
 Button reset = new ResetButton();
-InstructionsButton instructions = new InstructionsButton(30, 400);
+InstructionsButton instructions = new InstructionsButton(30, 800);
 float totalResistence;
 float totalCurrent;
 float totalVoltage;
@@ -164,7 +164,7 @@ void mousePressed() {
     //}else if (grabbingWireEnd){
     //  ifGrabWire();
     //}else {
-    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 500) {
+    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 700) {
       reset.click();
       parts.clear();
       println();

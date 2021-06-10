@@ -65,6 +65,7 @@ class ResetButton extends Button{
 class InstructionsButton {
   int x, y;
   boolean isOn;
+  PImage inIcon;
   
   InstructionsButton(int X, int Y){
     x = X;
@@ -73,7 +74,10 @@ class InstructionsButton {
   }
   
   void display(){
-    ellipse(x,y,10,10);
+    imageMode(CENTER);
+    inIcon = loadImage("instructions.png");
+    inIcon.resize(100,100);
+    image(inIcon, x, y);
     String line1 = "Welcome to the circuit simulation. To add an object right click \n";
     String line2 = "and two dots will appear. If you click on the right dot, a resistor will \n";
     String line3 = "appear and the left dot creates a battery. To create a wire click one \n";
