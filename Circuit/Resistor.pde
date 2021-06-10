@@ -3,7 +3,6 @@ public class Resistor extends CircuitComponent{
   private PImage onBulb;
   private PImage offBulb;
   
-  
   public Resistor(float r, int CX, int CY){
     super(CX - 40, CY, CX + 40, CY);
     centerX = CX;
@@ -35,7 +34,7 @@ public class Resistor extends CircuitComponent{
     text("connectsLeft" + connectLeft, centerX, centerY+90);
     text("connectsRight" + connectRight, centerX, centerY+120);
     text("associatedWith:" + associatedWith, centerX, centerY+150);
-    if (connectLeft != null && connectRight != null){
+    if (Circuit.verifyIfCircuit()){
       image(onBulb, centerX, centerY);
     }
     else{

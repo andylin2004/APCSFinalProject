@@ -1,7 +1,7 @@
 boolean grabbingWireEnd = false;
 Wire wireGrabbed;
 RightClickMenu menu;
-ArrayList<CircuitComponent> parts = new ArrayList();
+static ArrayList<CircuitComponent> parts = new ArrayList();
 Button reset = new ResetButton();
 InstructionsButton instructions = new InstructionsButton(30, 400);
 float totalResistence;
@@ -277,7 +277,7 @@ float setCurrent() {
 }
 
 
-boolean verifyIfCircuit() {
+static boolean verifyIfCircuit() {
   println();
   for (CircuitComponent part : parts) {
     if (part instanceof Battery) {
@@ -289,7 +289,7 @@ boolean verifyIfCircuit() {
   return false;
 }
 
-boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
+static boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
   println(part);
   if (part instanceof Battery) {
     return true;

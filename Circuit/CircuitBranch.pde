@@ -74,6 +74,6 @@ public class CircuitBranch extends CircuitComponent {
   }
   
   boolean checkConnections(){
-    return true;
+    return (startAt != null && terminus != null);
   }
 }
