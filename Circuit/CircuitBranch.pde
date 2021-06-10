@@ -31,7 +31,7 @@ public class CircuitBranch extends CircuitComponent {
     return false;
   }
 
-  boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
+  private boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
     if (part instanceof Battery) {
       return true;
     } else if (part.checkConnections()) {
@@ -43,7 +43,32 @@ public class CircuitBranch extends CircuitComponent {
         return verifyIfCircuit(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
       }
     } else {
+      println("false at" + part);
       return false;
+    }
+  }
+  
+  void accountForBranches(Boolean prevDirection){
+    for (CircuitComponent branch : branchStarts){
+      if (branch.associatedWith == null){
+        println("branch" + branch);
+        accountForBranches(branch, null, prevDirection);
+      }
+    }
+  }
+        
+  private void accountForBranches(CircuitComponent part, CircuitComponent prev, Boolean prevDirection){
+    if (part.associatedWith == null){
+      part.associatedWith = this;
+      if (part instanceof Wire){
+        accountForBranches(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev));
+      }else if(part instanceof CircuitBranch){
+        accountForBranches(((CircuitBranch)part).terminus, part, prevDirection);
+      }else{
+        accountForBranches(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection);
+      }
+    }else if (part.associatedWith == this){
+      println(part + " e");
     }
   }
 }
