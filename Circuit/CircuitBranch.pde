@@ -58,7 +58,10 @@ public class CircuitBranch extends CircuitComponent {
   }
         
   private void accountForBranches(CircuitComponent part, CircuitComponent prev, Boolean prevDirection){
-    if (part.associatedWith == null){
+    println(part);
+    if (part.associatedWith == this || part.nextPart(prevDirection) == this){
+      terminus = part;
+    }else if (part.associatedWith == null){
       part.associatedWith = this;
       if (part instanceof Wire){
         accountForBranches(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev));
@@ -67,8 +70,10 @@ public class CircuitBranch extends CircuitComponent {
       }else{
         accountForBranches(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection);
       }
-    }else if (part.associatedWith == this){
-      println(part + " e");
     }
+  }
+  
+  boolean checkConnections(){
+    return true;
   }
 }

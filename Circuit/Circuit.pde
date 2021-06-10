@@ -71,6 +71,8 @@ void mousePressed() {
               }
               CircuitBranch toEdit = (CircuitBranch)wireGrabbed.start.connectLeft;
               toEdit.branchStarts.add(wireGrabbed);
+              //toEdit.branchesComponent.add(new ArrayList());
+              //toEdit.branchesComponent.get(toEdit.branchesComponent.size() - 1).add(wireGrabbed);
               wireGrabbed.associatedWith = toEdit;
               part.associatedWith = toEdit;
             }
@@ -86,6 +88,10 @@ void mousePressed() {
               replacing.branchEnds.add(wireGrabbed.start.connectLeft);
               replacing.startAt = wireGrabbed.start;
               replacing.terminus = wireGrabbed.end;
+            }else{
+              CircuitBranch toEdit = (CircuitBranch)part.connectRight;
+              toEdit.accountForBranches(CircuitComponent.LEFT);
+              part.connectLeft = toEdit;
             }
           }
           if (part.connectLeft instanceof CircuitBranch) {
