@@ -14,6 +14,7 @@ public class CircuitComponent {
   CircuitComponent connectRight;
   Button attachmentLeft;
   Button attachmentRight;
+  CircuitBranch associatedWith;
   static final boolean LEFT = true;
   static final boolean RIGHT = false;
   

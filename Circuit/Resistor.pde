@@ -38,6 +38,7 @@ public class Resistor extends CircuitComponent{
     text("connects:" + connections, centerX, centerY+60);
     text("connectsLeft" + connectLeft, centerX, centerY+90);
     text("connectsRight" + connectRight, centerX, centerY+120);
+    text("associatedWith:" + associatedWith, centerX, centerY+150);
     image(offBulb, centerX, centerY);
   }
   
