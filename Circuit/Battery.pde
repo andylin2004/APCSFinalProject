@@ -1,12 +1,9 @@
 public class Battery extends CircuitComponent{
   private float voltage;
-  //private float centerX;
-  //private float centerY;
   PImage batImage;
   
-  
   public Battery(float r, int CX, int CY){
-    super(CX - 20, CY, CX + 20, CY);
+    super(CX - 20, CY, CX + 500, CY);
     centerX = CX;
     centerY = CY;
     voltage = r;
@@ -14,12 +11,12 @@ public class Battery extends CircuitComponent{
     batImage = loadImage("battery.png");
     batImage.resize(70,40);
     attachmentLeft = new Button();
-    attachmentLeft.x = CX + 35;
+    attachmentLeft.x = CX - 35;
     attachmentLeft.y = CY;
     attachmentRight = new Button();
-    attachmentRight.x = CX - 35;
+    attachmentRight.x = CX + 35;
     attachmentRight.y = CY;
-
+    connections = new ArrayList();
   }
   
   void display(){
@@ -34,6 +31,11 @@ public class Battery extends CircuitComponent{
     fill(0);
     textSize(20);
     text("battery voltage:" + voltage, centerX, centerY);
+    text("part:" + toString(), centerX, centerY+30);
+    text("connects:" + connections, centerX, centerY+60);
+    text("connectsLeft" + connectLeft, centerX, centerY+90);
+    text("connectsRight" + connectRight, centerX, centerY+120);
+    text("associatedWith:" + associatedWith, centerX, centerY+150);
     image(batImage,centerX, centerY);
   }
   
@@ -47,4 +49,6 @@ public class Battery extends CircuitComponent{
     }
     voltage += num;
   }
+  
+  
 }

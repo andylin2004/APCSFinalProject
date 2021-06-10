@@ -9,23 +9,27 @@ public class CircuitComponent {
   float power;
   float voltage;
   float current;
-  ArrayList<CircuitComponent> nextConnection;
-  ArrayList<CircuitComponent> previousConnection;
+  ArrayList<CircuitComponent> connections;
+  CircuitComponent connectLeft;
+  CircuitComponent connectRight;
   Button attachmentLeft;
   Button attachmentRight;
+  CircuitBranch associatedWith;
+  static final boolean LEFT = true;
+  static final boolean RIGHT = false;
+  
 
   public CircuitComponent(int x1, int y1, int x2, int y2) {
     X1 = x1; 
     Y1 = y1; 
-    X2 = x2; 
+    X2 = x2;
     Y2 = y2; 
     centerX = x1 + (x1 + x2)/2;
     centerY = y1;
     power = 0; 
     voltage = 0; 
     current = 0;
-    nextConnection = new ArrayList();
-    previousConnection = new ArrayList();
+    connections = new ArrayList();
     attachmentLeft = new Button();
     attachmentLeft.x = x1;
     attachmentLeft.y = y1;
@@ -40,10 +44,10 @@ public class CircuitComponent {
     power = 0; 
     voltage = 0; 
     current = 0;
-    nextConnection = new ArrayList();
-    previousConnection = new ArrayList();
   }
   
+  public CircuitComponent(){
+  }
 
   public void setX1(float num) {
     X1 = num;
@@ -97,21 +101,20 @@ public class CircuitComponent {
     return centerY;
   }
 
-  public void addConnection(CircuitComponent connection, boolean next) {
-    if (next) {
-      nextConnection.add(connection);
-    } else {
-      previousConnection.add(connection);
-    }
-  }
-
-  public ArrayList<CircuitComponent> getConnections(boolean next) {
-    if (next) {
-      return nextConnection;
-    }
-    return previousConnection;
+  boolean checkConnections(){
+    return connectLeft != null && connectRight != null;
   }
 
   public void display() {
+  }
+  
+  public CircuitComponent nextPart(Boolean prevDirection){
+    if (prevDirection == LEFT){
+      return connectRight;
+    }else if (prevDirection == RIGHT){
+      return connectLeft;
+    }else{
+      return null;
+    }
   }
 }

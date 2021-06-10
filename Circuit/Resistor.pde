@@ -1,7 +1,5 @@
 public class Resistor extends CircuitComponent{
   private float resistence;
-  //private float centerX;
-  //private float centerY;
   private PImage onBulb;
   private PImage offBulb;
   
@@ -17,11 +15,12 @@ public class Resistor extends CircuitComponent{
     offBulb = loadImage("offBulb.png");
     offBulb.resize(80,90);
     attachmentLeft = new Button();
-    attachmentLeft.x = CX + 12;
+    attachmentLeft.x = CX - 12;
     attachmentLeft.y = CY +20;
     attachmentRight = new Button();
-    attachmentRight.x = CX - 12;
+    attachmentRight.x = CX + 12;
     attachmentRight.y = CY+20;
+    connections = new ArrayList();
   }
   
   void display(){
@@ -29,7 +28,13 @@ public class Resistor extends CircuitComponent{
     attachmentLeft.display();
     attachmentRight.display();
     fill(0);
+
     text("resistance:" + getResistence(), centerX, centerY);
+    text("part:" + toString(), centerX, centerY+30);
+    text("connects:" + connections, centerX, centerY+60);
+    text("connectsLeft" + connectLeft, centerX, centerY+90);
+    text("connectsRight" + connectRight, centerX, centerY+120);
+    text("associatedWith:" + associatedWith, centerX, centerY+150);
     if (nextConnection.size()!=0 && previousConnection.size()!=0){
       image(onBulb, centerX, centerY);
     }
