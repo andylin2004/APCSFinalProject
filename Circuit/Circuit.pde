@@ -125,14 +125,12 @@ static float findTotalResistance(CircuitComponent part, CircuitComponent prev, B
 }
 
 float findTotalVoltage() {
-  totalVoltage = 0;
-  for (int i = 0; i < parts.size(); i++) {
-    if (parts.get(i) instanceof Battery) {
-      Battery curBat = (Battery) parts.get(i);
-      totalVoltage+= curBat.getVoltage();
-    }
+  ArrayList<CircuitComponent> partsSeen = new ArrayList();
+  for (CircuitComponent part : parts){
+    partsSeen.add(part);
+    partsSeen.add(part);
   }
-  return totalVoltage;
+  return 0;
 }
 
 float setCurrent() {
