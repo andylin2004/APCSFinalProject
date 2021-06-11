@@ -76,22 +76,16 @@ class InstructionsButton {
   void display(){
     imageMode(CENTER);
     inIcon = loadImage("instructions.png");
-    inIcon.resize(100,100);
+    inIcon.resize(200,200);
     image(inIcon, x, y);
-    String line1 = "Welcome to the circuit simulation. To add an object right click \n";
-    String line2 = "and two dots will appear. If you click on the right dot, a resistor will \n";
-    String line3 = "appear and the left dot creates a battery. To create a wire click one \n";
-    String line4 = "of the nodes on a battery/resistor and click again on the place you \n";
-    String line5 = "would like the wire to connect to. The power, current, and voltage of the \n";
-    String line6 = "entire circuit is tracted in the upper left hand corner and to erase the \n";
-    String line7 = "circuit click the small button in the lower right.";
+    String dir = "Welcome to Electrify, an interactive circuit simulation! To add an object, right click in the \nlocation you would like to display it. You will then see two dots. If you click the right dot, a  \nlightbulb will be added to the circuit, and the left side adds a battery. To add a wire, click one of  \nthe nodes on a lightbulb/battery and click again on the node you would like to attach it to. To  \nadjust the resistance or voltage of a circuit component, hover over the component and use \nthe arrow keys. To erase the simulation, click the reset button in the bottom right corner.";
     if(isOn){
       fill(#CCB8FC);
       noStroke();
       rect(0,0,1000,350);
       fill(0);
       text("Directions", 500, 50);
-      text(line1+line2+line3+line4+line5+line6+line7, 250, 100);
+      text(dir, 250, 100);
     }
   }
   

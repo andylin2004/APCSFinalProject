@@ -3,7 +3,7 @@ Wire wireGrabbed;
 RightClickMenu menu;
 static ArrayList<CircuitComponent> parts = new ArrayList();
 Button reset = new ResetButton();
-InstructionsButton instructions = new InstructionsButton(30, 800);
+InstructionsButton instructions = new InstructionsButton(100, 800);
 float totalResistence;
 float totalCurrent;
 float totalVoltage;
@@ -170,7 +170,7 @@ void mousePressed() {
       println();
       return;
     }
-    if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100) {
+    if (isInstructions()) {
       instructions.click();
       return;
     }
@@ -305,6 +305,13 @@ static boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boo
     println("false at" + part);
     return false;
   }
+}
+
+boolean isInstructions(){
+  if (mouseX <175 && mouseX > 20 && mouseY > 755 && mouseY < 785){
+    return true;
+  }
+  return false; 
 }
 
 //void ifGrabWire() {
