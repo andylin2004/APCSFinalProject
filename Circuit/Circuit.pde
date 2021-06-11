@@ -112,7 +112,7 @@ static float findTotalResistance(CircuitComponent part, CircuitComponent prev, B
     } else if (part instanceof CircuitBranch) {
       return ((CircuitBranch)part).findTotalResistance(prev, start, prevDirection, start);
     } else if (part instanceof Resistor){
-      return ((Resistor)part).getResistence();
+      return ((Resistor)part).getResistance() + findTotalResistance(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
     }else{
       return findTotalResistance(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
     }
@@ -151,7 +151,7 @@ static boolean verifyIfCircuit() {
 }
 
 static boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
-  println(part);
+  println(part+"E");
   if (part instanceof Battery) {
     return true;
   } else if (part.checkConnections()) {
@@ -211,7 +211,6 @@ void leftClick() {
         }
       }
     }
-    //addWire();
     for (Button button : menu.buttons) {
       if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
         addComponent(button.toAdd);
@@ -248,6 +247,9 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT) {
     if (wireGrabbed.start.connectLeft == null) {
       wireGrabbed.start.connectLeft = wireGrabbed;
+      if (wireGrabbed.associatedWith != null){
+        wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
+      }
     } else {
       if (!(wireGrabbed.start.connectLeft instanceof CircuitBranch)) {
         CircuitBranch replacing = new CircuitBranch();
@@ -267,6 +269,9 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   } else {
     wireGrabbed.end.connectLeft = wireGrabbed;
     wireGrabbed.start.connectRight = wireGrabbed;
+    if (wireGrabbed.associatedWith != null){
+      wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
+    }
     part.associatedWith = wireGrabbed.associatedWith;
   }
   if (part.connectLeft instanceof Wire && part.connectLeft != wireGrabbed) {
@@ -288,6 +293,9 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   }
   if (part.connectLeft == null) {
     part.connectLeft = wireGrabbed;
+    if (wireGrabbed.associatedWith != null){
+      wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(part);
+    }
   }
   grabbingWireEnd = false;
   isCircuit = verifyIfCircuit();
@@ -303,6 +311,9 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   if (wireGrabbed.startConnectEnd == CircuitComponent.RIGHT) {
     if (wireGrabbed.start.connectRight == null) {
       wireGrabbed.start.connectRight = wireGrabbed;
+      if (wireGrabbed.associatedWith != null){
+        wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
+      }
     } else {
       if (!(wireGrabbed.start.connectRight instanceof CircuitBranch)) {
         CircuitBranch replacing = new CircuitBranch();
@@ -320,6 +331,9 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   } else {
     wireGrabbed.end.connectRight = wireGrabbed;
     wireGrabbed.start.connectLeft = wireGrabbed;
+    if (wireGrabbed.associatedWith != null){
+      wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
+    }
     part.associatedWith = wireGrabbed.associatedWith;
   }
   if (part.connectRight instanceof Wire && part.connectRight != wireGrabbed) {
@@ -340,7 +354,10 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
     toEdit.branchStarts.add(wireGrabbed);
   }         
   if (part.connectRight == null) {
-    part.connectRight = wireGrabbed; //<>//
+    part.connectRight = wireGrabbed;
+    if (wireGrabbed.associatedWith != null){
+      wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(part);
+    }
   }
   part.connections.add(wireGrabbed);
   grabbingWireEnd = false;

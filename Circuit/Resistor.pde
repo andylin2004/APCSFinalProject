@@ -28,7 +28,7 @@ public class Resistor extends CircuitComponent{
     attachmentRight.display();
     fill(0);
 
-    text("resistance:" + getResistence(), centerX, centerY);
+    text("resistance:" + getResistance(), centerX, centerY);
     text("part:" + toString(), centerX, centerY+30);
     text("connects:" + connections, centerX, centerY+60);
     text("connectsLeft" + connectLeft, centerX, centerY+90);
@@ -42,7 +42,7 @@ public class Resistor extends CircuitComponent{
     }
   }
   
-  public float getResistence(){
+  public float getResistance(){
     return resistence;
   }
  

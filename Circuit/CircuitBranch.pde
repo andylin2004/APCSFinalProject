@@ -54,9 +54,12 @@ public class CircuitBranch extends CircuitComponent {
     for (ArrayList<CircuitComponent> branch: branchesComponent){
       float totalInBranch = 0;
       for (CircuitComponent partInBranch: branch){
+        println(partInBranch);
         totalInBranch += partInBranch.getResistance();
       }
+      println(totalInBranch);
       totalResistance += 1/totalInBranch;
+      println(totalResistance);
     }
     return totalResistance;
   }
@@ -64,18 +67,20 @@ public class CircuitBranch extends CircuitComponent {
   void accountForBranches(Boolean prevDirection){
     for (CircuitComponent branch : branchStarts){
       if (branch.associatedWith == null){
-        println("branch" + branch);
-        accountForBranches(branch, null, prevDirection);
+        branchesComponent.add(new ArrayList());
+        accountForBranches(branch, startAt, !prevDirection);
       }
     }
   }
         
   private void accountForBranches(CircuitComponent part, CircuitComponent prev, Boolean prevDirection){
-    println(part);
+    println(part + "e");
+    println(branchesComponent);
     if (part.associatedWith == this || part.nextPart(prevDirection) == this){
       terminus = part;
     }else if (part.associatedWith == null){
       part.associatedWith = this;
+      branchesComponent.get(branchesComponent.size()-1).add(part);
       if (part instanceof Wire){
         accountForBranches(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev));
       }else if(part instanceof CircuitBranch){
@@ -84,6 +89,7 @@ public class CircuitBranch extends CircuitComponent {
         accountForBranches(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection);
       }
     }
+    
   }
   
   boolean checkConnections(){
