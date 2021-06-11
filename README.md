@@ -23,6 +23,12 @@ June 4th: I began the process of finding images to use in the simulation rather 
 
 June 6th: I attached the buttons to the sides of the resistor and battery images. I also created a way to alter the resistance and voltage of various circuit components by using the arrow keys.
 
+June 8th: Worked on trying to make the code a bit neater, especially the mousePressed function which is very unreadable.
+
+June 9th: Worked on updating UML since it hasn't been updated since the start of the project.
+
+June 10th: Added images for the various buttons and changed the instructions to be more desscriptive.
+
 Andy's Dev Log:
 
 May 25: implemented the RightClickMenu as a dummy menu in order to prepare for being able to add elements into the workspace. This also necessitated adding a button class for the right click menu.
