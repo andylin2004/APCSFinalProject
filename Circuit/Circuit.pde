@@ -48,56 +48,6 @@ void mousePressed() {
   if (mouseButton == RIGHT) {
     rightClick();
   } else {
-<<<<<<< HEAD
-    //}else if (grabbingWireEnd){
-    //  ifGrabWire();
-    //}else {
-    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 700) {
-      reset.click();
-      parts.clear();
-      println();
-      return;
-    }
-    if (isInstructions()) {
-      instructions.click();
-      return;
-    }
-    if (!grabbingWireEnd) {
-      for (CircuitComponent part : parts) {
-        if (!(part instanceof Wire)) {
-          if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
-            wireGrabbed = new Wire(mouseX, mouseY);
-            wireGrabbed.start = part;
-            wireGrabbed.startConnectEnd = CircuitComponent.LEFT;
-            wireGrabbed.associatedWith = part.associatedWith;
-            grabbingWireEnd = true;
-            return;
-          } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
-            wireGrabbed = new Wire(mouseX, mouseY);
-            wireGrabbed.start = part;
-            wireGrabbed.start = part;
-            wireGrabbed.startConnectEnd = CircuitComponent.RIGHT;
-            wireGrabbed.associatedWith = part.associatedWith;
-            grabbingWireEnd = true;
-            return;
-          }
-          if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100) {
-            part.isMoving = ! part.isMoving;
-          }
-        }
-      }
-    }
-    //addWire();
-    for (Button button : menu.buttons) {
-      if (Math.pow(mouseX-button.x, 2)+Math.pow(mouseY-button.y, 2) < 100) {
-        addComponent(button.toAdd);
-        menu.x = -1000;
-        menu.y = -1000;
-        return;
-      }
-    }
-=======
->>>>>>> 7d3ac71f7bc0a40acb97d5881cbbf275e03291d6
     leftClick();
   }
 }
