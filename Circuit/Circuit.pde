@@ -1,3 +1,5 @@
+import java.util.*;
+
 boolean grabbingWireEnd = false;
 Wire wireGrabbed;
 RightClickMenu menu;
@@ -125,12 +127,15 @@ static float findTotalResistance(CircuitComponent part, CircuitComponent prev, B
 }
 
 float findTotalVoltage() {
-  ArrayList<CircuitComponent> partsSeen = new ArrayList();
-  for (CircuitComponent part : parts){
-    partsSeen.add(part);
-    partsSeen.add(part);
-  }
-  return 0;
+  HashSet<CircuitComponent> partsSeen = new HashSet();
+  return findTotalVoltage(parts.get(0).connectLeft, parts.get(0), CircuitComponent.LEFT, partsSeen);
+}
+
+float findTotalVoltage(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, HashSet partsSeen, int lastTotal){
+  if (lastTotal == partsSeen.size()){
+    return 0;
+  }else if (part instanceof Battery){
+    return ((Battery)part).get
 }
 
 float setCurrent() {
