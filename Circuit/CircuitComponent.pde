@@ -17,6 +17,7 @@ public class CircuitComponent {
   CircuitBranch associatedWith;
   static final boolean LEFT = true;
   static final boolean RIGHT = false;
+  boolean isMoving;
 
   public CircuitComponent(int x1, int y1, int x2, int y2) {
     X1 = x1; 
@@ -35,6 +36,7 @@ public class CircuitComponent {
     attachmentRight = new Button();
     attachmentRight.x = x2;
     attachmentRight.y = y2;
+    isMoving = false;
   }
   
   public CircuitComponent(int x1, int y1) {
@@ -115,5 +117,10 @@ public class CircuitComponent {
     }else{
       return null;
     }
+  }
+  
+  public void click(){
+    centerX = mouseX;
+    centerY = mouseY;
   }
 }

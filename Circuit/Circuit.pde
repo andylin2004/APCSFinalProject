@@ -76,6 +76,10 @@ void mousePressed() {
           grabbingWireEnd = true;
           return;
         }
+        if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100){
+          part.isMoving = ! part.isMoving;
+          part.click();
+        }
       }
     }
     //addWire();
