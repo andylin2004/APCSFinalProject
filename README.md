@@ -8,6 +8,10 @@ Prototype link: https://docs.google.com/document/d/1jIfvNo0_G3YUK5EwlFBVEmY04cme
 
 We want to create a simulation of circuits. Users can choose the voltage of the circuit, amount of resistors, amount of resistance, and whether the resistors are in series or parallel (or a combination) by clicking to add components. They will then be able to measure the voltage, current, and power at different locations. In the bottom corner there will be a reset button so that users do not have to restart the program to clear the screen.
 
+Instructions for use:
+
+Welcome to Electrify, an interactive circuit simulation! To add an object, right click in the location you would like to display it. You will then see two dots. If you click the right dot, a  lightbulb will be added to the circuit, and the left side adds a battery. To add a wire, click one of the nodes on a lightbulb/battery and click again on the node you would like to attach it to. To adjust the resistance or voltage of a circuit component, hover over the component and use the arrow keys. Click the center of a circuit component to move it and the component will follow your mouse. When you want to put it down, click again. To view specific info about the component like voltage and resistance, hover over the component and click ‘d’. To erase the simulation, click the reset button in the bottom right corner.
+
 
 Hannah's Development Log
 
@@ -28,6 +32,8 @@ June 8th: Worked on trying to make the code a bit neater, especially the mousePr
 June 9th: Worked on updating UML since it hasn't been updated since the start of the project.
 
 June 10th: Added images for the various buttons and changed the instructions to be more desscriptive.
+
+June 11th: When you click the center of a circuit comoponent you can move it around the screen and the wires will follow. I also made a text box appear when the key d is pressed that has information on current, voltage, and resistence.
 
 Andy's Dev Log:
 
