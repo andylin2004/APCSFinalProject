@@ -40,3 +40,19 @@ May 27: implemented buttons on the circuit components (where the wires will be p
 May 31: added the wires class in order to connect circuit components in a linked list manner. Overloaded CircuitComponent class in order to accomdate the wires class. Assisted with design choices for demo day (how to display data and when to display the data).
 
 June 1: made a recursion loop to verify if a circuit is actually a circuit (which is not treating me well right now). This also forced me to have a input left/right variable for circuitcomponents and a later rewrite of the adding wire thing so that wires hook up to wires.
+
+June 2: tried to work more on the recursion loop, but did not get much result due to fixes not being effective at resolving the issue.
+
+June 3: I managed to fix the linked list thing, but this did not prove to be idiot-proof, as parts kept being linked the wrong way. I also had to fix a null pointer since I shifted wires to be added in parts in this change.
+
+June 4: I made a circuitbranch class in order to more easily house the branches, but the doubily linked list implementation that I had was very shoddy and proved to break in the circuitbranch
+
+June 5: I decided to restart the linked list development with the same structure, but from a blank sheet just so that I can think everything through properly. Before this, I also made it such that if there is a wire there and I add another wire there, it will branch out.
+
+June 7: I had to change again to a multilinked list (no dedicated start/end) just so that people can place wires in any way and it won't break. Troubleshooting branching.
+
+June 8: Proper linking with wires using the new linked list style. Implemented a function to see if a circuit is complete and left and right were misplaced (source of some of my issues).
+
+June 9: Fix nullpointer involving wires again. Branching check to account for all branches and had to fix issues with stack overflow when it came to these recursion type functions.
+
+June 10-11: functions to calculate for resistance, voltage, and current and tried to squash bugs (taking longer than what I wanted it to take). Fix lightbulb illegally shining (two wires connecting to the same end on the other end). Started to make a labeling system for circuit components (which is hard, as I need to account for parallel and series).
