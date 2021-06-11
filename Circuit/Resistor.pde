@@ -28,9 +28,12 @@ public class Resistor extends CircuitComponent{
     attachmentRight.display();
     fill(0);
     if(displayInfo){
-      text("resistance:" + getResistance(), centerX, centerY);
-      text("voltage:", centerX, centerY+30);
-      text("current:", centerX, centerY+60);
+      fill(255);
+      rect(centerX +30, centerY -50 +10, 150, 90);
+      fill(0);
+      text("resistance:" + getResistance(), centerX + 30, centerY - 20);
+      text("voltage:", centerX +30, centerY+10);
+      text("current:", centerX +30, centerY+40);
       //text("connectsLeft" + connectLeft, centerX, centerY+90);
       //text("connectsRight" + connectRight, centerX, centerY+120);
       //text("associatedWith:" + associatedWith, centerX, centerY+150);
