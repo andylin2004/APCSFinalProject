@@ -154,7 +154,7 @@ static float findTotalVoltage(CircuitComponent part, CircuitComponent prev, Bool
       return 0;
     }
   }else if (part instanceof Wire){
-    partsSeen.add(((CircuitComponent)part).nextPart(prevDirection));
+    partsSeen.add(((Wire)part).nextPart(prev));
     if (partsSeen.size() > lastTotal){
       lastTotal = partsSeen.size();
       return findTotalVoltage(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev), partsSeen, lastTotal);
