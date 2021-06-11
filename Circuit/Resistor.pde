@@ -27,13 +27,17 @@ public class Resistor extends CircuitComponent{
     attachmentLeft.display();
     attachmentRight.display();
     fill(0);
-
-    text("resistance:" + getResistance(), centerX, centerY);
-    text("part:" + toString(), centerX, centerY+30);
-    text("connects:" + connections, centerX, centerY+60);
-    text("connectsLeft" + connectLeft, centerX, centerY+90);
-    text("connectsRight" + connectRight, centerX, centerY+120);
-    text("associatedWith:" + associatedWith, centerX, centerY+150);
+    if(displayInfo){
+      fill(255);
+      rect(centerX +30, centerY -50 +10, 150, 90);
+      fill(0);
+      text("resistance:" + getResistance(), centerX + 30, centerY - 20);
+      text("voltage:", centerX +30, centerY+10);
+      text("current:", centerX +30, centerY+40);
+      //text("connectsLeft" + connectLeft, centerX, centerY+90);
+      //text("connectsRight" + connectRight, centerX, centerY+120);
+      //text("associatedWith:" + associatedWith, centerX, centerY+150);
+    }
     if (Circuit.verifyIfCircuit()){
       image(onBulb, centerX, centerY);
     }
