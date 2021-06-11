@@ -48,6 +48,7 @@ void mousePressed() {
   if (mouseButton == RIGHT) {
     rightClick();
   } else {
+<<<<<<< HEAD
     //}else if (grabbingWireEnd){
     //  ifGrabWire();
     //}else {
@@ -95,6 +96,8 @@ void mousePressed() {
         return;
       }
     }
+=======
+>>>>>>> 7d3ac71f7bc0a40acb97d5881cbbf275e03291d6
     leftClick();
   }
 }
@@ -258,6 +261,9 @@ void leftClick() {
           wireGrabbed.associatedWith = part.associatedWith;
           grabbingWireEnd = true;
           return;
+        }
+        if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100) {
+          part.isMoving = ! part.isMoving;
         }
       }
     }
