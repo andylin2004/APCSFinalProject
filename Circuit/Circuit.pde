@@ -189,7 +189,7 @@ void leftClick() {
     //}else if (grabbingWireEnd){
     //  ifGrabWire();
     //}else {
-    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 100) {
+    if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 700) {
       reset.click();
       parts.clear();
       println();
@@ -217,7 +217,7 @@ void leftClick() {
           grabbingWireEnd = true;
           return;
         }
-        if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100) {
+        if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 500) {
           part.isMoving = ! part.isMoving;
         }
       }
