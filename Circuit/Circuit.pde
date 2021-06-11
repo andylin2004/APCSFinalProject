@@ -277,9 +277,9 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   } else {
     wireGrabbed.end.connectLeft = wireGrabbed;
     wireGrabbed.start.connectRight = wireGrabbed;
-    wireGrabbed.associatedWith = wireGrabbed.end.connectLeft.associatedWith;
+    part.associatedWith = wireGrabbed.associatedWith;
   }
-  if (part.connectLeft instanceof Wire && part.connectRight != wireGrabbed) {
+  if (part.connectLeft instanceof Wire && part.connectLeft != wireGrabbed) {
     if (wireGrabbed.associatedWith == null) {
       CircuitBranch replacing = new CircuitBranch();
       replacing.branchStarts.add(wireGrabbed.start.connectLeft);
@@ -330,7 +330,7 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   } else {
     wireGrabbed.end.connectRight = wireGrabbed;
     wireGrabbed.start.connectLeft = wireGrabbed;
-    wireGrabbed.associatedWith = wireGrabbed.end.connectRight.associatedWith;
+    part.associatedWith = wireGrabbed.associatedWith;
   }
   if (part.connectRight instanceof Wire && part.connectRight != wireGrabbed) {
     if (wireGrabbed.associatedWith == null) {
