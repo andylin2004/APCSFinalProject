@@ -33,7 +33,7 @@ void draw() {
     wireGrabbed.y2 = mouseY;
     wireGrabbed.display();
   }
-  for (CircuitComponent part : parts){
+  for (CircuitComponent part : parts) {
     part.click();
   }
   textSize(20);
@@ -57,30 +57,32 @@ void mousePressed() {
       println();
       return;
     }
-    if (isInstructions()) {
-      instructions.click();
-      return;
-    }
-    for (CircuitComponent part : parts) {
-      if (!(part instanceof Wire)) {
-        if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
-          wireGrabbed = new Wire(mouseX, mouseY);
-          wireGrabbed.start = part;
-          wireGrabbed.startConnectEnd = CircuitComponent.LEFT;
-          wireGrabbed.associatedWith = part.associatedWith;
-          grabbingWireEnd = true;
-          return;
-        } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
-          wireGrabbed = new Wire(mouseX, mouseY);
-          wireGrabbed.start = part;
-          wireGrabbed.start = part;
-          wireGrabbed.startConnectEnd = CircuitComponent.RIGHT;
-          wireGrabbed.associatedWith = part.associatedWith;
-          grabbingWireEnd = true;
-          return;
-        }
-        if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100){
-          part.isMoving = ! part.isMoving;
+    //if (isInstructions()) {
+    //  instructions.click();
+    //  return;
+    //}
+    if (!grabbingWireEnd) {
+      for (CircuitComponent part : parts) {
+        if (!(part instanceof Wire)) {
+          if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
+            wireGrabbed = new Wire(mouseX, mouseY);
+            wireGrabbed.start = part;
+            wireGrabbed.startConnectEnd = CircuitComponent.LEFT;
+            wireGrabbed.associatedWith = part.associatedWith;
+            grabbingWireEnd = true;
+            return;
+          } else if (Math.pow(mouseX-part.attachmentRight.x, 2)+Math.pow(mouseY-part.attachmentRight.y, 2) < 100) {
+            wireGrabbed = new Wire(mouseX, mouseY);
+            wireGrabbed.start = part;
+            wireGrabbed.start = part;
+            wireGrabbed.startConnectEnd = CircuitComponent.RIGHT;
+            wireGrabbed.associatedWith = part.associatedWith;
+            grabbingWireEnd = true;
+            return;
+          }
+          if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100) {
+            part.isMoving = ! part.isMoving;
+          }
         }
       }
     }
@@ -151,7 +153,7 @@ float findTotalResistence() {
   return 0;
 }
 
-static float findTotalResistance(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start){
+static float findTotalResistance(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
   if (part instanceof Battery) {
     return 0;
   } else if (part.checkConnections()) {
@@ -159,9 +161,9 @@ static float findTotalResistance(CircuitComponent part, CircuitComponent prev, B
       return findTotalResistance(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev), start);
     } else if (part instanceof CircuitBranch) {
       return ((CircuitBranch)part).findTotalResistance(prev, start, prevDirection, start);
-    } else if (part instanceof Resistor){
+    } else if (part instanceof Resistor) {
       return ((Resistor)part).getResistance() + findTotalResistance(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
-    }else{
+    } else {
       return findTotalResistance(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
     }
   } else {
@@ -295,7 +297,7 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   if (wireGrabbed.startConnectEnd == CircuitComponent.LEFT) {
     if (wireGrabbed.start.connectLeft == null) {
       wireGrabbed.start.connectLeft = wireGrabbed;
-      if (wireGrabbed.associatedWith != null){
+      if (wireGrabbed.associatedWith != null) {
         wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
       }
     } else {
@@ -317,7 +319,7 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   } else {
     wireGrabbed.end.connectLeft = wireGrabbed;
     wireGrabbed.start.connectRight = wireGrabbed;
-    if (wireGrabbed.associatedWith != null){
+    if (wireGrabbed.associatedWith != null) {
       wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
     }
     part.associatedWith = wireGrabbed.associatedWith;
@@ -341,7 +343,7 @@ void handleLeftSideCompleteAttach(CircuitComponent part) {
   }
   if (part.connectLeft == null) {
     part.connectLeft = wireGrabbed;
-    if (wireGrabbed.associatedWith != null){
+    if (wireGrabbed.associatedWith != null) {
       wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(part);
     }
   }
@@ -359,7 +361,7 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   if (wireGrabbed.startConnectEnd == CircuitComponent.RIGHT) {
     if (wireGrabbed.start.connectRight == null) {
       wireGrabbed.start.connectRight = wireGrabbed;
-      if (wireGrabbed.associatedWith != null){
+      if (wireGrabbed.associatedWith != null) {
         wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
       }
     } else {
@@ -379,7 +381,7 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   } else {
     wireGrabbed.end.connectRight = wireGrabbed;
     wireGrabbed.start.connectLeft = wireGrabbed;
-    if (wireGrabbed.associatedWith != null){
+    if (wireGrabbed.associatedWith != null) {
       wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(wireGrabbed);
     }
     part.associatedWith = wireGrabbed.associatedWith;
@@ -403,7 +405,7 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   }         
   if (part.connectRight == null) {
     part.connectRight = wireGrabbed;
-    if (wireGrabbed.associatedWith != null){
+    if (wireGrabbed.associatedWith != null) {
       wireGrabbed.associatedWith.branchesComponent.get(wireGrabbed.associatedWith.branchesComponent.size() - 1).add(part);
     }
   }
