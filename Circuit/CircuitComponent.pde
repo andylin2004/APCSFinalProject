@@ -39,7 +39,7 @@ public class CircuitComponent {
     attachmentRight.y = y2;
     isMoving = false;
   }
-  
+
   public CircuitComponent(int x1, int y1) {
     X1 = x1; 
     Y1 = y1; 
@@ -47,8 +47,8 @@ public class CircuitComponent {
     voltage = 0; 
     current = 0;
   }
-  
-  public CircuitComponent(){
+
+  public CircuitComponent() {
   }
 
   public void setX1(float num) {
@@ -78,11 +78,11 @@ public class CircuitComponent {
   public void setVoltage(float num) {
     voltage = num;
   }
-  
-  public float getResistance(){
+
+  public float getResistance() {
     return 0;
   }
-
+  
   public float getX1() {
     return X1;
   }
@@ -98,34 +98,34 @@ public class CircuitComponent {
   public float getY2() {
     return Y2;
   }
-  
-  public float getCX(){
+
+  public float getCX() {
     return centerX;
   }
-  
-  public float getCY(){
+
+  public float getCY() {
     return centerY;
   }
 
-  boolean checkConnections(){
+  boolean checkConnections() {
     return connectLeft != null && connectRight != null;
   }
 
   public void display() {
   }
-  
-  public CircuitComponent nextPart(Boolean prevDirection){
-    if (prevDirection == LEFT){
+
+  public CircuitComponent nextPart(Boolean prevDirection) {
+    if (prevDirection == LEFT) {
       return connectRight;
-    }else if (prevDirection == RIGHT){
+    } else if (prevDirection == RIGHT) {
       return connectLeft;
-    }else{
+    } else {
       return null;
     }
   }
-  
-  public void click(){
-    if (isMoving == true){
+
+  public void click() {
+    if (isMoving == true) {
       centerX = mouseX;
       centerY = mouseY;
       attachmentLeft.x = mouseX - 20;

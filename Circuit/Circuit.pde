@@ -1,3 +1,5 @@
+import java.util.*;
+
 boolean grabbingWireEnd = false;
 Wire wireGrabbed;
 RightClickMenu menu;
@@ -132,12 +134,51 @@ static float findTotalResistance(CircuitComponent part, CircuitComponent prev, B
 }
 
 float findTotalVoltage() {
-  ArrayList<CircuitComponent> partsSeen = new ArrayList();
-  for (CircuitComponent part : parts){
-    partsSeen.add(part);
-    partsSeen.add(part);
+  HashSet<CircuitComponent> partsSeen = new HashSet();
+  if (parts.size() != 0){
+    return findTotalVoltage(parts.get(0).connectLeft, parts.get(0), CircuitComponent.LEFT, partsSeen, 0);
   }
   return 0;
+}
+
+static float findTotalVoltage(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, HashSet partsSeen, int lastTotal){
+  println(part);
+  if (part instanceof Battery){
+    partsSeen.add(((CircuitComponent)part).nextPart(prevDirection));
+    if (partsSeen.size() > lastTotal){
+      lastTotal = partsSeen.size();
+      return ((Battery)part).getVoltage() + findTotalVoltage(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, partsSeen, lastTotal);
+    }else{
+      return 0;
+    }
+  }else if (part instanceof CircuitBranch){
+    partsSeen.add(((CircuitBranch)part).startAt);
+    partsSeen.add(((CircuitBranch)part).terminus);
+    if (partsSeen.size() > lastTotal){
+      lastTotal = partsSeen.size();
+      return ((CircuitBranch)part).findTotalVoltage(part, prev, prevDirection, partsSeen, lastTotal);
+    }else{
+      return 0;
+    }
+  }else if (part instanceof Wire){
+    partsSeen.add(((Wire)part).nextPart(prev));
+    if (partsSeen.size() > lastTotal){
+      lastTotal = partsSeen.size();
+      return findTotalVoltage(((Wire)part).nextPart(prev), part, ((Wire)part).nextDir(prev), partsSeen, lastTotal);
+    }else{
+      return 0;
+    }
+  }else if (part instanceof CircuitComponent){
+    partsSeen.add(((CircuitComponent)part).nextPart(prevDirection));
+    if (partsSeen.size() > lastTotal){
+      lastTotal = partsSeen.size();
+      return findTotalVoltage(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, partsSeen, lastTotal);
+    }else{
+      return 0;
+    }
+  }else{
+    return 0;
+  }
 }
 
 float setCurrent() {
@@ -147,7 +188,6 @@ float setCurrent() {
 
 
 static boolean verifyIfCircuit() {
-  println();
   for (CircuitComponent part : parts) {
     if (part instanceof Battery) {
       if (((Battery)part).checkConnections()) {
@@ -159,7 +199,6 @@ static boolean verifyIfCircuit() {
 }
 
 static boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start) {
-  println(part+"E");
   if (part instanceof Battery) {
     return true;
   } else if (part.checkConnections()) {
@@ -171,7 +210,6 @@ static boolean verifyIfCircuit(CircuitComponent part, CircuitComponent prev, Boo
       return verifyIfCircuit(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
     }
   } else {
-    println("false at" + part);
     return false;
   }
 }
