@@ -50,5 +50,15 @@ public class Battery extends CircuitComponent{
     voltage += num;
   }
   
+  public void click(){
+    if (isMoving == true){
+      centerX = mouseX;
+      centerY = mouseY;
+      attachmentLeft.x = mouseX - 35;
+      attachmentLeft.y = mouseY;
+      attachmentRight.x = mouseX + 35;
+      attachmentRight.y = mouseY;
+    }
+  }
   
 }

@@ -120,7 +120,13 @@ public class CircuitComponent {
   }
   
   public void click(){
-    centerX = mouseX;
-    centerY = mouseY;
+    if (isMoving == true){
+      centerX = mouseX;
+      centerY = mouseY;
+      attachmentLeft.x = mouseX - 20;
+      attachmentLeft.y = mouseY + 20;
+      attachmentRight.x = mouseX + 20;
+      attachmentRight.y = mouseY + 20;
+    }
   }
 }

@@ -53,4 +53,15 @@ public class Resistor extends CircuitComponent{
     }
     resistence += amount;
   }
+  
+  public void click(){
+    if (isMoving == true){
+      centerX = mouseX;
+      centerY = mouseY;
+      attachmentLeft.x = mouseX - 12;
+      attachmentLeft.y = mouseY + 20;
+      attachmentRight.x = mouseX + 12;
+      attachmentRight.y = mouseY + 20;
+    }
+  }
 }

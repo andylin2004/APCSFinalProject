@@ -33,6 +33,9 @@ void draw() {
     wireGrabbed.y2 = mouseY;
     wireGrabbed.display();
   }
+  for (CircuitComponent part : parts){
+    part.click();
+  }
   textSize(20);
   fill(0);
   text("Total Resistance: " + findTotalResistence(), 30, 30);
@@ -78,7 +81,6 @@ void mousePressed() {
         }
         if (Math.pow(mouseX-part.getCX(), 2)+Math.pow(mouseY-part.getCY(), 2) < 100){
           part.isMoving = ! part.isMoving;
-          part.click();
         }
       }
     }
