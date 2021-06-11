@@ -10,10 +10,6 @@ public class CircuitBranch extends CircuitComponent {
   public CircuitBranch() {
   }
 
-  public float getResistance() {
-    return resistence;
-  }
-
   public float getVoltage() {
     return voltage;
   }
@@ -48,6 +44,23 @@ public class CircuitBranch extends CircuitComponent {
     }
   }
   
+  public float findTotalResistance(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start){
+    println(branchesComponent);
+    return getResistance() + Circuit.findTotalResistance(terminus, this, prevDirection, start);
+  }
+  
+  public float getResistance(){
+    float totalResistance = 0;
+    for (ArrayList<CircuitComponent> branch: branchesComponent){
+      float totalInBranch = 0;
+      for (CircuitComponent partInBranch: branch){
+        totalInBranch += partInBranch.getResistance();
+      }
+      totalResistance += 1/totalInBranch;
+    }
+    return totalResistance;
+  }
+  
   void accountForBranches(Boolean prevDirection){
     for (CircuitComponent branch : branchStarts){
       if (branch.associatedWith == null){
@@ -76,4 +89,6 @@ public class CircuitBranch extends CircuitComponent {
   boolean checkConnections(){
     return (startAt != null && terminus != null);
   }
+  
+  
 }
