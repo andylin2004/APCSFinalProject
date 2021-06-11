@@ -57,10 +57,10 @@ void mousePressed() {
       println();
       return;
     }
-    //if (isInstructions()) {
-    //  instructions.click();
-    //  return;
-    //}
+    if (isInstructions()) {
+      instructions.click();
+      return;
+    }
     if (!grabbingWireEnd) {
       for (CircuitComponent part : parts) {
         if (!(part instanceof Wire)) {
@@ -412,4 +412,11 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
   part.connections.add(wireGrabbed);
   grabbingWireEnd = false;
   isCircuit = verifyIfCircuit();
+}
+
+boolean isInstructions(){
+  if (mouseX <175 && mouseX > 20 && mouseY > 755 && mouseY < 785){
+    return true;
+  }
+  return false; 
 }
