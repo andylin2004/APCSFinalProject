@@ -84,7 +84,7 @@ void keyPressed() {
   }
   else if (keyCode==68){
     for (CircuitComponent part : parts){
-      if (Math.pow(mouseX-part.centerX, 2)+Math.pow(mouseY-part.centerY, 2) < 100){
+      if (Math.pow(mouseX-part.centerX, 2)+Math.pow(mouseY-part.centerY, 2) < 500){
         part.displayInfo = ! part.displayInfo;
       }
     }

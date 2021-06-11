@@ -17,10 +17,10 @@ public class Wire extends CircuitComponent{
     stroke(0);
     strokeWeight(1);
     if (displayInfo){
-      text("part:" + toString(), (x1+x2)/2, (y1+y2)/2+30);
-      text("start:" + start, (x1+x2)/2, (y1+y2)/2+60);
-      text("end:" + end, (x1+x2)/2, (y1+y2)/2+90);
-      text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
+      text("resistance:" + getResistance(), centerX, centerY);
+      text("voltage:", centerX, centerY+30);
+      text("current:" + connections, centerX, centerY+60);
+      //text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
     }
   }
   

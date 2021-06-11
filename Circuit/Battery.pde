@@ -25,12 +25,12 @@ public class Battery extends CircuitComponent{
     if (displayInfo){
       fill(0);
       textSize(20);
-      text("battery voltage:" + voltage, centerX, centerY);
-      text("part:" + toString(), centerX, centerY+30);
-      text("connects:" + connections, centerX, centerY+60);
-      text("connectsLeft" + connectLeft, centerX, centerY+90);
-      text("connectsRight" + connectRight, centerX, centerY+120);
-      text("associatedWith:" + associatedWith, centerX, centerY+150);
+      text("resistance:" + getResistance(), centerX, centerY);
+      text("battery voltage:" + getVoltage(), centerX, centerY+30);
+      text("current:", centerX, centerY+60);
+      //text("connectsLeft" + connectLeft, centerX, centerY+90);
+      //text("connectsRight" + connectRight, centerX, centerY+120);
+      //text("associatedWith:" + associatedWith, centerX, centerY+150);
     }
     image(batImage,centerX, centerY);
   }
