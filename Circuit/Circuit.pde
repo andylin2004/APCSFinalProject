@@ -188,10 +188,10 @@ void leftClick() {
       println();
       return;
     }
-    if (Math.pow(mouseX-instructions.x, 2)+Math.pow(mouseY-instructions.y, 2) < 100) {
-      instructions.click();
-      return;
-    }
+    if (isInstructions()) {
+       instructions.click();
+       return;
+     }
     for (CircuitComponent part : parts) {
       if (!(part instanceof Wire)) {
         if (Math.pow(mouseX-part.attachmentLeft.x, 2)+Math.pow(mouseY-part.attachmentLeft.y, 2) < 100) {
