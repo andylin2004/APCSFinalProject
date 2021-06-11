@@ -82,10 +82,10 @@ class InstructionsButton {
     if(isOn){
       fill(#CCB8FC);
       noStroke();
-      rect(0,0,1000,350);
+      rect(0,0,1440,350);
       fill(0);
-      text("Directions", 500, 50);
-      text(dir, 250, 100);
+      text("Directions", 700, 50);
+      text(dir, 300, 100);
     }
   }
   
