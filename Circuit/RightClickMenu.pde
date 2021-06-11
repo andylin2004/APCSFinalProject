@@ -78,7 +78,7 @@ class InstructionsButton {
     inIcon = loadImage("instructions.png");
     inIcon.resize(200,200);
     image(inIcon, x, y);
-    String dir = "Welcome to Electrify, an interactive circuit simulation! To add an object, right click in the \nlocation you would like to display it. You will then see two dots. If you click the right dot, a  \nlightbulb will be added to the circuit, and the left side adds a battery. To add a wire, click one of  \nthe nodes on a lightbulb/battery and click again on the node you would like to attach it to. To  \nadjust the resistance or voltage of a circuit component, hover over the component and use \nthe arrow keys. To erase the simulation, click the reset button in the bottom right corner.";
+    String dir = "Welcome to Electrify, an interactive circuit simulation! To add an object, right click in the \nlocation you would like to display it. You will then see two dots. If you click the right dot, a  \nlightbulb will be added to the circuit, and the left side adds a battery. To add a wire, click one of \nthe nodes on a lightbulb/battery and click again on the node you would like to attach it to. To \nadjust the resistance or voltage of a circuit component, hover over the component and use \nthe arrow keys. Click the center of a circuit component to move it and the component will \nfollow your mouse. When you want to put it down, click again. To view specific info about the \ncomponent like voltage and resistance, hover over the component and click ‘d’. To erase the \nsimulation, click the reset button in the bottom right corner.";
     if(isOn){
       fill(#CCB8FC);
       noStroke();
