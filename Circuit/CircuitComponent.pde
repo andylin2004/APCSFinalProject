@@ -81,10 +81,6 @@ public class CircuitComponent {
   public float getResistance() {
     return 0;
   }
-
-  public float getResistance() {
-    return 0;
-  }
   
   public float getX1() {
     return X1;

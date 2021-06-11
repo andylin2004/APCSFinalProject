@@ -39,13 +39,11 @@ public class CircuitBranch extends CircuitComponent {
         return verifyIfCircuit(((CircuitComponent)part).nextPart(prevDirection), part, !prevDirection, start);
       }
     } else {
-      println("false at" + part);
       return false;
     }
   }
   
   public float findTotalResistance(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, Battery start){
-    println(branchesComponent);
     return getResistance() + Circuit.findTotalResistance(terminus, this, prevDirection, start);
   }
   
@@ -54,15 +52,39 @@ public class CircuitBranch extends CircuitComponent {
     for (ArrayList<CircuitComponent> branch: branchesComponent){
       float totalInBranch = 0;
       for (CircuitComponent partInBranch: branch){
-        println(partInBranch);
         totalInBranch += partInBranch.getResistance();
       }
-      println(totalInBranch);
       totalResistance += 1/totalInBranch;
-      println(totalResistance);
     }
     return totalResistance;
   }
+  
+  float findTotalVoltage(CircuitComponent part, CircuitComponent prev, Boolean prevDirection, HashSet partsSeen, int lastTotal){
+    println(part);
+    partsSeen.add(this);
+    lastTotal = partsSeen.size();
+    return findVoltage() + Circuit.findTotalVoltage(terminus, this, prevDirection, partsSeen, lastTotal);
+  }
+  
+  float findVoltage(){
+    float totalVoltage = 0;
+    for (ArrayList<CircuitComponent> branch: branchesComponent){
+      float totalInBranch = 0;
+      for (CircuitComponent partInBranch: branch){
+        println(partInBranch);
+        totalInBranch += ((CircuitBranch)partInBranch).findVoltage();
+      }
+      println(totalInBranch);
+      if (totalVoltage/branchesComponent.size() != totalInBranch){
+        return (float)Double.POSITIVE_INFINITY;
+      }
+      totalVoltage += totalInBranch;
+      println(totalVoltage);
+    }
+    return totalVoltage;
+  }
+  
+  
   
   void accountForBranches(Boolean prevDirection){
     for (CircuitComponent branch : branchStarts){
@@ -74,8 +96,6 @@ public class CircuitBranch extends CircuitComponent {
   }
         
   private void accountForBranches(CircuitComponent part, CircuitComponent prev, Boolean prevDirection){
-    println(part + "e");
-    println(branchesComponent);
     if (part.associatedWith == this || part.nextPart(prevDirection) == this){
       terminus = part;
     }else if (part.associatedWith == null){
