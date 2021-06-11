@@ -16,13 +16,12 @@ public class Wire extends CircuitComponent{
     line(x1-2.5, y1-2.5, x2, y2);
     stroke(0);
     strokeWeight(1);
-    //fill(255);
-    //rect((x1+x2)/2, (y1+y2)/2, 250, 200);
-    //fill(0);
-    text("part:" + toString(), (x1+x2)/2, (y1+y2)/2+30);
-    text("start:" + start, (x1+x2)/2, (y1+y2)/2+60);
-    text("end:" + end, (x1+x2)/2, (y1+y2)/2+90);
-    text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
+    if (displayInfo){
+      text("part:" + toString(), (x1+x2)/2, (y1+y2)/2+30);
+      text("start:" + start, (x1+x2)/2, (y1+y2)/2+60);
+      text("end:" + end, (x1+x2)/2, (y1+y2)/2+90);
+      text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
+    }
   }
   
   boolean checkConnections(){
@@ -46,7 +45,7 @@ public class Wire extends CircuitComponent{
   }
   
   void click(){
-    if (start.LEFT){
+    if (startConnectEnd == start.LEFT){
       x1 = start.attachmentLeft.x;
       y1 = start.attachmentLeft.y;
     }
@@ -54,13 +53,13 @@ public class Wire extends CircuitComponent{
       x1 = start.attachmentRight.x;
       y1 = start.attachmentRight.y;
     }
-    if (end.LEFT){
-      x2 = end.attachmentLeft.x;
-      y2 = end.attachmentLeft.y;
-    }
-    else{
+    if (endConnectEnd == end.RIGHT){
       x2 = end.attachmentRight.x;
       y2 = end.attachmentRight.y;
+    }
+    else{
+      x2 = end.attachmentLeft.x;
+      y2 = end.attachmentLeft.y;
     }
   }
 }

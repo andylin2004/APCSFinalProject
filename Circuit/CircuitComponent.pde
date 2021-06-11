@@ -18,6 +18,7 @@ public class CircuitComponent {
   static final boolean LEFT = true;
   static final boolean RIGHT = false;
   boolean isMoving;
+  boolean displayInfo;
 
   public CircuitComponent(int x1, int y1, int x2, int y2) {
     X1 = x1; 

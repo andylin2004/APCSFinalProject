@@ -82,6 +82,13 @@ void keyPressed() {
       }
     }
   }
+  else if (keyCode==68){
+    for (CircuitComponent part : parts){
+      if (Math.pow(mouseX-part.centerX, 2)+Math.pow(mouseY-part.centerY, 2) < 100){
+        part.displayInfo = ! part.displayInfo;
+      }
+    }
+  }
 }
 
 void addComponent(String component) {
