@@ -9,6 +9,7 @@ public class CircuitComponent {
   float power;
   float voltage;
   float current;
+  float resistance = 0;
   ArrayList<CircuitComponent> connections;
   CircuitComponent connectLeft;
   CircuitComponent connectRight;

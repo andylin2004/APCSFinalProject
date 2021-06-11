@@ -1,5 +1,5 @@
 public class Wire extends CircuitComponent{
-  int x1, y1, x2, y2;
+  int x1, y1, x2, y2, centerX, centerY;
   CircuitComponent start, end;
   Boolean startConnectEnd, endConnectEnd, startsAtStart;
   
@@ -20,7 +20,7 @@ public class Wire extends CircuitComponent{
       text("resistance:" + getResistance(), centerX, centerY);
       text("voltage:", centerX, centerY+30);
       text("current:" + connections, centerX, centerY+60);
-      //text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
+      text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
     }
   }
   

@@ -31,12 +31,12 @@ public class Resistor extends CircuitComponent{
       fill(255);
       rect(centerX +30, centerY -50 +10, 150, 90);
       fill(0);
-      text("resistance:" + getResistance(), centerX + 30, centerY - 20);
-      text("voltage:", centerX +30, centerY+10);
-      text("current:", centerX +30, centerY+40);
-      //text("connectsLeft" + connectLeft, centerX, centerY+90);
-      //text("connectsRight" + connectRight, centerX, centerY+120);
-      //text("associatedWith:" + associatedWith, centerX, centerY+150);
+      text("resistance: " + getResistance(), centerX + 30, centerY - 20);
+      text("voltage: " + voltage, centerX +30, centerY+10);
+      text("current: " + current, centerX +30, centerY+40);
+      text("connectsLeft" + connectLeft, centerX, centerY+90);
+      text("connectsRight" + connectRight, centerX, centerY+120);
+      text("associatedWith:" + associatedWith, centerX, centerY+150);
     }
     if (Circuit.verifyIfCircuit()){
       image(onBulb, centerX, centerY);
