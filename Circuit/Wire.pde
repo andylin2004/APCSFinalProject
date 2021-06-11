@@ -44,4 +44,23 @@ public class Wire extends CircuitComponent{
       return startConnectEnd;
     }
   }
+  
+  void click(){
+    if (start.LEFT){
+      x1 = start.attachmentLeft.x;
+      y1 = start.attachmentLeft.y;
+    }
+    else{
+      x1 = start.attachmentRight.x;
+      y1 = start.attachmentRight.y;
+    }
+    if (end.LEFT){
+      x2 = end.attachmentLeft.x;
+      y2 = end.attachmentLeft.y;
+    }
+    else{
+      x2 = end.attachmentRight.x;
+      y2 = end.attachmentRight.y;
+    }
+  }
 }
