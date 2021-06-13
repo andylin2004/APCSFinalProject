@@ -11,4 +11,8 @@ public class Resistor extends CircuitComponent{
     fill(255);
     rect(centerX, centerY, 20, 40);
   }
+  
+  public int getResistance(){
+    return resistance;
+  }
 }

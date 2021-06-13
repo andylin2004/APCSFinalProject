@@ -63,4 +63,20 @@ public class Segment{
   public void addResistor(Resistor res){
     resistors.add(res);
   }
+  
+  public int getTotalResistance(){
+    int res = 0;
+    for (int i = 0; i < resistors.size();i++){
+      res += resistors.get(i).getResistance();
+    }
+    return res;
+  }
+  
+  public int getTotalVoltage(){
+    int volt = 0;
+    for (int i = 0; i < batteries.size();i++){
+      volt += batteries.get(i).getVoltage();
+    }
+    return volt;
+  }
 }

@@ -11,4 +11,8 @@ public class Battery extends CircuitComponent{
     fill(0);
     rect(centerX,centerY, 20, 20);
   }
+  
+  public int getVoltage(){
+    return voltage;
+  }
 }
