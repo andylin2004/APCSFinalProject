@@ -1,9 +1,9 @@
 class Equation {
   float[] coefficients;
   String[] variables;  
-  double sum; 
+  float sum; 
   
-  public Equation(float[] Coefficients, String[] Variables, double Sum){
+  public Equation(float[] Coefficients, String[] Variables, float Sum){
     coefficients = Coefficients;
     variables = Variables;
     sum = Sum;
@@ -15,5 +15,9 @@ class Equation {
   
   public String[] getVariables(){
     return variables;
+  }
+  
+  public float getSum(){
+    return sum;
   }
 }

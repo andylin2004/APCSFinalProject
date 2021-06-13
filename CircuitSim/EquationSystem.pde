@@ -18,24 +18,29 @@ class EquationSystem {
   public Map<String,Integer> getMapping(){
     return mapping;
   }
-  /*
-  public double[] solve() {
+  
+  public float[] solve() {
     mapping.clear();
     setMapping();
     int nEquations = equations.size();
     int nVariables = mapping.size();
-    double[][] coefficients = new double[nEquations][nVariables];
-    double[][] sums = new double[nVariables][1];
+    float[][] coefficients = new float[nEquations][nVariables];
+    float[][] sums = new float[nVariables][1];
     
-    for each equation (index i through equations):
-      for each term (index j through coefficients & variables):
-        coefficients[i][mapping.get(variables[j])] = coefficients[j];
-      sums[i][0] = equation.sum;
+    for (int i = 0; i < equations.size(); i++){
+      for (int j = 0; j < equations.get(i).getVariables().length; j++){
+        coefficients[i][mapping.get(equations.get(i).getVariables()[j])] = equations.get(i).getCoefficients()[j];
+        sums[i][0] = equations.get(i).getSum();
+      }
+    }
     
-    double[][] inverse = Matrix.inverse(coefficients);
-    double[] solutions = Matrix.multiply(inverse, sums);
-    return solutions;
+    float[][] inverse = Matrix.inverse(coefficients);
+    float[][] solutions = Matrix.Multiply(inverse, sums);
+    float[] oneD = new float[nVariables];
+    for (int i = 0; i < solutions.length; i++){
+      oneD[i]=solutions[i][0];
+    }
+    return oneD;
   }
-  */
   
 }
