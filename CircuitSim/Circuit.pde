@@ -39,12 +39,21 @@ public class Circuit{
     }
     for (int i = 0; i < targetNode.getSegments().size(); i++){
       Segment curSeg = (Segment) targetNode.getSegments().get(i);
+      Node otherNode = curSeg.getOther(targetNode);
       boolean alreadySeg = false;
       boolean alreadyNode = false;
       for (Segment seg : path){
         if (curSeg == seg){
           alreadySeg = true;
         }
+        if (seg.getStart() ==otherNode || seg.getEnd() ==otherNode){
+          alreadyNode = true;
+        }
+      }
+      if (!alreadySeg && !alreadyNode){
+        path.add(curSeg);
+        addLoops(path, otherNode, targetNode, solutions);
+        path.remove(curSeg);
       }
     }
     
