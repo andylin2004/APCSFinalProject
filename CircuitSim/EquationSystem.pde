@@ -4,14 +4,17 @@ class EquationSystem {
   Map<String,Integer> mapping;
   
   public EquationSystem();
-  /*
+  
   private void setMapping() {
-    for each equation:
-      for each variable:
-        if variable not in mapping:
-          mapping.put(variable, mapping.size());
+    for (int i = 0; i < equations.size(); i ++){
+      for (int j = 0; j < equations.get(i).getVariables().length; j++){
+        if (mapping.get(equations.get(i).getVariables()[j])!=null){
+          mapping.put(equations.get(i).getVariables()[j], mapping.size());
+        }
+      }
+    }
   }
-  */
+
   public Map<String,Integer> getMapping(){
     return mapping;
   }
