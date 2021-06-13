@@ -17,7 +17,7 @@ void draw(){
 }
 
 void mousePressed(){
-  if (mouseButton == LEFT){
+  if (mouseButton == RIGHT){
     Node newNode = new Node(mouseX, mouseY);
     parts.addNode(newNode);
   }

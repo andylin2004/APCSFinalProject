@@ -8,6 +8,10 @@ public class Node{
     y = Y;
   }
   
+  public void addSegment(Segment seg){
+    connections.add(seg);
+  }
+  
   public void display(){
     ellipse(x, y, 20, 20);
   }
