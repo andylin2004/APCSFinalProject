@@ -437,7 +437,7 @@ void handleRightSideCompleteAttach(CircuitComponent part) {
       CircuitBranch replacing = new CircuitBranch(); //<>//
       replacing.branchStarts.add(wireGrabbed.start.connectRight);
       replacing.branchEnds.add(wireGrabbed.start.connectRight);
-      replacing.startAt = wireGrabbed.start;
+      replacing.startAt = wireGrabbed.start; 
       replacing.terminus = wireGrabbed.end;
     } else {
       CircuitBranch toEdit = (CircuitBranch)part.connectLeft;

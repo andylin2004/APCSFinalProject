@@ -46,12 +46,12 @@ class Connector extends CircuitComponent{
       attachmentRight.x = mouseX + 30;
       attachmentRight.y = mouseY;
       attachmentTop.x = mouseX;
-    }
-    if (up){
-      attachmentTop.y = mouseY -40;
-    }
-    else{
-      attachmentTop.y = mouseY +40;
+      if (up){
+        attachmentTop.y = mouseY -40;
+      }
+      else{
+        attachmentTop.y = mouseY +40;
+      }
     }
   }
 }
