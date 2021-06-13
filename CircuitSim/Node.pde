@@ -13,6 +13,11 @@ public class Node{
   }
   
   public void display(){
+    strokeWeight(1);
     ellipse(x, y, 20, 20);
+  }
+  
+  public ArrayList getSegments(){
+    return connections;
   }
 }
