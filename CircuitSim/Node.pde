@@ -20,4 +20,5 @@ public class Node{
   public ArrayList getSegments(){
     return connections;
   }
+ 
 }

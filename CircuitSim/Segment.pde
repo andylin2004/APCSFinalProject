@@ -33,4 +33,13 @@ public class Segment{
   public Node getEnd(){
     return end;
   }
+  
+  public Node getOther(Node aNode){
+    if (aNode==start){
+      return end;
+    }
+    else{
+      return start;
+    }
+  }
 }

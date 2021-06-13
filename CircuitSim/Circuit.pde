@@ -34,6 +34,20 @@ public class Circuit{
   }
 
   public void addLoops(List<Segment> path, Node lastNode, Node targetNode, List<List<Segment>> solutions){
+    if (lastNode==targetNode){
+      solutions.add(path);
+    }
+    for (int i = 0; i < targetNode.getSegments().size(); i++){
+      Segment curSeg = (Segment) targetNode.getSegments().get(i);
+      boolean alreadySeg = false;
+      boolean alreadyNode = false;
+      for (Segment seg : path){
+        if (curSeg == seg){
+          alreadySeg = true;
+        }
+      }
+    }
+    
   }
 
 }
