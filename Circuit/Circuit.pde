@@ -17,6 +17,8 @@ void setup() {
   ArrayList<String> menuItems = new ArrayList<String>();
   menuItems.add("resistor");
   menuItems.add("battery");
+  menuItems.add("connectorUp");
+  menuItems.add("connectorDown");
   menu = new RightClickMenu(menuItems);
   menu.x = -1000;
   menu.y = -1000;
@@ -129,6 +131,12 @@ void addComponent(String component) {
     break;
     case("battery"):
     parts.add(new Battery(10, mouseX, mouseY));
+    break;
+    case("connectorUp"):
+    parts.add(new Connector(mouseX, mouseY, true));
+    break;
+    case("connectorDown"):
+    parts.add(new Connector(mouseX, mouseY, false));
     break;
   }
 }
