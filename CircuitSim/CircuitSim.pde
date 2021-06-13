@@ -76,7 +76,7 @@ void createSegment(Node curNode){
 void createResistor(){
   for (int i = 0; i < parts.circuitSegments.size(); i++){
     PVector pos = new PVector(mouseX, mouseY);
-    if (parts.circuitSegments.get(i).inRange(pos, 10)){
+    if (parts.circuitSegments.get(i).inRange(pos, 100)){
       Resistor res = new Resistor(mouseX, mouseY, parts.circuitSegments.get(i), 10);
       parts.circuitSegments.get(i).addResistor(res);
       parts.addResistor(res);
@@ -87,7 +87,7 @@ void createResistor(){
 void createBattery(){
   for (int i = 0; i < parts.circuitSegments.size(); i++){
     PVector pos = new PVector(mouseX, mouseY);
-    if (parts.circuitSegments.get(i).inRange(pos, 10)){
+    if (parts.circuitSegments.get(i).inRange(pos, 100)){
       Battery bat = new Battery(mouseX, mouseY, parts.circuitSegments.get(i), 10);
       parts.circuitSegments.get(i).addBattery(bat);
       parts.addBattery(bat);
