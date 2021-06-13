@@ -29,20 +29,21 @@ public class Circuit{
   public void addLoops(Segment addedSegment){
     ArrayList<List<Segment>> solutions = new ArrayList<List<Segment>>();
     ArrayList<Segment> path = new ArrayList<Segment>();
-    path.add(addedSegment)
+    path.add(addedSegment);
     addLoops(path, addedSegment.getStart(), addedSegment.getEnd(), solutions);
   }
 
   public void addLoops(List<Segment> path, Node lastNode, Node targetNode, List<List<Segment>> solutions){
     if (lastNode==targetNode){
-      solutions.add(path);
+      solutions.add(new ArrayList<Segment>(path));
     }
     for (int i = 0; i < targetNode.getSegments().size(); i++){
       Segment curSeg = (Segment) targetNode.getSegments().get(i);
       Node otherNode = curSeg.getOther(targetNode);
       boolean alreadySeg = false;
       boolean alreadyNode = false;
-      for (Segment seg : path){
+      for (int j = 1; i <path.size(); j++){
+        Segment seg = path.get(j);
         if (curSeg == seg){
           alreadySeg = true;
         }
@@ -52,7 +53,7 @@ public class Circuit{
       }
       if (!alreadySeg && !alreadyNode){
         path.add(curSeg);
-        addLoops(path, otherNode, targetNode, solutions);
+        addLoops(path, lastNode, otherNode, solutions);
         path.remove(curSeg);
       }
     }
