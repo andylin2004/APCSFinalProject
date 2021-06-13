@@ -2,11 +2,15 @@ public class Circuit{
   ArrayList<Node> circuitNodes;
   ArrayList<Segment> circuitSegments;
   ArrayList<List<Segment>> loops;
+  ArrayList<Resistor> resistors;
+  ArrayList<Battery> batteries;
   
   public Circuit(){
     circuitNodes = new ArrayList<Node>();
     circuitSegments = new ArrayList<Segment>();
     loops = new ArrayList<List<Segment>>();
+    resistors = new ArrayList<Resistor>();
+    batteries = new ArrayList<Battery>();
   }
   
   public void addNode(Node newNode){
@@ -16,6 +20,14 @@ public class Circuit{
     circuitSegments.add(seg);
     addLoops(seg);
     println(loops);
+  }
+  
+  public void addBattery(Battery bat){
+    batteries.add(bat);
+  }
+  
+  public void addResistor(Resistor res){
+    resistors.add(res);
   }
 
   public void addLoops(Segment addedSegment){

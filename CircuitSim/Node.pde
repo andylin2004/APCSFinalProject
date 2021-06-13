@@ -20,5 +20,9 @@ public class Node{
   public ArrayList getSegments(){
     return connections;
   }
+  
+  public PVector getPos() {
+    return new PVector(x, y);
+  }
  
 }

@@ -4,6 +4,8 @@ public class Segment{
   Node start;
   Node end;
   int x1,y1,x2,y2;
+  ArrayList<Resistor> resistors;
+  ArrayList<Battery> batteries;
   
   
   public Segment(int StartX, int StartY, int endX, int endY, Node startNode, Node endNode){
@@ -14,6 +16,8 @@ public class Segment{
     y2 = endY;
     start = startNode;
     end = endNode;
+    resistors = new ArrayList<Resistor>();
+    batteries = new ArrayList<Battery>();
     
   }
   
@@ -41,5 +45,22 @@ public class Segment{
     else{
       return start;
     }
+  }
+  
+  public boolean inRange(PVector pos, float dist){
+    PVector line = PVector.sub(start.getPos(), end.getPos());
+    float angle = line.heading();
+    pos.sub(start.getPos());
+    pos.rotate(-angle);
+    println(pos.x >= 0 && pos.x < line.mag() && abs(pos.y) <= dist);
+    return pos.x >= 0 && pos.x < line.mag() && abs(pos.y) <= dist;
+  }
+  
+  public void addBattery(Battery bat){
+    batteries.add(bat);
+  }
+  
+  public void addResistor(Resistor res){
+    resistors.add(res);
   }
 }
