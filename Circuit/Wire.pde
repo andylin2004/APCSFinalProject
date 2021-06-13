@@ -20,7 +20,6 @@ public class Wire extends CircuitComponent{
       text("resistance:" + getResistance(), centerX, centerY);
       text("voltage:", centerX, centerY+30);
       text("current:" + connections, centerX, centerY+60);
-      text("associatedWith:" + associatedWith, (x1+x2)/2, (y1+y2)/2+120);
     }
   }
   

@@ -36,14 +36,13 @@ public class Resistor extends CircuitComponent{
       text("current: " + current, centerX +30, centerY+40);
       text("connectsLeft" + connectLeft, centerX, centerY+90);
       text("connectsRight" + connectRight, centerX, centerY+120);
-      text("associatedWith:" + associatedWith, centerX, centerY+150);
     }
-    if (Circuit.verifyIfCircuit()){
-      image(onBulb, centerX, centerY);
-    }
-    else{
+    //if (Circuit.verifyIfCircuit()){
+    //  image(onBulb, centerX, centerY);
+    //}
+    //else{
       image(offBulb, centerX, centerY);
-    }
+    //}
   }
   
   public float getResistance(){

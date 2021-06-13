@@ -31,7 +31,6 @@ public class Battery extends CircuitComponent{
       text("current: " + current, centerX -80, centerY+120);
       text("connectsLeft" + connectLeft, centerX, centerY+90);
       text("connectsRight" + connectRight, centerX, centerY+120);
-      text("associatedWith:" + associatedWith, centerX, centerY+150);
     }
     image(batImage,centerX, centerY);
   }
