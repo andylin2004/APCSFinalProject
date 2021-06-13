@@ -48,7 +48,7 @@ public class Segment{
   }
   
   public boolean inRange(PVector pos, float dist){
-    PVector line = PVector.sub(start.getPos(), end.getPos());
+    PVector line = PVector.sub(end.getPos(), start.getPos());
     float angle = line.heading();
     pos.sub(start.getPos());
     pos.rotate(-angle);

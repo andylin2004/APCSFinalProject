@@ -16,6 +16,7 @@ void setup(){
 }
 
 void draw(){
+  background(#E3DEDE);
   menu.display();
   for (Node aNode : parts.circuitNodes){
     aNode.display();
