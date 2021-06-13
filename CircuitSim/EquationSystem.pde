@@ -3,7 +3,10 @@ class EquationSystem {
   List<Equation> equations;    // (add, remove)
   Map<String,Integer> mapping;
   
-  public EquationSystem();
+  public EquationSystem(){
+    mapping = new HashMap<String,Integer>();
+    equations = new ArrayList<Equation>();
+  }
   
   private void setMapping() {
     for (int i = 0; i < equations.size(); i ++){
@@ -13,6 +16,10 @@ class EquationSystem {
         }
       }
     }
+  }
+  
+  public void addEquation(Equation eq){
+    equations.add(eq);
   }
 
   public Map<String,Integer> getMapping(){
