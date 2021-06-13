@@ -14,6 +14,8 @@ public class Circuit{
   }
   public void addSeg(Segment seg){
     circuitSegments.add(seg);
+    addLoops(seg);
+    println(loops);
   }
 
   public void addLoops(Segment addedSegment){
