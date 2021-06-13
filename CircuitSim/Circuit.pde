@@ -1,10 +1,12 @@
 public class Circuit{
   ArrayList<Node> circuitNodes;
   ArrayList<Segment> circuitSegments;
+  ArrayList<List<Segment>> loops;
   
   public Circuit(){
     circuitNodes = new ArrayList<Node>();
     circuitSegments = new ArrayList<Segment>();
+    loops = new ArrayList<List<Segment>>();
   }
   
   public void addNode(Node newNode){
@@ -13,24 +15,11 @@ public class Circuit{
   public void addSeg(Segment seg){
     circuitSegments.add(seg);
   }
-  
-  
-  /**
-  initial call would look like this:
-  
-  ArrayList<List<Segment>> solutions = new ArrayList<List<Segment>>();
-  ArrayList<Segment> path = new ArrayList<Segment>();
-  path.add(addedSegment)
-  addLoops(path, addedPath.getStart(), addedPath.getEnd(), solutions);
-  
-  and the solutions, if any, would be added to `solutions`
-  */
 
   public void addLoops(Segment addedSegment){
-    ArrayList<List<Segment>> solutions = new ArrayList<List<Segment>>();
     ArrayList<Segment> path = new ArrayList<Segment>();
     path.add(addedSegment);
-    addLoops(path, addedSegment.getStart(), addedSegment.getEnd(), solutions);
+    addLoops(path, addedSegment.getStart(), addedSegment.getEnd(), loops);
   }
 
   public void addLoops(List<Segment> path, Node lastNode, Node targetNode, List<List<Segment>> solutions){
@@ -42,12 +31,12 @@ public class Circuit{
       Node otherNode = curSeg.getOther(targetNode);
       boolean alreadySeg = false;
       boolean alreadyNode = false;
-      for (int j = 1; i <path.size(); j++){
+      for (int j = 0; j <path.size(); j++){
         Segment seg = path.get(j);
         if (curSeg == seg){
           alreadySeg = true;
         }
-        if (seg.getStart() ==otherNode || seg.getEnd() ==otherNode){
+        if ((seg.getStart() ==otherNode || seg.getEnd() ==otherNode)&& j !=0){
           alreadyNode = true;
         }
       }
