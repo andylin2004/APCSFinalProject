@@ -111,16 +111,7 @@ void addComponent(String component) {
   }
 }
 
-//boolean verifyIfCircuit() {
-//  for (CircuitComponent part : parts) {
-//    if (part instanceof Battery) {
-//      if (((Battery)part).checkConnections()) {
-//        return verifyIfCircuit(part.connectLeft, part, CircuitComponent.LEFT, (Battery)part);
-//      }
-//    }
-//  }
-//  return false;
-//}
+
 
 void rightClick() {
   menu.x = mouseX;
