@@ -25,8 +25,8 @@ public class Circuit{
   
   and the solutions, if any, would be added to `solutions`
   */
-  /*
-  public void addLoops(){
+
+  public void addLoops(Segment addedSegment){
     ArrayList<List<Segment>> solutions = new ArrayList<List<Segment>>();
     ArrayList<Segment> path = new ArrayList<Segment>();
     path.add(addedSegment)
@@ -35,5 +35,5 @@ public class Circuit{
 
   public void addLoops(List<Segment> path, Node lastNode, Node targetNode, List<List<Segment>> solutions){
   }
-  */
+
 }
