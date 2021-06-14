@@ -51,7 +51,7 @@ public class Resistor extends CircuitComponent{
   
   public float getDrop(){
     voltageDrop = location.getCurrent() * resistance;
-    return Math.round(voltageDrop *100) / 100;
+    return voltageDrop;
   }
   
   

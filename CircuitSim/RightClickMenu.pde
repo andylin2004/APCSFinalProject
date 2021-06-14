@@ -80,12 +80,13 @@ class InstructionsButton {
     inIcon = loadImage("instructions.png");
     inIcon.resize(200,200);
     image(inIcon, x, y);
-    String dir = "";
+    String dir = "Welcome to Electrify, an interactive circuit simulation! Start by adding nodes. To do this, right \nclick and then click the button in the right corner of the triangle that appears. To connect your \nnodes, click two nodes sequentially and a segment (basically a wire) will appear. Now that you \nhave created the framework of the circuit, right click on the wires to add lights and batteries. \nTo get information about the current, voltage, and resistance, hover over a component and \npress ‘d’. To change a component’s resistance or voltage, press the up and down arrows over \na component. The reset button in the bottom right corner will clear the screen. ";
     if(isOn){
       fill(#CCB8FC);
       noStroke();
       rect(0,0,1440,350);
       fill(0);
+      textSize(20);
       text("Directions", 700, 50);
       text(dir, 300, 100);
     }
