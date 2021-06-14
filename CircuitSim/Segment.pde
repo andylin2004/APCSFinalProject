@@ -100,13 +100,11 @@ public class Segment{
   }
   
   public int getDirection(Segment seg) {
-  // return 1 if the given segment has its end as your start, or its start as your end
-  // return -1 if the given segment has the same end as yours, or the same start as yours
     if (seg.getStart()==start || seg.getEnd() == start){
-      return -11;
+      return 1;
     }
     else{
-      return 1;
+      return -1;
     }
   }
 }

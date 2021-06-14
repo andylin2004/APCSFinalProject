@@ -133,6 +133,7 @@ void createSegment(Node curNode){
     selectedNodes.get(0).addSegment(newSeg);
     parts.addSeg(newSeg);
     selectedNodes.clear();
+    parts.calculateCurrent();
   }
 }
 

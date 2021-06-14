@@ -76,7 +76,7 @@ public class Circuit{
   public Equation secondLaw(List<Segment> loop){
     Equation eq = new Equation(0.0);
     for (int i = 0; i < loop.size(); i++){
-      int dir == i == 0 ? i : loop.get(i-1).getDirection(loop.get(i));
+      int dir = i == 0 ? 1 : loop.get(i).getDirection(loop.get(i-1));
       float res = (float) loop.get(i).getTotalResistance();
       Float resi = new Float(res);
       eq.addTerm(dir * resi,loop.get(i).toString());
