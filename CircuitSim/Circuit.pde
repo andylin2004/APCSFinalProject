@@ -62,5 +62,33 @@ public class Circuit{
     }
     
   }
+  
+  
+  /*
+  for Kirchhoff's second law, when you get up to it:
+for each segment in the loop:
+add a term with a coefficient of the resistance, variable is toString()
+add the total voltage of the segment, **multiplied by -1 if the segment goes in the opposite direction of the loop, to the sum
+*/
+
+  public Equation secondLaw(List<Segment> loop){
+    Equation eq = new Equation(0.0);
+    for (int i = 0; i < loop.size(); i++){
+      float res = (float) loop.get(i).getTotalResistance();
+      Float resi = new Float(res);
+      eq.addTerm(resi,loop.get(i).toString());
+      float vol = (float) loop.get(i).getTotalVoltage();
+      Float volt = new Float(vol);
+      if(i == 0){
+        eq.addSum(volt);
+      }
+      else{
+        int dir = loop.get(i-1).getDirection(loop.get(i)); //previous.getDirection(segment)
+        eq.addSum(volt*dir);
+      }
+      
+    }
+    return eq;
+  }
 
 }
