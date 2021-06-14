@@ -34,4 +34,13 @@ public class Resistor extends CircuitComponent{
   public int getResistance(){
     return resistance;
   }
+  
+  public void addResistance(int amount){
+    if (resistance == 0 && amount == -1){
+       return;
+    }
+    resistance += amount;
+  }
+  
+  
 }

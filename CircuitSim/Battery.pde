@@ -26,4 +26,11 @@ public class Battery extends CircuitComponent{
   public int getVoltage(){
     return voltage;
   }
+  
+  public void addVoltage(int num){
+    if (voltage==0 && num==-1){
+      return;
+    }
+    voltage += num;
+  }
 }

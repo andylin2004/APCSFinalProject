@@ -71,6 +71,32 @@ void keyPressed(){
   if (keyCode==68) {
     displayInfo();
   }
+  else if (keyCode ==38){
+    for (Resistor res : parts.resistors){
+      if (Math.pow(mouseX-res.centerX, 2)+Math.pow(mouseY-res.centerY, 2) < 700){
+        res.addResistance(1);
+      }
+    }
+    for (Battery bat : parts.batteries){
+      if (Math.pow(mouseX-bat.centerX, 2)+Math.pow(mouseY-bat.centerY, 2) < 700){
+        bat.addVoltage(1);
+      }
+    }
+    parts.calculateCurrent();
+  }
+  else if (keyCode ==40){
+    for (Resistor res : parts.resistors){
+      if (Math.pow(mouseX-res.centerX, 2)+Math.pow(mouseY-res.centerY, 2) < 700){
+        res.addResistance(-1);
+      }
+    }
+    for (Battery bat : parts.batteries){
+      if (Math.pow(mouseX-bat.centerX, 2)+Math.pow(mouseY-bat.centerY, 2) < 700){
+        bat.addVoltage(-1);
+      }
+    }
+    parts.calculateCurrent();
+  }
   
 }
 
