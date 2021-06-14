@@ -82,11 +82,22 @@ public class Segment{
   
   public Float getDirection(Node node) {
   // return -1 if it's the "start", 1 if it's the "end"
-  if (node==start){
-    return -1.0;
+    if (node==start){
+      return -1.0;
+    }
+    else{
+      return 1.0;
+    }
   }
-  else{
-    return 1.0;
+  
+  public int getDirection(Segment seg) {
+  // return 1 if the given segment has its end as your start, or its start as your end
+  // return -1 if the given segment has the same end as yours, or the same start as yours
+    if (seg.getStart()==end || get.getEnd == start){
+      return 1;
+    }
+    else{
+      return -1;
+    }
   }
-}
 }
