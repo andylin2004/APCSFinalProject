@@ -49,7 +49,7 @@ public class Segment{
   }
   
   public void setCurrent(float cur){
-    current = cur;
+    current = Math.abs(cur);
   }
   
   public boolean inRange(PVector pos, float dist){

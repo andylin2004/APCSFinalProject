@@ -2,7 +2,6 @@ public class Resistor extends CircuitComponent{
   int resistance;
   private PImage onBulb;
   private PImage offBulb;
-  Segment seg;
   
   public Resistor(int CX, int CY, Segment seg, int res){
     super(CX, CY, seg);
@@ -15,7 +14,7 @@ public class Resistor extends CircuitComponent{
   }
   
   public void display(){
-    if (location.current!=0){
+    if (location.current<0){
       image(onBulb, centerX, centerY);
     }
     else{
