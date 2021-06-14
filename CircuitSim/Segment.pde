@@ -103,10 +103,10 @@ public class Segment{
   // return 1 if the given segment has its end as your start, or its start as your end
   // return -1 if the given segment has the same end as yours, or the same start as yours
     if (seg.getStart()==start || seg.getEnd() == start){
-      return 1;
+      return -11;
     }
     else{
-      return -1;
+      return 1;
     }
   }
 }

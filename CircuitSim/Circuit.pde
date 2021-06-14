@@ -76,18 +76,13 @@ public class Circuit{
   public Equation secondLaw(List<Segment> loop){
     Equation eq = new Equation(0.0);
     for (int i = 0; i < loop.size(); i++){
+      int dir == i == 0 ? i : loop.get(i-1).getDirection(loop.get(i));
       float res = (float) loop.get(i).getTotalResistance();
       Float resi = new Float(res);
-      eq.addTerm(resi,loop.get(i).toString());
+      eq.addTerm(dir * resi,loop.get(i).toString());
       float vol = (float) loop.get(i).getTotalVoltage();
       Float volt = new Float(vol);
-      if(i == 0){
-        eq.addSum(volt);
-      }
-      else{
-        int dir = loop.get(i-1).getDirection(loop.get(i)); //previous.getDirection(segment)
-        eq.addSum(volt*dir);
-      }
+      eq.addSum(volt*dir);
     }
     return eq;
   }
