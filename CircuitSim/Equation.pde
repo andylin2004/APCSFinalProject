@@ -20,4 +20,9 @@ class Equation {
   public Float getSum(){
     return sum;
   }
+  
+  public void addTerm(Float coefficient, String variable){
+    coefficients.add(coefficient);
+    variables.add(variable);
+  }
 }
