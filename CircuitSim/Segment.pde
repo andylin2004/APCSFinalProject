@@ -29,8 +29,6 @@ public class Segment{
   public void display(){
     strokeWeight(5);
     line(x1,y1,x2,y2);
-    textSize(20);
-    text(current, x1, y1);
   }
   
   public Node getStart(){

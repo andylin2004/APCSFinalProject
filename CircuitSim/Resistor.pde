@@ -14,14 +14,19 @@ public class Resistor extends CircuitComponent{
   }
   
   public void display(){
-    if (location.current<0){
+    if (location.current!=0){
       image(onBulb, centerX, centerY);
     }
     else{
       image(offBulb, centerX, centerY);
     }
-    //textSize(20);
-    //text(location.getCurrent(), centerX, centerY);
+    fill(255);
+    textSize(20);
+    stroke(1);
+    rect(centerX +30, centerY -50 +10, 150, 90);
+    fill(0);
+    text("resistance: " + getResistance(), centerX + 30, centerY - 20);
+    text("current: " + location.getCurrent(), centerX +30, centerY+40);
   }
   
   public int getResistance(){
