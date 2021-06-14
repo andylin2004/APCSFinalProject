@@ -24,5 +24,18 @@ public class Node{
   public PVector getPos() {
     return new PVector(x, y);
   }
+  
+  public Equation firstRule() {
+  // return an equation, with -1 & 1 for the coefficients (depending on whether the segment goes from or to this node) and `segment.toString()` for the variables
+  // sums to 0
+  float[] coeff = new float[connections.size()];
+  String[] vars = new String[connections.size()];
+  for (int i = 0; i < coeff.length; i++){
+    coeff[i] = connections.get(i).getDirection(this);
+    vars[i] = connections.get(i).toString();
+  }
+  Equation eqOne = new Equation(coeff, vars, 0);
+  return eqOne;
+}
  
 }
