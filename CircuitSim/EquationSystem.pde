@@ -10,9 +10,12 @@ class EquationSystem {
   
   private void setMapping() {
     for (int i = 0; i < equations.size(); i ++){
-      for (int j = 0; j < equations.get(i).getVariables().length; j++){
-        if (mapping.get(equations.get(i).getVariables()[j])!=null){
-          mapping.put(equations.get(i).getVariables()[j], mapping.size());
+      Equation equation = equations.get(i);
+      String[] variables = equation.getVariables();
+      for (int j = 0; j < variables.length; j++){
+        String variable = variables[j];
+        if (!mapping.containsKey(variable)){
+          mapping.put(variables[j], mapping.size());
         }
       }
     }
@@ -31,21 +34,29 @@ class EquationSystem {
     setMapping();
     int nEquations = equations.size();
     int nVariables = mapping.size();
-    float[][] coefficients = new float[nEquations][nVariables];
-    float[][] sums = new float[nVariables][1];
-    
-    for (int i = 0; i < equations.size(); i++){
-      for (int j = 0; j < equations.get(i).getVariables().length; j++){
-        coefficients[i][mapping.get(equations.get(i).getVariables()[j])] = equations.get(i).getCoefficients()[j];
-        sums[i][0] = equations.get(i).getSum();
+    double[][] coefficients = new double[nEquations][nVariables];
+    double[][] sums = new double[nEquations][1];
+  
+    for (int i = 0; i < nEquations; i++){
+      Equation equation = equations.get(i);
+      String[] variables = equation.getVariables();
+      Float[] c = equation.getCoefficients();
+      for (int j = 0; j < variables.length; j++){
+        coefficients[i][mapping.get(variables[j])] = c[j];
       }
+      sums[i][0] = equations.get(i).getSum();
     }
     
-    float[][] inverse = Matrix.inverse(coefficients);
-    float[][] solutions = Matrix.Multiply(inverse, sums);
+    DMatrixRMaj A = new DMatrixRMaj(coefficients);
+    DMatrixRMaj B = new DMatrixRMaj(sums);
+    DMatrixRMaj X = new DMatrixRMaj(nVariables, 1);
+    
+    if( !CommonOps_DDRM.solve(A,B,X) )
+      return null;
+    
     float[] oneD = new float[nVariables];
-    for (int i = 0; i < solutions.length; i++){
-      oneD[i]=solutions[i][0];
+    for (int i = 0; i < nVariables; i++){
+      oneD[i]=(float)X.get(i, 0);
     }
     return oneD;
   }

@@ -1,6 +1,6 @@
-import pallav.Matrix.*;
-
 import java.util.*;
+import org.ejml.dense.row.CommonOps_DDRM;
+import org.ejml.data.DMatrixRMaj;
 
 RightClickMenu menu;
 Circuit parts = new Circuit();
@@ -110,4 +110,5 @@ void addComponent(String component) {
     createNode();
     break;
   }
+  parts.calculateCurrent();
 }
