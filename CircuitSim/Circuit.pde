@@ -95,9 +95,10 @@ public class Circuit{
     
     float[] currents = current.solve();
     for (int i = 0; i < circuitSegments.size(); i++){
-      if (current.getMapping().get(circuitSegments.get(i))!=null){
-        int index = current.getMapping().get(circuitSegments.get(i));
+      if (current.getMapping().get(circuitSegments.get(i).toString())!=null){
+        int index = current.getMapping().get(circuitSegments.get(i).toString());
         circuitSegments.get(i).setCurrent(currents[index]);
+        println(currents[index]);
       }
     }
     println(Arrays.toString(currents));

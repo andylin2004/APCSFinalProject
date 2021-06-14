@@ -29,6 +29,8 @@ public class Segment{
   public void display(){
     strokeWeight(5);
     line(x1,y1,x2,y2);
+    textSize(20);
+    text(current, x1, y1);
   }
   
   public Node getStart(){
@@ -50,6 +52,10 @@ public class Segment{
   
   public void setCurrent(float cur){
     current = Math.abs(cur);
+  }
+  
+  public float getCurrent(){
+    return Math.abs(current);
   }
   
   public boolean inRange(PVector pos, float dist){

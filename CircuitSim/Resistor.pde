@@ -20,6 +20,8 @@ public class Resistor extends CircuitComponent{
     else{
       image(offBulb, centerX, centerY);
     }
+    //textSize(20);
+    //text(location.getCurrent(), centerX, centerY);
   }
   
   public int getResistance(){
