@@ -1,11 +1,11 @@
 class Equation {
   List<Float> coefficients;
   List<String> variables;  
-  float sum; 
+  Float sum; 
   
-  public Equation(Float[] Coefficients, String[] Variables, Float Sum){
-    coefficients = Arrays.asList(Coefficients);
-    variables = Arrays.asList(Variables);
+  public Equation(Float Sum){
+    coefficients = new ArrayList<Float>();
+    variables = new ArrayList<String>();
     sum = Sum;
   }
   
@@ -24,5 +24,9 @@ class Equation {
   public void addTerm(Float coefficient, String variable){
     coefficients.add(coefficient);
     variables.add(variable);
+  }
+  
+  public void addSum(Float num){
+    sum+=num;
   }
 }

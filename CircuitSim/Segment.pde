@@ -80,13 +80,13 @@ public class Segment{
     return volt;
   }
   
-  public int getDirection(Node node) {
+  public Float getDirection(Node node) {
   // return -1 if it's the "start", 1 if it's the "end"
   if (node==start){
-    return -1;
+    return -1.0;
   }
   else{
-    return 1;
+    return 1.0;
   }
 }
 }
