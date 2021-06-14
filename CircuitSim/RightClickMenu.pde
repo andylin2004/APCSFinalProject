@@ -41,3 +41,23 @@ class Button{
     print(toAdd);
   }
 }
+
+class ResetButton extends Button{
+  private PImage resetIcon;
+  ResetButton(){
+    super();
+    this.x = 1300;
+    this.y = 800;
+  }
+  
+  void click(){
+  }
+
+  void display(){
+    imageMode(CENTER);
+    resetIcon = loadImage("reset.png");
+    resetIcon.resize(60,60);
+    image(resetIcon, x, y);
+  }
+
+}
