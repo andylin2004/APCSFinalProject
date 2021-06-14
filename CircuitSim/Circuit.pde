@@ -13,6 +13,14 @@ public class Circuit{
     batteries = new ArrayList<Battery>();
   }
   
+  public void clear(){
+    circuitNodes.clear();
+    circuitSegments.clear();
+    loops.clear();
+    resistors.clear();
+    batteries.clear();
+  }
+  
   public void addNode(Node newNode){
     circuitNodes.add(newNode);
   }

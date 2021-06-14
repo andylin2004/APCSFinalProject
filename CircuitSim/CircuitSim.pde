@@ -5,6 +5,7 @@ import org.ejml.data.DMatrixRMaj;
 RightClickMenu menu;
 Circuit parts = new Circuit();
 ArrayList<Node> selectedNodes = new ArrayList<Node>();
+Button reset = new ResetButton();
 
 void setup(){
   size(1440, 900);
@@ -20,6 +21,7 @@ void setup(){
 void draw(){
   background(#E3DEDE);
   menu.display();
+  reset.display();
   for (Node aNode : parts.circuitNodes){
     aNode.display();
   }
@@ -53,8 +55,16 @@ void mousePressed(){
         return;
       }
     }
+    resetCircuit();
   }
   
+}
+
+void resetCircuit(){
+  if (Math.pow(mouseX-reset.x, 2)+Math.pow(mouseY-reset.y, 2) < 700) {
+    reset.click();
+    parts.clear();
+  }
 }
 
 void keyPressed(){
