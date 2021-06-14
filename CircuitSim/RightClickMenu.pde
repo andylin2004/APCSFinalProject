@@ -34,6 +34,8 @@ class Button{
   }
   
   void display(){
+    strokeWeight(1);
+    color(255);
     ellipse(x, y, 10, 10);
   }
   

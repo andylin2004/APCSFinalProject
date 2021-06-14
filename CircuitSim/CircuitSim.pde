@@ -143,6 +143,7 @@ void createResistor(){
       Resistor res = new Resistor(mouseX, mouseY, parts.circuitSegments.get(i), 10);
       parts.circuitSegments.get(i).addResistor(res);
       parts.addResistor(res);
+      return;
     }
   }
 }
@@ -154,6 +155,7 @@ void createBattery(){
       Battery bat = new Battery(mouseX, mouseY, parts.circuitSegments.get(i), 10);
       parts.circuitSegments.get(i).addBattery(bat);
       parts.addBattery(bat);
+      return;
     }
   }
 }
