@@ -1,23 +1,23 @@
 class Equation {
-  float[] coefficients;
-  String[] variables;  
+  List<Float> coefficients;
+  List<String> variables;  
   float sum; 
   
-  public Equation(float[] Coefficients, String[] Variables, float Sum){
-    coefficients = Coefficients;
-    variables = Variables;
+  public Equation(Float[] Coefficients, String[] Variables, Float Sum){
+    coefficients = Arrays.asList(Coefficients);
+    variables = Arrays.asList(Variables);
     sum = Sum;
   }
   
-  public float[] getCoefficients(){
-    return coefficients;
+  public Float[] getCoefficients(){
+    return coefficients.toArray(new Float[0]);
   }
   
   public String[] getVariables(){
-    return variables;
+    return variables.toArray(new String[0]);
   }
   
-  public float getSum(){
+  public Float getSum(){
     return sum;
   }
 }
