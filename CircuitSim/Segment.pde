@@ -6,6 +6,7 @@ public class Segment{
   int x1,y1,x2,y2;
   ArrayList<Resistor> resistors;
   ArrayList<Battery> batteries;
+  float current;
   
   
   public Segment(int StartX, int StartY, int endX, int endY, Node startNode, Node endNode){
@@ -18,7 +19,7 @@ public class Segment{
     end = endNode;
     resistors = new ArrayList<Resistor>();
     batteries = new ArrayList<Battery>();
-    
+    current = 0;
   }
   
   public void addNode(Node newNode){
@@ -45,6 +46,10 @@ public class Segment{
     else{
       return start;
     }
+  }
+  
+  public void setCurrent(float cur){
+    current = cur;
   }
   
   public boolean inRange(PVector pos, float dist){

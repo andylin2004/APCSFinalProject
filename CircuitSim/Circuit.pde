@@ -100,6 +100,10 @@ add the total voltage of the segment, **multiplied by -1 if the segment goes in 
     }
     
     float[] currents = current.solve();
+    for (int i = 0; i < circuitSegments.size(); i++){
+      int index = current.getMapping().get(circuitSegments.get(i));
+      circuitSegments.get(i).setCurrent(currents[index]);
+    }
     
   }
 
