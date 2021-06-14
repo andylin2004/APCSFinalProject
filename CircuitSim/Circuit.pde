@@ -86,9 +86,21 @@ add the total voltage of the segment, **multiplied by -1 if the segment goes in 
         int dir = loop.get(i-1).getDirection(loop.get(i)); //previous.getDirection(segment)
         eq.addSum(volt*dir);
       }
-      
     }
     return eq;
+  }
+  
+  public void calculateCurrent(){
+    EquationSystem current = new EquationSystem();
+    for (int i = 0; i < loops.size();i++){
+      current.addEquation(secondLaw(loops.get(i)));
+    }
+    for (int i = 0; i < circuitNodes.size(); i++){
+      current.addEquation(circuitNodes.get(i).firstRule());
+    }
+    
+    float[] currents = current.solve();
+    
   }
 
 }
