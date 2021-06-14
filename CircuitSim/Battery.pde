@@ -16,7 +16,7 @@ public class Battery extends CircuitComponent{
       fill(255);
       textSize(20);
       strokeWeight(1);
-      rect(centerX +30, centerY -50 +10, 150, 90);
+      rect(centerX +30, centerY -50 +10, 250, 90);
       fill(0);
       text("voltage: " + getVoltage(), centerX + 30, centerY - 20);
       text("current: " + location.getCurrent(), centerX +30, centerY+40);

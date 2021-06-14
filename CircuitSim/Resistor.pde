@@ -26,7 +26,7 @@ public class Resistor extends CircuitComponent{
       fill(255);
       textSize(20);
       strokeWeight(1);
-      rect(centerX +30, centerY -50 +10, 150, 90);
+      rect(centerX +30, centerY -50 +10, 250, 90);
       fill(0);
       text("resistance: " + getResistance(), centerX + 30, centerY - 20);
       text("voltage drop: " + getDrop(), centerX + 30, centerY +10);
