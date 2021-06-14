@@ -61,3 +61,35 @@ class ResetButton extends Button{
   }
 
 }
+
+class InstructionsButton {
+  int x, y;
+  boolean isOn;
+  PImage inIcon;
+  
+  InstructionsButton(int X, int Y){
+    x = X;
+    y = Y;
+    isOn = false;
+  }
+  
+  void display(){
+    imageMode(CENTER);
+    inIcon = loadImage("instructions.png");
+    inIcon.resize(200,200);
+    image(inIcon, x, y);
+    String dir = "";
+    if(isOn){
+      fill(#CCB8FC);
+      noStroke();
+      rect(0,0,1440,350);
+      fill(0);
+      text("Directions", 700, 50);
+      text(dir, 300, 100);
+    }
+  }
+  
+  void click(){
+    isOn = !isOn;
+  }
+}

@@ -6,6 +6,7 @@ RightClickMenu menu;
 Circuit parts = new Circuit();
 ArrayList<Node> selectedNodes = new ArrayList<Node>();
 Button reset = new ResetButton();
+InstructionsButton instructions = new InstructionsButton(100, 800);
 
 void setup(){
   size(1440, 900);
@@ -22,6 +23,7 @@ void draw(){
   background(#E3DEDE);
   menu.display();
   reset.display();
+  instructions.display();
   for (Node aNode : parts.circuitNodes){
     aNode.display();
   }
@@ -56,6 +58,7 @@ void mousePressed(){
       }
     }
     resetCircuit();
+    isInstructions();
   }
   
 }
@@ -168,4 +171,10 @@ void addComponent(String component) {
     break;
   }
   parts.calculateCurrent();
+}
+
+void isInstructions() {
+  if (mouseX <175 && mouseX > 20 && mouseY > 755 && mouseY < 785) {
+    instructions.isOn = !instructions.isOn;
+  }
 }
