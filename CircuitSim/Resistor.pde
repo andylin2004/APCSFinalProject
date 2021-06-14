@@ -20,13 +20,15 @@ public class Resistor extends CircuitComponent{
     else{
       image(offBulb, centerX, centerY);
     }
-    fill(255);
-    textSize(20);
-    stroke(1);
-    rect(centerX +30, centerY -50 +10, 150, 90);
-    fill(0);
-    text("resistance: " + getResistance(), centerX + 30, centerY - 20);
-    text("current: " + location.getCurrent(), centerX +30, centerY+40);
+    if (info){
+      fill(255);
+      textSize(20);
+      stroke(1);
+      rect(centerX +30, centerY -50 +10, 150, 90);
+      fill(0);
+      text("resistance: " + getResistance(), centerX + 30, centerY - 20);
+      text("current: " + location.getCurrent(), centerX +30, centerY+40);
+    }
   }
   
   public int getResistance(){

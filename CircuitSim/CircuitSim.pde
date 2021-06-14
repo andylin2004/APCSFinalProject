@@ -57,6 +57,27 @@ void mousePressed(){
   
 }
 
+void keyPressed(){
+  if (keyCode==68) {
+    displayInfo();
+  }
+  
+}
+
+void displayInfo(){
+  for (Battery part : parts.batteries) {
+      if (Math.pow(mouseX-part.centerX, 2)+Math.pow(mouseY-part.centerY, 2) < 500) {
+        part.info = ! part.info;
+      }
+    }
+  for (Resistor part : parts.resistors) {
+    if (Math.pow(mouseX-part.centerX, 2)+Math.pow(mouseY-part.centerY, 2) < 500) {
+      part.info = ! part.info;
+    }
+  }
+}
+
+
 void createNode(){
   Node newNode = new Node(mouseX, mouseY);
   parts.addNode(newNode);

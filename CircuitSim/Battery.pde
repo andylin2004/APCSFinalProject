@@ -11,12 +11,16 @@ public class Battery extends CircuitComponent{
   }
   
   public void display(){
-    /*
-    rectMode(CENTER);
-    fill(0);
-    rect(centerX,centerY, 20, 20);
-    */
     image(batImage,centerX, centerY);
+    if (info){
+      fill(255);
+      textSize(20);
+      stroke(1);
+      rect(centerX +30, centerY -50 +10, 150, 90);
+      fill(0);
+      text("voltage: " + getVoltage(), centerX + 30, centerY - 20);
+      text("current: " + location.getCurrent(), centerX +30, centerY+40);
+    }
   }
   
   public int getVoltage(){
